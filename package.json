@@ -1,0 +1,23 @@
+{
+  "name": "js-wiser-ea",
+  "version": "0.1.0",
+  "description": "Example educational app for the Wise-r platform.",
+  "scripts": {
+    "build": "node build.js",
+    "start": "node src/backend.js"
+  },
+  "keywords": [],
+  "author": "Topicus Onderwijs",
+  "maintainers": [],
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "client-oauth2": "^3.1.0",
+    "express": "^4.12.3",
+    "jsonwebtoken": "^7.1.9",
+    "node-fetch": "^1.6.0"
+  },
+  "devDependencies": {
+    "webpack":"^1.13.0"
+  }
+}

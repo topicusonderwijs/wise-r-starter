@@ -1,0 +1,118 @@
+var express = require('express');
+var cookieParser = require('cookie-parser');
+var jsonwebtoken = require('jsonwebtoken');
+var fetch = require('node-fetch');
+var ClientOAuth2 = require('client-oauth2');
+var path = require('path');
+
+var config = require('../backend.config');
+
+var app = express();
+app.use(cookieParser());
+
+// Serve frontend application
+app.use('/', express.static('./build'));
+
+// Frontend sends user here to start the Authorization Code flow.
+// This will redirect to the IDP.
+app.get('/authcode', createNonceAndStartAuthCodeFlow);
+
+// Serve frontend at this URL when the Authorization Code flow has finished.
+app.get('/login', serveFrontend);
+
+// This endpoint can handle two kinds of OAuth2 responses.
+// (1) Authorization Code: OAuth2 response is in the query string, and is handled by the server.
+// (2) Implicit: OAuth2 response is in the URL hash, which the server doesn't even get to see;
+//     we just serve out the single-page frontend so it can handle the response.
+// In a real application, you only need to implement one flow (Authorization Code is recommended for higher security).
+app.get('/callback', function (req, res) {
+    if (isAuthCodeCallback(req))
+        exchangeTokenAndRedirectToFrontend(req,res);
+    else
+        serveFrontend(req, res);
+});
+
+// JSON endpoint for XHR communication between frontend and backend
+app.get('/userdata', getUserData);
+
+// If the URL in backend.config.js (field 'backend') includes a port number, use this.
+var port = (/:(\d+)/.exec(config.backend) || [80]).pop();
+app.listen(port);
+
+
+
+var authService = new ClientOAuth2({
+    clientId: config.oauthClientId,
+    clientSecret: config.oauthClientSecret,
+    authorizationUri: config.idp + '/auth',
+    accessTokenUri: config.idp + '/token',
+    redirectUri: config.backend + '/callback',
+    scopes: ['openid']
+});
+
+function createNonceAndStartAuthCodeFlow(req,res) {
+    var oauthState = generateUUID();
+    // [idp]/auth?
+    //   client_id=...
+    //   &redirect_uri=[backend]/callback
+    //   &scope=openid
+    //   &response_type=code
+    //   &state=[uuid]
+    //   &provider=...
+    var uri = authService.code.getUri({state:oauthState})+'&provider=' + config.provider;
+    res.cookie('oauthState',oauthState);
+    res.redirect(uri);
+}
+
+function exchangeTokenAndRedirectToFrontend(req, res) {
+    var cookieState = req.cookies.oauthState;
+    authService.code.getToken(req.originalUrl, {state:cookieState})
+        .then(function (token) {
+            res.redirect(config.backend + '/login?id_token=' + token.accessToken);
+        }).catch(function (error) {
+            res.send(error);
+        });
+}
+
+// Use client credentials to obtain an access token with full access to REST resources.
+function getClientAccessToken() {
+    return authService.credentials.getToken()
+        .then(function (response) {
+            console.log(response.accessToken)
+            return response.accessToken;
+        });
+}
+
+function getUserData(req,res) {
+    var jwt = req.query.id_token;
+    var claims = jsonwebtoken.verify(jwt, config.sso_pub_key, {algorithms: ['RS256']});
+    console.log(claims);
+
+    return getClientAccessToken()
+        .then(function (clientAccessToken) {
+            return fetch(config.apiBaseUrl + '/users/' + claims.sub, {headers: {'Authorization': 'Bearer ' + clientAccessToken}});
+        }).then(function (resp) {
+            return resp.json();
+        }).then(function (obj) {
+            res.json(obj);
+        });
+}
+
+// http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript#2117523
+function generateUUID() {
+    var d = new Date().getTime();
+    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+    return uuid;
+}
+
+function isAuthCodeCallback(req) {
+    return req.query.state != undefined;
+}
+
+function serveFrontend(req, res) {
+    res.sendFile(path.join(__dirname,'..','build','index.html'));
+}

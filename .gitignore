@@ -1,0 +1,13 @@
+# Build
+build/app.js
+
+# Dependency directory
+node_modules
+
+# local config
+backend.config.js
+frontend.config.js
+localhost.pem
+
+.idea
+.DS_Store

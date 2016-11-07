@@ -1,0 +1,11 @@
+var fs = require('fs');
+
+module.exports = {
+    oauthClientId: 'myapp',           // fill in your own client id
+    oauthClientSecret: 'secret',      // fill in your own client secret
+    provider: 'somtoday',             // can also be 'parnassys'
+    idp: 'https://idp-acceptatie.wise-r.nl',
+    apiBaseUrl: 'https://api-acceptatie.wise-r.nl/api/v1',
+    backend: 'http://localhost:8888',
+    sso_pub_key: fs.readFileSync('acceptatie.wise-r.nl.pem')
+};
