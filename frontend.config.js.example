@@ -2,6 +2,6 @@ module.exports = {
     // WARNING: do not supply the client secret here! This code is sent to the browser.
     oauthClientId: 'myapp',           // fill in your own client id
     provider: 'somtoday',             // can also be 'parnassys'
-    idp: 'http://localhost:8090',
+    idp: 'https://idp-acceptatie.wise-r.nl',
     backend: 'http://localhost:8888',
 };
