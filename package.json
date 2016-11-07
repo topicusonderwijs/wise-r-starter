@@ -1,7 +1,7 @@
 {
-  "name": "js-wiser-ea",
+  "name": "wise-r-starter",
   "version": "0.1.0",
-  "description": "Example educational app for the Wise-r platform.",
+  "description": "Example educational application for the Wise-r platform.",
   "scripts": {
     "build": "node build.js",
     "start": "node src/backend.js"
