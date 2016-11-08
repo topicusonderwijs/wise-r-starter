@@ -3,5 +3,7 @@ module.exports = {
     oauthClientId: 'myapp',           // fill in your own client id
     provider: 'somtoday',             // can also be 'parnassys'
     idp: 'https://idp-acceptatie.wise-r.nl',
-    backend: 'http://localhost:8888',
+    issuer: 'PassePartout',
+    sso_pub_key: require('./acceptatie.wise-r.nl.pem'),
+    backend: 'http://localhost:8888'
 };

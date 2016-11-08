@@ -9,5 +9,6 @@ backend.config.js
 frontend.config.js
 localhost.pem
 
+*.log
 .idea
 .DS_Store

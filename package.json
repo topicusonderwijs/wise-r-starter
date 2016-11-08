@@ -15,9 +15,11 @@
     "client-oauth2": "^3.1.0",
     "express": "^4.12.3",
     "jsonwebtoken": "^7.1.9",
+    "jsrsasign": "^6.2.0",
     "node-fetch": "^1.6.0"
   },
   "devDependencies": {
-    "webpack":"^1.13.0"
+    "webpack":"^1.13.0",
+    "raw-loader":"0.5.0"
   }
 }

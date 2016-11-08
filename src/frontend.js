@@ -1,5 +1,6 @@
 var ClientOAuth2 = require('client-oauth2');
 var config = require('../frontend.config');
+var jsrsasign = require('jsrsasign');
 
 var authService = new ClientOAuth2({
     clientId: config.oauthClientId,
@@ -12,10 +13,9 @@ var authService = new ClientOAuth2({
 function router() {
     // check if we're at the callback endpoint
     if (startsWith(window.location.pathname,'/callback')) {
-        extractIdTokenFromOAuthResponse().then(renderDataView).catch(renderErrorView);
-    } else if (startsWith(window.location.pathname,'/login')) {
-        var idToken = extractIdToken(window.location.search);
-        renderDataView(idToken);
+        extractIdTokenFromOAuthResponse().then(renderObject).catch(renderErrorView);
+    } else if (startsWith(window.location.pathname,'/showdata')) {
+        fetchUserData().then(renderObject).catch(renderErrorView);
     } else {
         renderFlowChoiceView();
     }
@@ -29,43 +29,47 @@ function renderFlowChoiceView() {
     //   client_id=...
     //   &redirect_uri=[backend]/callback
     //   &scope=openid
-    //   &response_type=token
+    //   &response_type=id_token
     //   &state=[uuid]
     //   &provider=parnassys
-    var uri = authService.token.getUri({state:oauthState}) + '&provider=' + config.provider;
+    sessionStorage.setItem('oauth_state',oauthState);
+    var tokenUri = authService.token.getUri({state:oauthState}) + '&provider=' + config.provider + '&nonce='+oauthState;
+    // hack the response_type parameter because client-oauth2 has no OIDC support (yet?)
+    var uri = tokenUri.replace("response_type=token","response_type=id_token");
 
     document.getElementById('flowChoiceView').style.visibility = 'visible';
     document.getElementById('implicit').href = uri;
     document.getElementById('authcode').href = config.backend + '/authcode';
 }
 
-function renderDataView(idToken) {
-    var div = document.getElementById('dataView');
-    div.style.visibility = 'visible';
-    var table = div.appendChild(document.createElement("table"));
-    fetch(config.backend + '/userdata?id_token=' + idToken)
+function fetchUserData() {
+    return fetch(config.backend + '/userdata', {credentials: 'same-origin'})
         .then(function (resp) {
             return resp.json();
-        }).then(function (userdata) {
-            for (key in userdata) {
-                var tr = table.appendChild(document.createElement("tr"));
-                var td_key = tr.appendChild(document.createElement("td"));
-                td_key.innerHTML = key;
-                var val = userdata[key];
-                var td_val = tr.appendChild(document.createElement("td"));
-                if (Array.isArray(val)) {
-                    td_val.innerHTML = stringifyObject(val[0] || []);
-                    for (var i=1; i<val.length; i++) {
-                        tr = table.appendChild(document.createElement("tr"));
-                        td_key = tr.appendChild(document.createElement("td"));
-                        td_val = tr.appendChild(document.createElement("td"));
-                        td_val.innerHTML = stringifyObject(val[i]);
-                    }
-                } else {
-                    td_val.innerHTML = stringifyObject(val);
-                }
-            }
         });
+}
+
+function renderObject(obj) {
+    document.getElementById('dataView').style.visibility = 'visible';
+    var table = document.getElementById('results').appendChild(document.createElement("table"));
+    for (key in obj) {
+        var tr = table.appendChild(document.createElement("tr"));
+        var td_key = tr.appendChild(document.createElement("td"));
+        td_key.innerHTML = key;
+        var val = obj[key];
+        var td_val = tr.appendChild(document.createElement("td"));
+        if (Array.isArray(val)) {
+            td_val.innerHTML = stringifyObject(val[0] || []);
+            for (var i=1; i<val.length; i++) {
+                tr = table.appendChild(document.createElement("tr"));
+                td_key = tr.appendChild(document.createElement("td"));
+                td_val = tr.appendChild(document.createElement("td"));
+                td_val.innerHTML = stringifyObject(val[i]);
+            }
+        } else {
+            td_val.innerHTML = stringifyObject(val);
+        }
+    }
 }
 
 function stringifyObject(obj) {
@@ -79,15 +83,23 @@ function renderErrorView(err) {
 
 function extractIdTokenFromOAuthResponse() {
     var storedState = sessionStorage.getItem('oauth_state');
-    return authService.token.getToken(window.location.href, {state: storedState})
-        .then(function (token) {
-            return token.data.id_token;
-        });
+    sessionStorage.setItem('oauth_state',null);
+    if (storedState)
+        return authService.token.getToken(window.location.href, {state: storedState})
+            .then(function (token) {
+                var id_token = token.data.id_token;
+                var accept = {alg: ['RS256'], aud: config.oauthClientId, iss: config.issuer};
+                var valid = jsrsasign.jws.JWS.verifyJWT(id_token, config.sso_pub_key, accept);
+                if (!valid)
+                    throw new Error('invalid token');
+                // if (cookieState != claims.nonce) {
+                //     console.log('incorrect nonce');
+                //     return;
+                // }
+                return jsrsasign.jws.JWS.parse(id_token).payloadObj;
+            });
 }
 
-function extractIdToken(querystring) {
-    return /id_token=(.*)$/.exec(querystring).pop();
-}
 
 // String.startsWith is ES6, this is plain JS
 function startsWith(candidate,prefix) {

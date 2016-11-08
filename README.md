@@ -17,9 +17,11 @@ accessed by default at `http://localhost:8888`.
 
 ## What does it do?
 
-This application consists of a minimalist Node.js backend plus single-page Javascript frontend. Together, they are able
-to authenticate a user on the [Wise-r](https://wise-r.nl) platform (using either the OAuth2 *authentication code flow*
-or the *implicit flow*), and fetch some data about this user using the *client credentials* flow.
+This application consists of a minimalist [Node.js backend](src/backend.js) plus [single-page Javascript frontend](src/frontend.js).
+They authenticate a user through the [Wise-r](https://wise-r.nl) platform:
+* either on the backend, using the OpenID Connect *authentication code flow*, after which it fetches some data
+about this user using the OAuth2 *client credentials* flow;
+* or on the frontend, using the OpenID Connect *implicit flow*, after which the contents of the ID token are shown.
 
 The code serves as an example for Educative Applications and is deliberately written in plain, framework-independent
 Javascript.

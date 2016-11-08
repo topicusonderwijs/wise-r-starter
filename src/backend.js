@@ -18,7 +18,7 @@ app.use('/', express.static('./build'));
 app.get('/authcode', createNonceAndStartAuthCodeFlow);
 
 // Serve frontend at this URL when the Authorization Code flow has finished.
-app.get('/login', serveFrontend);
+app.get('/showdata', serveFrontend);
 
 // This endpoint can handle two kinds of OAuth2 responses.
 // (1) Authorization Code: OAuth2 response is in the query string, and is handled by the server.
@@ -31,6 +31,10 @@ app.get('/callback', function (req, res) {
     else
         serveFrontend(req, res);
 });
+
+// app.get('/callback-authcode', exchangeTokenAndRedirectToFrontend);
+// app.get('/callback-implicit', serveFrontend);
+
 
 // JSON endpoint for XHR communication between frontend and backend
 app.get('/userdata', getUserData);
@@ -50,6 +54,10 @@ var authService = new ClientOAuth2({
     scopes: ['openid']
 });
 
+// collection of authenticated sessions
+// (maps session id to id_token claims)
+var sessions = {};
+
 function createNonceAndStartAuthCodeFlow(req,res) {
     var oauthState = generateUUID();
     // [idp]/auth?
@@ -59,16 +67,32 @@ function createNonceAndStartAuthCodeFlow(req,res) {
     //   &response_type=code
     //   &state=[uuid]
     //   &provider=...
-    var uri = authService.code.getUri({state:oauthState})+'&provider=' + config.provider;
+    var uri = authService.code.getUri({state:oauthState})+'&provider=' + config.provider + '&nonce=' + oauthState;
     res.cookie('oauthState',oauthState);
     res.redirect(uri);
 }
 
 function exchangeTokenAndRedirectToFrontend(req, res) {
     var cookieState = req.cookies.oauthState;
+    res.cookie('oauthState',null);
+    console.log(req.originalUrl);
     authService.code.getToken(req.originalUrl, {state:cookieState})
         .then(function (token) {
-            res.redirect(config.backend + '/login?id_token=' + token.accessToken);
+            // for now, our idp does not serve id tokens in an id_token field
+            // (as per OIDC). However, the access token also doubles as id token.
+            var id_token = token.accessToken;
+            var jwt_options = {algorithms: ['RS256'], audience: config.oauthClientId, issuer: config.issuer};
+            var claims = jsonwebtoken.verify(id_token, config.sso_pub_key, jwt_options);
+            // if (cookieState != claims.nonce) {
+            //     console.log('incorrect nonce');
+            //     res.end();
+            //     return;
+            // }
+
+            var sessionId = generateUUID();
+            sessions[sessionId] = claims;
+            res.cookie('sessionId',sessionId);
+            res.redirect(config.backend + '/showdata');
         }).catch(function (error) {
             res.send(error);
         });
@@ -84,9 +108,11 @@ function getClientAccessToken() {
 }
 
 function getUserData(req,res) {
-    var jwt = req.query.id_token;
-    var claims = jsonwebtoken.verify(jwt, config.sso_pub_key, {algorithms: ['RS256']});
-    console.log(claims);
+    var claims = sessions[req.cookies.sessionId];
+    if (!claims) {
+        console.log('invalid/no sessionId');
+        res.end();
+    }
 
     return getClientAccessToken()
         .then(function (clientAccessToken) {
