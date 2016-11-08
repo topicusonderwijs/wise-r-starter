@@ -92,10 +92,11 @@ function extractIdTokenFromOAuthResponse() {
                 var valid = jsrsasign.jws.JWS.verifyJWT(id_token, config.sso_pub_key, accept);
                 if (!valid)
                     throw new Error('invalid token');
-                if (cookieState != claims.nonce) {
+                var claims = jsrsasign.jws.JWS.parse(id_token).payloadObj;
+                if (storedState != claims.nonce) {
                     throw new Error('incorrect nonce');
                 }
-                return jsrsasign.jws.JWS.parse(id_token).payloadObj;
+                return claims;
             });
 }
 
