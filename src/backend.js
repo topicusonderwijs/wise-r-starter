@@ -81,13 +81,13 @@ function exchangeTokenAndRedirectToFrontend(req, res) {
             // for now, our idp does not serve id tokens in an id_token field
             // (as per OIDC). However, the access token also doubles as id token.
             var id_token = token.accessToken;
-            var jwt_options = {algorithms: ['RS256'], audience: config.oauthClientId, issuer: config.issuer};
+            var jwt_options = {algorithms: ['RS256'], audience: config.oauthClientId, issuer: config.idp};
             var claims = jsonwebtoken.verify(id_token, config.sso_pub_key, jwt_options);
-            // if (cookieState != claims.nonce) {
-            //     console.log('incorrect nonce');
-            //     res.end();
-            //     return;
-            // }
+            if (cookieState != claims.nonce) {
+                console.log('incorrect nonce');
+                res.end();
+                return;
+            }
 
             var sessionId = generateUUID();
             sessions[sessionId] = claims;

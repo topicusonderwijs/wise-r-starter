@@ -88,14 +88,13 @@ function extractIdTokenFromOAuthResponse() {
         return authService.token.getToken(window.location.href, {state: storedState})
             .then(function (token) {
                 var id_token = token.data.id_token;
-                var accept = {alg: ['RS256'], aud: config.oauthClientId, iss: config.issuer};
+                var accept = {alg: ['RS256'], aud: config.oauthClientId, iss: config.idp};
                 var valid = jsrsasign.jws.JWS.verifyJWT(id_token, config.sso_pub_key, accept);
                 if (!valid)
                     throw new Error('invalid token');
-                // if (cookieState != claims.nonce) {
-                //     console.log('incorrect nonce');
-                //     return;
-                // }
+                if (cookieState != claims.nonce) {
+                    throw new Error('incorrect nonce');
+                }
                 return jsrsasign.jws.JWS.parse(id_token).payloadObj;
             });
 }
