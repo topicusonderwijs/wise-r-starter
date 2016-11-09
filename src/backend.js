@@ -78,9 +78,10 @@ function exchangeTokenAndRedirectToFrontend(req, res) {
     console.log(req.originalUrl);
     authService.code.getToken(req.originalUrl, {state:cookieState})
         .then(function (token) {
+            console.log(token);
             // for now, our idp does not serve id tokens in an id_token field
             // (as per OIDC). However, the access token also doubles as id token.
-            var id_token = token.accessToken;
+            var id_token = token.data.id_token;
             var jwt_options = {algorithms: ['RS256'], audience: config.oauthClientId, issuer: config.idp};
             var claims = jsonwebtoken.verify(id_token, config.sso_pub_key, jwt_options);
             if (cookieState != claims.nonce) {
@@ -94,6 +95,7 @@ function exchangeTokenAndRedirectToFrontend(req, res) {
             res.cookie('sessionId',sessionId);
             res.redirect(config.backend + '/showdata');
         }).catch(function (error) {
+
             res.send(error);
         });
 }
