@@ -67,6 +67,7 @@ function createNonceAndStartAuthCodeFlow(req,res) {
     //   &response_type=code
     //   &state=[uuid]
     //   &provider=...
+    //   &nonce=[uuid]
     var uri = authService.code.getUri({state:oauthState})+'&provider=' + config.provider + '&nonce=' + oauthState;
     res.cookie('oauthState',oauthState);
     res.redirect(uri);
@@ -78,22 +79,22 @@ function exchangeTokenAndRedirectToFrontend(req, res) {
     console.log(req.originalUrl);
     authService.code.getToken(req.originalUrl, {state:cookieState})
         .then(function (token) {
-            // for now, our idp does not serve id tokens in an id_token field
-            // (as per OIDC). However, the access token also doubles as id token.
-            var id_token = token.accessToken;
-            var jwt_options = {algorithms: ['RS256'], audience: config.oauthClientId, issuer: config.issuer};
+            console.log(token);
+            var id_token = token.data.id_token;
+            var jwt_options = {algorithms: ['RS256'], audience: config.oauthClientId, issuer: config.idp};
             var claims = jsonwebtoken.verify(id_token, config.sso_pub_key, jwt_options);
-            // if (cookieState != claims.nonce) {
-            //     console.log('incorrect nonce');
-            //     res.end();
-            //     return;
-            // }
+            if (cookieState != claims.nonce) {
+                console.log('incorrect nonce');
+                res.end();
+                return;
+            }
 
             var sessionId = generateUUID();
             sessions[sessionId] = claims;
             res.cookie('sessionId',sessionId);
             res.redirect(config.backend + '/showdata');
         }).catch(function (error) {
+
             res.send(error);
         });
 }
@@ -112,6 +113,7 @@ function getUserData(req,res) {
     if (!claims) {
         console.log('invalid/no sessionId');
         res.end();
+        return;
     }
 
     return getClientAccessToken()
