@@ -113,6 +113,7 @@ function getUserData(req,res) {
     if (!claims) {
         console.log('invalid/no sessionId');
         res.end();
+        return;
     }
 
     return getClientAccessToken()
