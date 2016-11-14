@@ -116,7 +116,7 @@ function getUserData(req,res) {
         return;
     }
 
-    return getClientAccessToken()
+    getClientAccessToken()
         .then(function (clientAccessToken) {
             return fetch(config.apiBaseUrl + '/users/' + claims.sub, {headers: {'Authorization': 'Bearer ' + clientAccessToken}});
         }).then(function (resp) {

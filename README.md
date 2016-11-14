@@ -23,7 +23,7 @@ They authenticate a user through the [Wise-r](https://wise-r.nl) platform:
 about this user using the OAuth2 *client credentials* flow;
 * or on the frontend, using the OpenID Connect *implicit flow*, after which the contents of the ID token are shown.
 
-The code serves as an example for Educative Applications and is deliberately written in plain, framework-independent
+The code serves as an example for Educational Applications and is deliberately written in plain, framework-independent
 Javascript.
 
 If you would like to try it out, contact us at <wise-r@topicus.nl> for developer credentials.
