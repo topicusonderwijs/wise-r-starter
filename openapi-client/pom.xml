@@ -47,7 +47,7 @@
                             <language>javascript</language>
                             <configOptions>
 	                            <sourceFolder>src</sourceFolder>
-	                            <additional-properties>projectName=${project.artifactId},moduleName=${project.artifactId},projectDescription=${project.name},usePromises=true</additional-properties>
+	                            <additional-properties>projectName=${project.artifactId},moduleName=WiserClient,projectDescription=${project.name},usePromises=true</additional-properties>
                             </configOptions>
                         </configuration>
                     </execution>
