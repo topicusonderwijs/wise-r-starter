@@ -50,7 +50,7 @@
 
   /**
    * Constructs a new <code>ChangeResource</code>.
-   * Bij wijzigingen kunnen verschillende aantallen links worden meegegeven. Als een Group of User gewijzigd is dan zal er één link worden meegestuurd naar die User of Group. Als het changedResourceType een groupmembership is, dan worden in de links zowel de betreffende User als Group meegestuurd.
+   * Bij wijzigingen kunnen verschillende aantallen links worden meegegeven. Als een Group of User gewijzigd is dan zal er Ã©Ã©n link worden meegestuurd naar die User of Group. Als het changedResourceType een groupmembership is, dan worden in de links zowel de betreffende User als Group meegestuurd.
    * @alias module:model/ChangeResource
    * @class
    * @param id {Integer} The ID of this resource

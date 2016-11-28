@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="getChanges"></a>
 # **getChanges**
-> ChangeSet getChanges(opts)
+> ChangeSet getChanges(schoollocations, opts)
 
 Get Changes in Users and Groups.
 
@@ -20,17 +20,18 @@ Get Changes in Users and Groups.
 var wise-r-openapi-client = require('wise-r-openapi-client');
 var defaultClient = wise-r-openapi-client.ApiClient.default;
 
-// Configure OAuth2 access token for authorization: oauth_password
-var oauth_password = defaultClient.authentications['oauth_password'];
-oauth_password.accessToken = 'YOUR ACCESS TOKEN';
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new wise-r-openapi-client.ChangesApi();
 
+var schoollocations = ["schoollocations_example"]; // [String] | Filter on schoollocations (required, list of id's)
+
 var opts = { 
-  'schoollocations': ["schoollocations_example"], // [String] | Filter on schoollocations (required, list of id's)
-  'nextId': 789 // Integer | ID that was returned the last time when retrieving Changes for this set of schoollocations. When empty, all Changes will be returned from the start.
+  'nextId': 0 // Integer | ID that was returned the last time when retrieving Changes for this set of schoollocations. When empty, all Changes will be returned from the start.
 };
-apiInstance.getChanges(opts).then(function(data) {
+apiInstance.getChanges(schoollocations, opts).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
 }, function(error) {
   console.error(error);
@@ -42,8 +43,8 @@ apiInstance.getChanges(opts).then(function(data) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **schoollocations** | [**[String]**](String.md)| Filter on schoollocations (required, list of id&#39;s) | [optional] 
- **nextId** | **Integer**| ID that was returned the last time when retrieving Changes for this set of schoollocations. When empty, all Changes will be returned from the start. | [optional] 
+ **schoollocations** | [**[String]**](String.md)| Filter on schoollocations (required, list of id&#39;s) | 
+ **nextId** | **Integer**| ID that was returned the last time when retrieving Changes for this set of schoollocations. When empty, all Changes will be returned from the start. | [optional] [default to 0]
 
 ### Return type
 
@@ -51,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth_password](../README.md#oauth_password)
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 

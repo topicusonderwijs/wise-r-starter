@@ -22,9 +22,9 @@ Returns the SchoolLocation (and schoolId) with the given id.
 var wise-r-openapi-client = require('wise-r-openapi-client');
 var defaultClient = wise-r-openapi-client.ApiClient.default;
 
-// Configure OAuth2 access token for authorization: oauth_password
-var oauth_password = defaultClient.authentications['oauth_password'];
-oauth_password.accessToken = 'YOUR ACCESS TOKEN';
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new wise-r-openapi-client.SchoolsApi();
 
@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth_password](../README.md#oauth_password)
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 
@@ -70,9 +70,9 @@ Returns the School with the given id.
 var wise-r-openapi-client = require('wise-r-openapi-client');
 var defaultClient = wise-r-openapi-client.ApiClient.default;
 
-// Configure OAuth2 access token for authorization: oauth_password
-var oauth_password = defaultClient.authentications['oauth_password'];
-oauth_password.accessToken = 'YOUR ACCESS TOKEN';
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new wise-r-openapi-client.SchoolsApi();
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth_password](../README.md#oauth_password)
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 
@@ -118,9 +118,9 @@ Returns the Schools and SchoolLocations for which the REST client has (partial) 
 var wise-r-openapi-client = require('wise-r-openapi-client');
 var defaultClient = wise-r-openapi-client.ApiClient.default;
 
-// Configure OAuth2 access token for authorization: oauth_password
-var oauth_password = defaultClient.authentications['oauth_password'];
-oauth_password.accessToken = 'YOUR ACCESS TOKEN';
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new wise-r-openapi-client.SchoolsApi();
 
@@ -159,7 +159,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth_password](../README.md#oauth_password)
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 

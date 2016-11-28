@@ -24,9 +24,9 @@ Get the key from this User and the given REST client ID.
 var wise-r-openapi-client = require('wise-r-openapi-client');
 var defaultClient = wise-r-openapi-client.ApiClient.default;
 
-// Configure OAuth2 access token for authorization: oauth_password
-var oauth_password = defaultClient.authentications['oauth_password'];
-oauth_password.accessToken = 'YOUR ACCESS TOKEN';
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new wise-r-openapi-client.UsersApi();
 
@@ -55,11 +55,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth_password](../README.md#oauth_password)
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 <a name="getKeys"></a>
@@ -75,9 +75,9 @@ Get the keys from this User.
 var wise-r-openapi-client = require('wise-r-openapi-client');
 var defaultClient = wise-r-openapi-client.ApiClient.default;
 
-// Configure OAuth2 access token for authorization: oauth_password
-var oauth_password = defaultClient.authentications['oauth_password'];
-oauth_password.accessToken = 'YOUR ACCESS TOKEN';
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new wise-r-openapi-client.UsersApi();
 
@@ -103,11 +103,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth_password](../README.md#oauth_password)
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 <a name="getUser"></a>
@@ -123,9 +123,9 @@ Returns the User with the given id. When receiving a userid through the SSU serv
 var wise-r-openapi-client = require('wise-r-openapi-client');
 var defaultClient = wise-r-openapi-client.ApiClient.default;
 
-// Configure OAuth2 access token for authorization: oauth_password
-var oauth_password = defaultClient.authentications['oauth_password'];
-oauth_password.accessToken = 'YOUR ACCESS TOKEN';
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new wise-r-openapi-client.UsersApi();
 
@@ -151,11 +151,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth_password](../README.md#oauth_password)
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 <a name="getUsers"></a>
@@ -171,9 +171,9 @@ Returns all Users, filtered on schoollocation, group, or usertype.
 var wise-r-openapi-client = require('wise-r-openapi-client');
 var defaultClient = wise-r-openapi-client.ApiClient.default;
 
-// Configure OAuth2 access token for authorization: oauth_password
-var oauth_password = defaultClient.authentications['oauth_password'];
-oauth_password.accessToken = 'YOUR ACCESS TOKEN';
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new wise-r-openapi-client.UsersApi();
 
@@ -208,16 +208,16 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth_password](../README.md#oauth_password)
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 <a name="putKey"></a>
 # **putKey**
-> KeyResource putKey(id, clientid, opts)
+> KeyResource putKey(body, id, clientid)
 
 Save a key in keyring
 
@@ -228,20 +228,19 @@ Save a key in keyring for the given client id
 var wise-r-openapi-client = require('wise-r-openapi-client');
 var defaultClient = wise-r-openapi-client.ApiClient.default;
 
-// Configure OAuth2 access token for authorization: oauth_password
-var oauth_password = defaultClient.authentications['oauth_password'];
-oauth_password.accessToken = 'YOUR ACCESS TOKEN';
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new wise-r-openapi-client.UsersApi();
+
+var body = new wise-r-openapi-client.KeyResource(); // KeyResource | 
 
 var id = "id_example"; // String | 
 
 var clientid = "clientid_example"; // String | 
 
-var opts = { 
-  'body': new wise-r-openapi-client.KeyResource() // KeyResource | 
-};
-apiInstance.putKey(id, clientid, opts).then(function(data) {
+apiInstance.putKey(body, id, clientid).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
 }, function(error) {
   console.error(error);
@@ -253,9 +252,9 @@ apiInstance.putKey(id, clientid, opts).then(function(data) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**KeyResource**](KeyResource.md)|  | 
  **id** | **String**|  | 
  **clientid** | **String**|  | 
- **body** | [**KeyResource**](KeyResource.md)|  | [optional] 
 
 ### Return type
 
@@ -263,7 +262,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth_password](../README.md#oauth_password)
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 

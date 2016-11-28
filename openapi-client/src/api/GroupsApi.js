@@ -82,8 +82,8 @@
       var formParams = {
       };
 
-      var authNames = ['oauth_password'];
-      var contentTypes = ['application/json'];
+      var authNames = ['oauth_client_credentials'];
+      var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = GroupResource;
 
@@ -123,8 +123,8 @@
       var formParams = {
       };
 
-      var authNames = ['oauth_password'];
-      var contentTypes = ['application/json'];
+      var authNames = ['oauth_client_credentials'];
+      var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = GroupResource;
 
@@ -168,8 +168,8 @@
       var formParams = {
       };
 
-      var authNames = ['oauth_password'];
-      var contentTypes = ['application/json'];
+      var authNames = ['oauth_client_credentials'];
+      var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = KeyResource;
 
@@ -206,8 +206,8 @@
       var formParams = {
       };
 
-      var authNames = ['oauth_password'];
-      var contentTypes = ['application/json'];
+      var authNames = ['oauth_client_credentials'];
+      var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = KeyringResource;
 
@@ -222,15 +222,18 @@
     /**
      * Save a key in keyring
      * Save a key in keyring
+     * @param {module:model/KeyResource} body 
      * @param {String} id 
      * @param {String} clientid 
-     * @param {Object} opts Optional parameters
-     * @param {module:model/KeyResource} opts.body 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/KeyResource}
      */
-    this.putKey = function(id, clientid, opts) {
-      opts = opts || {};
-      var postBody = opts['body'];
+    this.putKey = function(body, id, clientid) {
+      var postBody = body;
+
+      // verify the required parameter 'body' is set
+      if (body == undefined || body == null) {
+        throw "Missing the required parameter 'body' when calling putKey";
+      }
 
       // verify the required parameter 'id' is set
       if (id == undefined || id == null) {
@@ -254,7 +257,7 @@
       var formParams = {
       };
 
-      var authNames = ['oauth_password'];
+      var authNames = ['oauth_client_credentials'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
       var returnType = KeyResource;

@@ -82,7 +82,7 @@
       var formParams = {
       };
 
-      var authNames = ['oauth_password'];
+      var authNames = ['oauth_client_credentials'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = SchoolLocationResource;
@@ -120,7 +120,7 @@
       var formParams = {
       };
 
-      var authNames = ['oauth_password'];
+      var authNames = ['oauth_client_credentials'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = SchoolResource;
@@ -167,7 +167,7 @@
       var formParams = {
       };
 
-      var authNames = ['oauth_password'];
+      var authNames = ['oauth_client_credentials'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = SchoolLocationResource;
