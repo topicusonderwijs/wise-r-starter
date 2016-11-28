@@ -31,15 +31,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.wise-r-openapi-client);
+    factory(root.expect, root.WiserClient);
   }
-}(this, function(expect, wise-r-openapi-client) {
+}(this, function(expect, WiserClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new wise-r-openapi-client.SchoolResource();
+    instance = new WiserClient.SchoolResource();
   });
 
   var getProperty = function(object, getter, property) {
@@ -61,31 +61,31 @@
   describe('SchoolResource', function() {
     it('should create an instance of SchoolResource', function() {
       // uncomment below and update the code to test SchoolResource
-      //var instane = new wise-r-openapi-client.SchoolResource();
-      //expect(instance).to.be.a(wise-r-openapi-client.SchoolResource);
+      //var instane = new WiserClient.SchoolResource();
+      //expect(instance).to.be.a(WiserClient.SchoolResource);
     });
 
     it('should have the property organisatieKey (base name: "organisatieKey")', function() {
       // uncomment below and update the code to test the property organisatieKey
-      //var instane = new wise-r-openapi-client.SchoolResource();
+      //var instane = new WiserClient.SchoolResource();
       //expect(instance).to.be();
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instane = new wise-r-openapi-client.SchoolResource();
+      //var instane = new WiserClient.SchoolResource();
       //expect(instance).to.be();
     });
 
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
-      //var instane = new wise-r-openapi-client.SchoolResource();
+      //var instane = new WiserClient.SchoolResource();
       //expect(instance).to.be();
     });
 
     it('should have the property organisationId (base name: "organisationId")', function() {
       // uncomment below and update the code to test the property organisationId
-      //var instane = new wise-r-openapi-client.SchoolResource();
+      //var instane = new WiserClient.SchoolResource();
       //expect(instance).to.be();
     });
 

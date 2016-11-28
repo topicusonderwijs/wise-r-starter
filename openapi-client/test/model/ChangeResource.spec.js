@@ -31,15 +31,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.wise-r-openapi-client);
+    factory(root.expect, root.WiserClient);
   }
-}(this, function(expect, wise-r-openapi-client) {
+}(this, function(expect, WiserClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new wise-r-openapi-client.ChangeResource();
+    instance = new WiserClient.ChangeResource();
   });
 
   var getProperty = function(object, getter, property) {
@@ -61,49 +61,49 @@
   describe('ChangeResource', function() {
     it('should create an instance of ChangeResource', function() {
       // uncomment below and update the code to test ChangeResource
-      //var instane = new wise-r-openapi-client.ChangeResource();
-      //expect(instance).to.be.a(wise-r-openapi-client.ChangeResource);
+      //var instane = new WiserClient.ChangeResource();
+      //expect(instance).to.be.a(WiserClient.ChangeResource);
     });
 
     it('should have the property organisatieKey (base name: "organisatieKey")', function() {
       // uncomment below and update the code to test the property organisatieKey
-      //var instane = new wise-r-openapi-client.ChangeResource();
+      //var instane = new WiserClient.ChangeResource();
       //expect(instance).to.be();
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instane = new wise-r-openapi-client.ChangeResource();
+      //var instane = new WiserClient.ChangeResource();
       //expect(instance).to.be();
     });
 
     it('should have the property timestamp (base name: "timestamp")', function() {
       // uncomment below and update the code to test the property timestamp
-      //var instane = new wise-r-openapi-client.ChangeResource();
+      //var instane = new WiserClient.ChangeResource();
       //expect(instance).to.be();
     });
 
     it('should have the property changeType (base name: "changeType")', function() {
       // uncomment below and update the code to test the property changeType
-      //var instane = new wise-r-openapi-client.ChangeResource();
+      //var instane = new WiserClient.ChangeResource();
       //expect(instance).to.be();
     });
 
     it('should have the property changedResourceType (base name: "changedResourceType")', function() {
       // uncomment below and update the code to test the property changedResourceType
-      //var instane = new wise-r-openapi-client.ChangeResource();
+      //var instane = new WiserClient.ChangeResource();
       //expect(instance).to.be();
     });
 
     it('should have the property links (base name: "links")', function() {
       // uncomment below and update the code to test the property links
-      //var instane = new wise-r-openapi-client.ChangeResource();
+      //var instane = new WiserClient.ChangeResource();
       //expect(instance).to.be();
     });
 
     it('should have the property organisationId (base name: "organisationId")', function() {
       // uncomment below and update the code to test the property organisationId
-      //var instane = new wise-r-openapi-client.ChangeResource();
+      //var instane = new WiserClient.ChangeResource();
       //expect(instance).to.be();
     });
 

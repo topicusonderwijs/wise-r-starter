@@ -31,15 +31,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.wise-r-openapi-client);
+    factory(root.expect, root.WiserClient);
   }
-}(this, function(expect, wise-r-openapi-client) {
+}(this, function(expect, WiserClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new wise-r-openapi-client.ChangeSet();
+    instance = new WiserClient.ChangeSet();
   });
 
   var getProperty = function(object, getter, property) {
@@ -61,19 +61,19 @@
   describe('ChangeSet', function() {
     it('should create an instance of ChangeSet', function() {
       // uncomment below and update the code to test ChangeSet
-      //var instane = new wise-r-openapi-client.ChangeSet();
-      //expect(instance).to.be.a(wise-r-openapi-client.ChangeSet);
+      //var instane = new WiserClient.ChangeSet();
+      //expect(instance).to.be.a(WiserClient.ChangeSet);
     });
 
     it('should have the property changes (base name: "changes")', function() {
       // uncomment below and update the code to test the property changes
-      //var instane = new wise-r-openapi-client.ChangeSet();
+      //var instane = new WiserClient.ChangeSet();
       //expect(instance).to.be();
     });
 
     it('should have the property nextId (base name: "nextId")', function() {
       // uncomment below and update the code to test the property nextId
-      //var instane = new wise-r-openapi-client.ChangeSet();
+      //var instane = new WiserClient.ChangeSet();
       //expect(instance).to.be();
     });
 

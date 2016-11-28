@@ -31,15 +31,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.wise-r-openapi-client);
+    factory(root.expect, root.WiserClient);
   }
-}(this, function(expect, wise-r-openapi-client) {
+}(this, function(expect, WiserClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new wise-r-openapi-client.GroupsApi();
+    instance = new WiserClient.GroupsApi();
   });
 
   var getProperty = function(object, getter, property) {

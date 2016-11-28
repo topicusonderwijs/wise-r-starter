@@ -31,15 +31,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.wise-r-openapi-client);
+    factory(root.expect, root.WiserClient);
   }
-}(this, function(expect, wise-r-openapi-client) {
+}(this, function(expect, WiserClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new wise-r-openapi-client.SchoolLocationResource();
+    instance = new WiserClient.SchoolLocationResource();
   });
 
   var getProperty = function(object, getter, property) {
@@ -61,61 +61,61 @@
   describe('SchoolLocationResource', function() {
     it('should create an instance of SchoolLocationResource', function() {
       // uncomment below and update the code to test SchoolLocationResource
-      //var instane = new wise-r-openapi-client.SchoolLocationResource();
-      //expect(instance).to.be.a(wise-r-openapi-client.SchoolLocationResource);
+      //var instane = new WiserClient.SchoolLocationResource();
+      //expect(instance).to.be.a(WiserClient.SchoolLocationResource);
     });
 
     it('should have the property organisatieKey (base name: "organisatieKey")', function() {
       // uncomment below and update the code to test the property organisatieKey
-      //var instane = new wise-r-openapi-client.SchoolLocationResource();
+      //var instane = new WiserClient.SchoolLocationResource();
       //expect(instance).to.be();
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instane = new wise-r-openapi-client.SchoolLocationResource();
+      //var instane = new WiserClient.SchoolLocationResource();
       //expect(instance).to.be();
     });
 
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
-      //var instane = new wise-r-openapi-client.SchoolLocationResource();
+      //var instane = new WiserClient.SchoolLocationResource();
       //expect(instance).to.be();
     });
 
     it('should have the property schoolId (base name: "schoolId")', function() {
       // uncomment below and update the code to test the property schoolId
-      //var instane = new wise-r-openapi-client.SchoolLocationResource();
+      //var instane = new WiserClient.SchoolLocationResource();
       //expect(instance).to.be();
     });
 
     it('should have the property brincode (base name: "brincode")', function() {
       // uncomment below and update the code to test the property brincode
-      //var instane = new wise-r-openapi-client.SchoolLocationResource();
+      //var instane = new WiserClient.SchoolLocationResource();
       //expect(instance).to.be();
     });
 
     it('should have the property dependancecode (base name: "dependancecode")', function() {
       // uncomment below and update the code to test the property dependancecode
-      //var instane = new wise-r-openapi-client.SchoolLocationResource();
+      //var instane = new WiserClient.SchoolLocationResource();
       //expect(instance).to.be();
     });
 
     it('should have the property schoolkey (base name: "schoolkey")', function() {
       // uncomment below and update the code to test the property schoolkey
-      //var instane = new wise-r-openapi-client.SchoolLocationResource();
+      //var instane = new WiserClient.SchoolLocationResource();
       //expect(instance).to.be();
     });
 
     it('should have the property urlToKey (base name: "urlToKey")', function() {
       // uncomment below and update the code to test the property urlToKey
-      //var instane = new wise-r-openapi-client.SchoolLocationResource();
+      //var instane = new WiserClient.SchoolLocationResource();
       //expect(instance).to.be();
     });
 
     it('should have the property organisationId (base name: "organisationId")', function() {
       // uncomment below and update the code to test the property organisationId
-      //var instane = new wise-r-openapi-client.SchoolLocationResource();
+      //var instane = new WiserClient.SchoolLocationResource();
       //expect(instance).to.be();
     });
 

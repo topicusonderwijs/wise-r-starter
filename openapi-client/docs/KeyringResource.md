@@ -1,4 +1,4 @@
-# wise-r-openapi-client.KeyringResource
+# WiserClient.KeyringResource
 
 ## Properties
 Name | Type | Description | Notes

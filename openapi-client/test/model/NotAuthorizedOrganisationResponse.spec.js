@@ -31,15 +31,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.wise-r-openapi-client);
+    factory(root.expect, root.WiserClient);
   }
-}(this, function(expect, wise-r-openapi-client) {
+}(this, function(expect, WiserClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new wise-r-openapi-client.NotAuthorizedOrganisationResponse();
+    instance = new WiserClient.NotAuthorizedOrganisationResponse();
   });
 
   var getProperty = function(object, getter, property) {
@@ -61,25 +61,25 @@
   describe('NotAuthorizedOrganisationResponse', function() {
     it('should create an instance of NotAuthorizedOrganisationResponse', function() {
       // uncomment below and update the code to test NotAuthorizedOrganisationResponse
-      //var instane = new wise-r-openapi-client.NotAuthorizedOrganisationResponse();
-      //expect(instance).to.be.a(wise-r-openapi-client.NotAuthorizedOrganisationResponse);
+      //var instane = new WiserClient.NotAuthorizedOrganisationResponse();
+      //expect(instance).to.be.a(WiserClient.NotAuthorizedOrganisationResponse);
     });
 
     it('should have the property status (base name: "status")', function() {
       // uncomment below and update the code to test the property status
-      //var instane = new wise-r-openapi-client.NotAuthorizedOrganisationResponse();
+      //var instane = new WiserClient.NotAuthorizedOrganisationResponse();
       //expect(instance).to.be();
     });
 
     it('should have the property message (base name: "message")', function() {
       // uncomment below and update the code to test the property message
-      //var instane = new wise-r-openapi-client.NotAuthorizedOrganisationResponse();
+      //var instane = new WiserClient.NotAuthorizedOrganisationResponse();
       //expect(instance).to.be();
     });
 
     it('should have the property notAuthorizedOrganisations (base name: "notAuthorizedOrganisations")', function() {
       // uncomment below and update the code to test the property notAuthorizedOrganisations
-      //var instane = new wise-r-openapi-client.NotAuthorizedOrganisationResponse();
+      //var instane = new WiserClient.NotAuthorizedOrganisationResponse();
       //expect(instance).to.be();
     });
 

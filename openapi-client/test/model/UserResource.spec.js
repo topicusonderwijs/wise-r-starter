@@ -31,15 +31,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.wise-r-openapi-client);
+    factory(root.expect, root.WiserClient);
   }
-}(this, function(expect, wise-r-openapi-client) {
+}(this, function(expect, WiserClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new wise-r-openapi-client.UserResource();
+    instance = new WiserClient.UserResource();
   });
 
   var getProperty = function(object, getter, property) {
@@ -61,109 +61,109 @@
   describe('UserResource', function() {
     it('should create an instance of UserResource', function() {
       // uncomment below and update the code to test UserResource
-      //var instane = new wise-r-openapi-client.UserResource();
-      //expect(instance).to.be.a(wise-r-openapi-client.UserResource);
+      //var instane = new WiserClient.UserResource();
+      //expect(instance).to.be.a(WiserClient.UserResource);
     });
 
     it('should have the property organisatieKey (base name: "organisatieKey")', function() {
       // uncomment below and update the code to test the property organisatieKey
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property initials (base name: "initials")', function() {
       // uncomment below and update the code to test the property initials
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property firstname (base name: "firstname")', function() {
       // uncomment below and update the code to test the property firstname
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property surname (base name: "surname")', function() {
       // uncomment below and update the code to test the property surname
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property prefix (base name: "prefix")', function() {
       // uncomment below and update the code to test the property prefix
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property birthdate (base name: "birthdate")', function() {
       // uncomment below and update the code to test the property birthdate
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property email (base name: "email")', function() {
       // uncomment below and update the code to test the property email
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property userType (base name: "userType")', function() {
       // uncomment below and update the code to test the property userType
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property grade (base name: "grade")', function() {
       // uncomment below and update the code to test the property grade
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property gender (base name: "gender")', function() {
       // uncomment below and update the code to test the property gender
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property sector (base name: "sector")', function() {
       // uncomment below and update the code to test the property sector
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property schoolLocations (base name: "schoolLocations")', function() {
       // uncomment below and update the code to test the property schoolLocations
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property linkedGroups (base name: "linkedGroups")', function() {
       // uncomment below and update the code to test the property linkedGroups
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property linkedSchoolLocationIds (base name: "linkedSchoolLocationIds")', function() {
       // uncomment below and update the code to test the property linkedSchoolLocationIds
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property urlToKey (base name: "urlToKey")', function() {
       // uncomment below and update the code to test the property urlToKey
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 
     it('should have the property organisationId (base name: "organisationId")', function() {
       // uncomment below and update the code to test the property organisationId
-      //var instane = new wise-r-openapi-client.UserResource();
+      //var instane = new WiserClient.UserResource();
       //expect(instance).to.be();
     });
 

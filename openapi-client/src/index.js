@@ -39,9 +39,9 @@
    * <p>
    * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:
    * <pre>
-   * var wise-r-openapi-client = require('index'); // See note below*.
-   * var xxxSvc = new wise-r-openapi-client.XxxApi(); // Allocate the API class we're going to use.
-   * var yyyModel = new wise-r-openapi-client.Yyy(); // Construct a model instance.
+   * var WiserClient = require('index'); // See note below*.
+   * var xxxSvc = new WiserClient.XxxApi(); // Allocate the API class we're going to use.
+   * var yyyModel = new WiserClient.Yyy(); // Construct a model instance.
    * yyyModel.someProperty = 'someValue';
    * ...
    * var zzz = xxxSvc.doSomething(yyyModel); // Invoke the service.
@@ -53,8 +53,8 @@
    * <p>
    * A non-AMD browser application (discouraged) might do something like this:
    * <pre>
-   * var xxxSvc = new wise-r-openapi-client.XxxApi(); // Allocate the API class we're going to use.
-   * var yyy = new wise-r-openapi-client.Yyy(); // Construct a model instance.
+   * var xxxSvc = new WiserClient.XxxApi(); // Allocate the API class we're going to use.
+   * var yyy = new WiserClient.Yyy(); // Construct a model instance.
    * yyyModel.someProperty = 'someValue';
    * ...
    * var zzz = xxxSvc.doSomething(yyyModel); // Invoke the service.
@@ -66,7 +66,7 @@
    */
   var exports = {
     /**
-     * The ApiClient constructor.
+     * The WiserClient constructor.
      * @property {module:ApiClient}
      */
     ApiClient: ApiClient,

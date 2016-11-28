@@ -25,16 +25,16 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/NotAuthorizedOrganisationResponse', 'model/ChangeSet'], factory);
+    define(['WiserClient', 'model/NotAuthorizedOrganisationResponse', 'model/ChangeSet'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
     module.exports = factory(require('../ApiClient'), require('../model/NotAuthorizedOrganisationResponse'), require('../model/ChangeSet'));
   } else {
     // Browser globals (root is window)
-    if (!root.wise-r-openapi-client) {
-      root.wise-r-openapi-client = {};
+    if (!root.WiserClient) {
+      root.WiserClient = {};
     }
-    root.wise-r-openapi-client.ChangesApi = factory(root.wise-r-openapi-client.ApiClient, root.wise-r-openapi-client.NotAuthorizedOrganisationResponse, root.wise-r-openapi-client.ChangeSet);
+    root.WiserClient.ChangesApi = factory(root.WiserClient.ApiClient, root.WiserClient.NotAuthorizedOrganisationResponse, root.WiserClient.ChangeSet);
   }
 }(this, function(ApiClient, NotAuthorizedOrganisationResponse, ChangeSet) {
   'use strict';

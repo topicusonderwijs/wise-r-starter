@@ -1,4 +1,4 @@
-# wise-r-openapi-client.ChangeSet
+# WiserClient.ChangeSet
 
 ## Properties
 Name | Type | Description | Notes

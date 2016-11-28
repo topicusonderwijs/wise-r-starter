@@ -1,4 +1,4 @@
-# wise-r-openapi-client.ChangeResource
+# WiserClient.ChangeResource
 
 ## Properties
 Name | Type | Description | Notes

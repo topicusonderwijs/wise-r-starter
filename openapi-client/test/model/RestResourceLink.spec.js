@@ -31,15 +31,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.wise-r-openapi-client);
+    factory(root.expect, root.WiserClient);
   }
-}(this, function(expect, wise-r-openapi-client) {
+}(this, function(expect, WiserClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new wise-r-openapi-client.RestResourceLink();
+    instance = new WiserClient.RestResourceLink();
   });
 
   var getProperty = function(object, getter, property) {
@@ -61,25 +61,25 @@
   describe('RestResourceLink', function() {
     it('should create an instance of RestResourceLink', function() {
       // uncomment below and update the code to test RestResourceLink
-      //var instane = new wise-r-openapi-client.RestResourceLink();
-      //expect(instance).to.be.a(wise-r-openapi-client.RestResourceLink);
+      //var instane = new WiserClient.RestResourceLink();
+      //expect(instance).to.be.a(WiserClient.RestResourceLink);
     });
 
     it('should have the property url (base name: "url")', function() {
       // uncomment below and update the code to test the property url
-      //var instane = new wise-r-openapi-client.RestResourceLink();
+      //var instane = new WiserClient.RestResourceLink();
       //expect(instance).to.be();
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instane = new wise-r-openapi-client.RestResourceLink();
+      //var instane = new WiserClient.RestResourceLink();
       //expect(instance).to.be();
     });
 
     it('should have the property resourceType (base name: "resourceType")', function() {
       // uncomment below and update the code to test the property resourceType
-      //var instane = new wise-r-openapi-client.RestResourceLink();
+      //var instane = new WiserClient.RestResourceLink();
       //expect(instance).to.be();
     });
 

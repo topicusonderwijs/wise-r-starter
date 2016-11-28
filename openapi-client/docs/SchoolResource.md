@@ -1,4 +1,4 @@
-# wise-r-openapi-client.SchoolResource
+# WiserClient.SchoolResource
 
 ## Properties
 Name | Type | Description | Notes

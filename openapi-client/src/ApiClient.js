@@ -31,10 +31,10 @@
     module.exports = factory(require('superagent'));
   } else {
     // Browser globals (root is window)
-    if (!root.wise-r-openapi-client) {
-      root.wise-r-openapi-client = {};
+    if (!root.WiserClient) {
+      root.WiserClient = {};
     }
-    root.wise-r-openapi-client.ApiClient = factory(root.superagent);
+    root.WiserClient.ApiClient = factory(root.superagent);
   }
 }(this, function(superagent) {
   'use strict';
@@ -48,7 +48,7 @@
    * Manages low level client-server communications, parameter marshalling, etc. There should not be any need for an
    * application to use this class directly - the *Api and model classes provide the public API for the service. The
    * contents of this file should be regarded as internal but are documented for completeness.
-   * @alias module:ApiClient
+   * @alias module:WiserClient
    * @class
    */
   var exports = function() {

@@ -1,4 +1,4 @@
-# wise-r-openapi-client.UserResource
+# WiserClient.UserResource
 
 ## Properties
 Name | Type | Description | Notes

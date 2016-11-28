@@ -1,4 +1,4 @@
-# wise-r-openapi-client.NotAuthorizedOrganisationResponse
+# WiserClient.NotAuthorizedOrganisationResponse
 
 ## Properties
 Name | Type | Description | Notes

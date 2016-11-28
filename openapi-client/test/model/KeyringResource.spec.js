@@ -31,15 +31,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.wise-r-openapi-client);
+    factory(root.expect, root.WiserClient);
   }
-}(this, function(expect, wise-r-openapi-client) {
+}(this, function(expect, WiserClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new wise-r-openapi-client.KeyringResource();
+    instance = new WiserClient.KeyringResource();
   });
 
   var getProperty = function(object, getter, property) {
@@ -61,19 +61,19 @@
   describe('KeyringResource', function() {
     it('should create an instance of KeyringResource', function() {
       // uncomment below and update the code to test KeyringResource
-      //var instane = new wise-r-openapi-client.KeyringResource();
-      //expect(instance).to.be.a(wise-r-openapi-client.KeyringResource);
+      //var instane = new WiserClient.KeyringResource();
+      //expect(instance).to.be.a(WiserClient.KeyringResource);
     });
 
     it('should have the property keyValue (base name: "keyValue")', function() {
       // uncomment below and update the code to test the property keyValue
-      //var instane = new wise-r-openapi-client.KeyringResource();
+      //var instane = new WiserClient.KeyringResource();
       //expect(instance).to.be();
     });
 
     it('should have the property clientId (base name: "clientId")', function() {
       // uncomment below and update the code to test the property clientId
-      //var instane = new wise-r-openapi-client.KeyringResource();
+      //var instane = new WiserClient.KeyringResource();
       //expect(instance).to.be();
     });
 

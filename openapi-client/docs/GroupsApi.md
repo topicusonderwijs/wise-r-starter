@@ -1,4 +1,4 @@
-# wise-r-openapi-client.GroupsApi
+# WiserClient.GroupsApi
 
 All URIs are relative to *https://localhost/api*
 
@@ -21,14 +21,14 @@ Returns the Group with the given id. Schoollocation permission or a Group permis
 
 ### Example
 ```javascript
-var wise-r-openapi-client = require('wise-r-openapi-client');
-var defaultClient = wise-r-openapi-client.ApiClient.default;
+var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
 
 // Configure OAuth2 access token for authorization: oauth_client_credentials
 var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
 oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
-var apiInstance = new wise-r-openapi-client.GroupsApi();
+var apiInstance = new WiserClient.GroupsApi();
 
 var id = "id_example"; // String | 
 
@@ -69,14 +69,14 @@ Returns all Groups, filtered on schoollocation.
 
 ### Example
 ```javascript
-var wise-r-openapi-client = require('wise-r-openapi-client');
-var defaultClient = wise-r-openapi-client.ApiClient.default;
+var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
 
 // Configure OAuth2 access token for authorization: oauth_client_credentials
 var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
 oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
-var apiInstance = new wise-r-openapi-client.GroupsApi();
+var apiInstance = new WiserClient.GroupsApi();
 
 var opts = { 
   'schoollocations': ["schoollocations_example"], // [String] | Filter on schoollocations (optional, list of id's)
@@ -124,14 +124,14 @@ Get the key from this Group and the given REST client ID.
 
 ### Example
 ```javascript
-var wise-r-openapi-client = require('wise-r-openapi-client');
-var defaultClient = wise-r-openapi-client.ApiClient.default;
+var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
 
 // Configure OAuth2 access token for authorization: oauth_client_credentials
 var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
 oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
-var apiInstance = new wise-r-openapi-client.GroupsApi();
+var apiInstance = new WiserClient.GroupsApi();
 
 var id = "id_example"; // String | 
 
@@ -175,14 +175,14 @@ Get the keys from this Group.
 
 ### Example
 ```javascript
-var wise-r-openapi-client = require('wise-r-openapi-client');
-var defaultClient = wise-r-openapi-client.ApiClient.default;
+var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
 
 // Configure OAuth2 access token for authorization: oauth_client_credentials
 var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
 oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
-var apiInstance = new wise-r-openapi-client.GroupsApi();
+var apiInstance = new WiserClient.GroupsApi();
 
 var id = "id_example"; // String | 
 
@@ -223,16 +223,16 @@ Save a key in keyring
 
 ### Example
 ```javascript
-var wise-r-openapi-client = require('wise-r-openapi-client');
-var defaultClient = wise-r-openapi-client.ApiClient.default;
+var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
 
 // Configure OAuth2 access token for authorization: oauth_client_credentials
 var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
 oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
-var apiInstance = new wise-r-openapi-client.GroupsApi();
+var apiInstance = new WiserClient.GroupsApi();
 
-var body = new wise-r-openapi-client.KeyResource(); // KeyResource | 
+var body = new WiserClient.KeyResource(); // KeyResource | 
 
 var id = "id_example"; // String | 
 

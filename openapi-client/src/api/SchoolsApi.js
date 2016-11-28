@@ -25,16 +25,16 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/NotAuthorizedOrganisationResponse', 'model/SchoolLocationResource', 'model/SchoolResource'], factory);
+    define(['WiserClient', 'model/NotAuthorizedOrganisationResponse', 'model/SchoolLocationResource', 'model/SchoolResource'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
     module.exports = factory(require('../ApiClient'), require('../model/NotAuthorizedOrganisationResponse'), require('../model/SchoolLocationResource'), require('../model/SchoolResource'));
   } else {
     // Browser globals (root is window)
-    if (!root.wise-r-openapi-client) {
-      root.wise-r-openapi-client = {};
+    if (!root.WiserClient) {
+      root.WiserClient = {};
     }
-    root.wise-r-openapi-client.SchoolsApi = factory(root.wise-r-openapi-client.ApiClient, root.wise-r-openapi-client.NotAuthorizedOrganisationResponse, root.wise-r-openapi-client.SchoolLocationResource, root.wise-r-openapi-client.SchoolResource);
+    root.WiserClient.SchoolsApi = factory(root.WiserClient.ApiClient, root.WiserClient.NotAuthorizedOrganisationResponse, root.WiserClient.SchoolLocationResource, root.WiserClient.SchoolResource);
   }
 }(this, function(ApiClient, NotAuthorizedOrganisationResponse, SchoolLocationResource, SchoolResource) {
   'use strict';

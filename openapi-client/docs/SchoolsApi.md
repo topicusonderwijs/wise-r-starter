@@ -1,4 +1,4 @@
-# wise-r-openapi-client.SchoolsApi
+# WiserClient.SchoolsApi
 
 All URIs are relative to *https://localhost/api*
 
@@ -19,14 +19,14 @@ Returns the SchoolLocation (and schoolId) with the given id.
 
 ### Example
 ```javascript
-var wise-r-openapi-client = require('wise-r-openapi-client');
-var defaultClient = wise-r-openapi-client.ApiClient.default;
+var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
 
 // Configure OAuth2 access token for authorization: oauth_client_credentials
 var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
 oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
-var apiInstance = new wise-r-openapi-client.SchoolsApi();
+var apiInstance = new WiserClient.SchoolsApi();
 
 var id = "id_example"; // String | 
 
@@ -67,14 +67,14 @@ Returns the School with the given id.
 
 ### Example
 ```javascript
-var wise-r-openapi-client = require('wise-r-openapi-client');
-var defaultClient = wise-r-openapi-client.ApiClient.default;
+var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
 
 // Configure OAuth2 access token for authorization: oauth_client_credentials
 var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
 oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
-var apiInstance = new wise-r-openapi-client.SchoolsApi();
+var apiInstance = new WiserClient.SchoolsApi();
 
 var id = "id_example"; // String | 
 
@@ -115,14 +115,14 @@ Returns the Schools and SchoolLocations for which the REST client has (partial) 
 
 ### Example
 ```javascript
-var wise-r-openapi-client = require('wise-r-openapi-client');
-var defaultClient = wise-r-openapi-client.ApiClient.default;
+var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
 
 // Configure OAuth2 access token for authorization: oauth_client_credentials
 var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
 oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
-var apiInstance = new wise-r-openapi-client.SchoolsApi();
+var apiInstance = new WiserClient.SchoolsApi();
 
 var opts = { 
   'naamFilter': "naamFilter_example", // String | Filter on name (optional)

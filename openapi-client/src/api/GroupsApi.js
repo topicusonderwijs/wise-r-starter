@@ -25,16 +25,16 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/GroupResource', 'model/NotAuthorizedOrganisationResponse', 'model/KeyResource', 'model/KeyringResource'], factory);
+    define(['WiserClient', 'model/GroupResource', 'model/NotAuthorizedOrganisationResponse', 'model/KeyResource', 'model/KeyringResource'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
     module.exports = factory(require('../ApiClient'), require('../model/GroupResource'), require('../model/NotAuthorizedOrganisationResponse'), require('../model/KeyResource'), require('../model/KeyringResource'));
   } else {
     // Browser globals (root is window)
-    if (!root.wise-r-openapi-client) {
-      root.wise-r-openapi-client = {};
+    if (!root.WiserClient) {
+      root.WiserClient = {};
     }
-    root.wise-r-openapi-client.GroupsApi = factory(root.wise-r-openapi-client.ApiClient, root.wise-r-openapi-client.GroupResource, root.wise-r-openapi-client.NotAuthorizedOrganisationResponse, root.wise-r-openapi-client.KeyResource, root.wise-r-openapi-client.KeyringResource);
+    root.WiserClient.GroupsApi = factory(root.WiserClient.ApiClient, root.WiserClient.GroupResource, root.WiserClient.NotAuthorizedOrganisationResponse, root.WiserClient.KeyResource, root.WiserClient.KeyringResource);
   }
 }(this, function(ApiClient, GroupResource, NotAuthorizedOrganisationResponse, KeyResource, KeyringResource) {
   'use strict';

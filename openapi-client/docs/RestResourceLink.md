@@ -1,4 +1,4 @@
-# wise-r-openapi-client.RestResourceLink
+# WiserClient.RestResourceLink
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# wise-r-openapi-client.ChangesApi
+# WiserClient.ChangesApi
 
 All URIs are relative to *https://localhost/api*
 
@@ -17,14 +17,14 @@ Get Changes in Users and Groups.
 
 ### Example
 ```javascript
-var wise-r-openapi-client = require('wise-r-openapi-client');
-var defaultClient = wise-r-openapi-client.ApiClient.default;
+var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
 
 // Configure OAuth2 access token for authorization: oauth_client_credentials
 var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
 oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
-var apiInstance = new wise-r-openapi-client.ChangesApi();
+var apiInstance = new WiserClient.ChangesApi();
 
 var schoollocations = ["schoollocations_example"]; // [String] | Filter on schoollocations (required, list of id's)
 

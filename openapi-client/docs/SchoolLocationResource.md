@@ -1,4 +1,4 @@
-# wise-r-openapi-client.SchoolLocationResource
+# WiserClient.SchoolLocationResource
 
 ## Properties
 Name | Type | Description | Notes

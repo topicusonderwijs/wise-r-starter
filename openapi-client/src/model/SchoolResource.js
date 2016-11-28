@@ -25,16 +25,16 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['WiserClient'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
     module.exports = factory(require('../ApiClient'));
   } else {
     // Browser globals (root is window)
-    if (!root.wise-r-openapi-client) {
-      root.wise-r-openapi-client = {};
+    if (!root.WiserClient) {
+      root.WiserClient = {};
     }
-    root.wise-r-openapi-client.SchoolResource = factory(root.wise-r-openapi-client.ApiClient);
+    root.WiserClient.SchoolResource = factory(root.WiserClient.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';

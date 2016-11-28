@@ -31,15 +31,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.wise-r-openapi-client);
+    factory(root.expect, root.WiserClient);
   }
-}(this, function(expect, wise-r-openapi-client) {
+}(this, function(expect, WiserClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new wise-r-openapi-client.KeyResource();
+    instance = new WiserClient.KeyResource();
   });
 
   var getProperty = function(object, getter, property) {
@@ -61,13 +61,13 @@
   describe('KeyResource', function() {
     it('should create an instance of KeyResource', function() {
       // uncomment below and update the code to test KeyResource
-      //var instane = new wise-r-openapi-client.KeyResource();
-      //expect(instance).to.be.a(wise-r-openapi-client.KeyResource);
+      //var instane = new WiserClient.KeyResource();
+      //expect(instance).to.be.a(WiserClient.KeyResource);
     });
 
     it('should have the property keyValue (base name: "keyValue")', function() {
       // uncomment below and update the code to test the property keyValue
-      //var instane = new wise-r-openapi-client.KeyResource();
+      //var instane = new WiserClient.KeyResource();
       //expect(instance).to.be();
     });
 

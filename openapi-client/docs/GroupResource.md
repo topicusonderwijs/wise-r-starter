@@ -1,4 +1,4 @@
-# wise-r-openapi-client.GroupResource
+# WiserClient.GroupResource
 
 ## Properties
 Name | Type | Description | Notes

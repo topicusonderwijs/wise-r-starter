@@ -31,15 +31,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.wise-r-openapi-client);
+    factory(root.expect, root.WiserClient);
   }
-}(this, function(expect, wise-r-openapi-client) {
+}(this, function(expect, WiserClient) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new wise-r-openapi-client.GroupResource();
+    instance = new WiserClient.GroupResource();
   });
 
   var getProperty = function(object, getter, property) {
@@ -61,67 +61,67 @@
   describe('GroupResource', function() {
     it('should create an instance of GroupResource', function() {
       // uncomment below and update the code to test GroupResource
-      //var instane = new wise-r-openapi-client.GroupResource();
-      //expect(instance).to.be.a(wise-r-openapi-client.GroupResource);
+      //var instane = new WiserClient.GroupResource();
+      //expect(instance).to.be.a(WiserClient.GroupResource);
     });
 
     it('should have the property organisatieKey (base name: "organisatieKey")', function() {
       // uncomment below and update the code to test the property organisatieKey
-      //var instane = new wise-r-openapi-client.GroupResource();
+      //var instane = new WiserClient.GroupResource();
       //expect(instance).to.be();
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instane = new wise-r-openapi-client.GroupResource();
+      //var instane = new WiserClient.GroupResource();
       //expect(instance).to.be();
     });
 
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
-      //var instane = new wise-r-openapi-client.GroupResource();
+      //var instane = new WiserClient.GroupResource();
       //expect(instance).to.be();
     });
 
     it('should have the property schoolyear (base name: "schoolyear")', function() {
       // uncomment below and update the code to test the property schoolyear
-      //var instane = new wise-r-openapi-client.GroupResource();
+      //var instane = new WiserClient.GroupResource();
       //expect(instance).to.be();
     });
 
     it('should have the property schoolId (base name: "schoolId")', function() {
       // uncomment below and update the code to test the property schoolId
-      //var instane = new wise-r-openapi-client.GroupResource();
+      //var instane = new WiserClient.GroupResource();
       //expect(instance).to.be();
     });
 
     it('should have the property type (base name: "type")', function() {
       // uncomment below and update the code to test the property type
-      //var instane = new wise-r-openapi-client.GroupResource();
+      //var instane = new WiserClient.GroupResource();
       //expect(instance).to.be();
     });
 
     it('should have the property linkedResources (base name: "linkedResources")', function() {
       // uncomment below and update the code to test the property linkedResources
-      //var instane = new wise-r-openapi-client.GroupResource();
+      //var instane = new WiserClient.GroupResource();
       //expect(instance).to.be();
     });
 
     it('should have the property linkedSchoolLocationIds (base name: "linkedSchoolLocationIds")', function() {
       // uncomment below and update the code to test the property linkedSchoolLocationIds
-      //var instane = new wise-r-openapi-client.GroupResource();
+      //var instane = new WiserClient.GroupResource();
       //expect(instance).to.be();
     });
 
     it('should have the property urlToKey (base name: "urlToKey")', function() {
       // uncomment below and update the code to test the property urlToKey
-      //var instane = new wise-r-openapi-client.GroupResource();
+      //var instane = new WiserClient.GroupResource();
       //expect(instance).to.be();
     });
 
     it('should have the property organisationId (base name: "organisationId")', function() {
       // uncomment below and update the code to test the property organisationId
-      //var instane = new wise-r-openapi-client.GroupResource();
+      //var instane = new WiserClient.GroupResource();
       //expect(instance).to.be();
     });
 

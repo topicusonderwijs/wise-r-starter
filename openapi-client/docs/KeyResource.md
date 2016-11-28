@@ -1,4 +1,4 @@
-# wise-r-openapi-client.KeyResource
+# WiserClient.KeyResource
 
 ## Properties
 Name | Type | Description | Notes
