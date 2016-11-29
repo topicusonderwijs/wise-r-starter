@@ -4,6 +4,7 @@ var jsonwebtoken = require('jsonwebtoken');
 var fetch = require('node-fetch');
 var ClientOAuth2 = require('client-oauth2');
 var path = require('path');
+var WiserClient = require('wise-r-openapi-client');
 
 var config = require('../backend.config');
 
@@ -32,18 +33,13 @@ app.get('/callback', function (req, res) {
         serveFrontend(req, res);
 });
 
-// app.get('/callback-authcode', exchangeTokenAndRedirectToFrontend);
-// app.get('/callback-implicit', serveFrontend);
-
-
 // JSON endpoint for XHR communication between frontend and backend
 app.get('/userdata', getUserData);
 
 // If the URL in backend.config.js (field 'backend') includes a port number, use this.
 var port = (/:(\d+)/.exec(config.backend) || [80]).pop();
 app.listen(port);
-
-
+console.log('Backend listening at port '+port+'...');
 
 var authService = new ClientOAuth2({
     clientId: config.oauthClientId,
@@ -53,6 +49,9 @@ var authService = new ClientOAuth2({
     redirectUri: config.backend + '/callback',
     scopes: ['openid']
 });
+
+// base path for Wise-r OpenAPI client is [host]/api
+WiserClient.ApiClient.instance.basePath =  config.apiBaseUrl.slice(0,config.apiBaseUrl.indexOf('/api/v')+4);
 
 // collection of authenticated sessions
 // (maps session id to id_token claims)
@@ -94,7 +93,6 @@ function exchangeTokenAndRedirectToFrontend(req, res) {
             res.cookie('sessionId',sessionId);
             res.redirect(config.backend + '/showdata');
         }).catch(function (error) {
-
             res.send(error);
         });
 }
@@ -118,9 +116,9 @@ function getUserData(req,res) {
 
     getClientAccessToken()
         .then(function (clientAccessToken) {
-            return fetch(config.apiBaseUrl + '/users/' + claims.sub, {headers: {'Authorization': 'Bearer ' + clientAccessToken}});
-        }).then(function (resp) {
-            return resp.json();
+            WiserClient.ApiClient.instance.authentications['oauth_client_credentials'].accessToken = clientAccessToken;
+            // fetches [host]/api/v1/users/[subject-id] with access token in Autorization header
+            return (new WiserClient.UsersApi()).getUser(claims.sub);
         }).then(function (obj) {
             res.json(obj);
         });
