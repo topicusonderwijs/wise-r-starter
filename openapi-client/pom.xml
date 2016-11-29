@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-   - To regenerate the npm module:
+   - Almost everything in this directory is generated from an OpenAPI
+   - description (swagger.json file) by this POM!
+   -
+   - To regenerate:
    - (1) if needed, edit the <inputSpec> parameter below
    - (2) run `mvn clean generate-sources`.
   -->

@@ -17,7 +17,7 @@
     "jsonwebtoken": "^7.1.9",
     "jsrsasign": "^6.2.0",
     "node-fetch": "^1.6.0",
-    "wise-r-openapi-client": "file:./openapi-client"
+    "wise-r-openapi-client": "1.0.0-20161129"
   },
   "devDependencies": {
     "webpack": "^1.13.0",
