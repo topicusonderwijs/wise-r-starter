@@ -34,7 +34,7 @@
     if (!root.WiserClient) {
       root.WiserClient = {};
     }
-    root.WiserClient.SchoolResource = factory(root.WiserClient.ApiClient);
+    root.WiserClient.MediaType = factory(root.WiserClient.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -43,73 +43,78 @@
 
 
   /**
-   * The SchoolResource model module.
-   * @module model/SchoolResource
+   * The MediaType model module.
+   * @module model/MediaType
    * @version 1.0.0
    */
 
   /**
-   * Constructs a new <code>SchoolResource</code>.
-   * @alias module:model/SchoolResource
+   * Constructs a new <code>MediaType</code>.
+   * @alias module:model/MediaType
    * @class
-   * @param id {String} The ID of this resource
-   * @param organisationId {String} The ID of the Organisation
    */
-  var exports = function(id, organisationId) {
+  var exports = function() {
     var _this = this;
 
 
-    _this['id'] = id;
 
-    _this['organisationId'] = organisationId;
+
+
+
   };
 
   /**
-   * Constructs a <code>SchoolResource</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>MediaType</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/SchoolResource} obj Optional instance to populate.
-   * @return {module:model/SchoolResource} The populated <code>SchoolResource</code> instance.
+   * @param {module:model/MediaType} obj Optional instance to populate.
+   * @return {module:model/MediaType} The populated <code>MediaType</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('organisatieKey')) {
-        obj['organisatieKey'] = ApiClient.convertToType(data['organisatieKey'], 'String');
+      if (data.hasOwnProperty('type')) {
+        obj['type'] = ApiClient.convertToType(data['type'], 'String');
       }
-      if (data.hasOwnProperty('id')) {
-        obj['id'] = ApiClient.convertToType(data['id'], 'String');
+      if (data.hasOwnProperty('subtype')) {
+        obj['subtype'] = ApiClient.convertToType(data['subtype'], 'String');
       }
-      if (data.hasOwnProperty('name')) {
-        obj['name'] = ApiClient.convertToType(data['name'], 'String');
+      if (data.hasOwnProperty('parameters')) {
+        obj['parameters'] = ApiClient.convertToType(data['parameters'], {'String': 'String'});
       }
-      if (data.hasOwnProperty('organisationId')) {
-        obj['organisationId'] = ApiClient.convertToType(data['organisationId'], 'String');
+      if (data.hasOwnProperty('wildcardType')) {
+        obj['wildcardType'] = ApiClient.convertToType(data['wildcardType'], 'Boolean');
+      }
+      if (data.hasOwnProperty('wildcardSubtype')) {
+        obj['wildcardSubtype'] = ApiClient.convertToType(data['wildcardSubtype'], 'Boolean');
       }
     }
     return obj;
   }
 
   /**
-   * @member {String} organisatieKey
+   * @member {String} type
    */
-  exports.prototype['organisatieKey'] = undefined;
+  exports.prototype['type'] = undefined;
   /**
-   * The ID of this resource
-   * @member {String} id
+   * @member {String} subtype
    */
-  exports.prototype['id'] = undefined;
+  exports.prototype['subtype'] = undefined;
   /**
-   * Name of the School
-   * @member {String} name
+   * @member {Object.<String, String>} parameters
    */
-  exports.prototype['name'] = undefined;
+  exports.prototype['parameters'] = undefined;
   /**
-   * The ID of the Organisation
-   * @member {String} organisationId
+   * @member {Boolean} wildcardType
+   * @default false
    */
-  exports.prototype['organisationId'] = undefined;
+  exports.prototype['wildcardType'] = false;
+  /**
+   * @member {Boolean} wildcardSubtype
+   * @default false
+   */
+  exports.prototype['wildcardSubtype'] = false;
 
 
 

@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 <a name="getGroups"></a>
 # **getGroups**
-> GroupResource getGroups(opts)
+> [GroupResource] getGroups(opts)
 
 Get Groups
 
@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GroupResource**](GroupResource.md)
+[**[GroupResource]**](GroupResource.md)
 
 ### Authorization
 

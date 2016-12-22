@@ -25,12 +25,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/ChangeResource', 'model/ChangeSet', 'model/GroupResource', 'model/KeyResource', 'model/KeyringResource', 'model/NotAuthorizedOrganisationResponse', 'model/RestResourceLink', 'model/SchoolLocationResource', 'model/SchoolResource', 'model/UserResource', 'api/ChangesApi', 'api/GroupsApi', 'api/SchoolsApi', 'api/UsersApi'], factory);
+    define(['ApiClient', 'model/ChangeResource', 'model/ChangeSet', 'model/EntityTag', 'model/GroupResource', 'model/KeyResource', 'model/KeyringResource', 'model/Link', 'model/Locale', 'model/MediaType', 'model/NewCookie', 'model/NotAuthorizedOrganisationResponse', 'model/Response', 'model/RestResourceLink', 'model/SchoolLocationResource', 'model/SchoolResource', 'model/StatusType', 'model/UriBuilder', 'model/UserResource', 'api/ChangesApi', 'api/DocumentsApi', 'api/GroupsApi', 'api/SchoolsApi', 'api/UsersApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/ChangeResource'), require('./model/ChangeSet'), require('./model/GroupResource'), require('./model/KeyResource'), require('./model/KeyringResource'), require('./model/NotAuthorizedOrganisationResponse'), require('./model/RestResourceLink'), require('./model/SchoolLocationResource'), require('./model/SchoolResource'), require('./model/UserResource'), require('./api/ChangesApi'), require('./api/GroupsApi'), require('./api/SchoolsApi'), require('./api/UsersApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/ChangeResource'), require('./model/ChangeSet'), require('./model/EntityTag'), require('./model/GroupResource'), require('./model/KeyResource'), require('./model/KeyringResource'), require('./model/Link'), require('./model/Locale'), require('./model/MediaType'), require('./model/NewCookie'), require('./model/NotAuthorizedOrganisationResponse'), require('./model/Response'), require('./model/RestResourceLink'), require('./model/SchoolLocationResource'), require('./model/SchoolResource'), require('./model/StatusType'), require('./model/UriBuilder'), require('./model/UserResource'), require('./api/ChangesApi'), require('./api/DocumentsApi'), require('./api/GroupsApi'), require('./api/SchoolsApi'), require('./api/UsersApi'));
   }
-}(function(ApiClient, ChangeResource, ChangeSet, GroupResource, KeyResource, KeyringResource, NotAuthorizedOrganisationResponse, RestResourceLink, SchoolLocationResource, SchoolResource, UserResource, ChangesApi, GroupsApi, SchoolsApi, UsersApi) {
+}(function(ApiClient, ChangeResource, ChangeSet, EntityTag, GroupResource, KeyResource, KeyringResource, Link, Locale, MediaType, NewCookie, NotAuthorizedOrganisationResponse, Response, RestResourceLink, SchoolLocationResource, SchoolResource, StatusType, UriBuilder, UserResource, ChangesApi, DocumentsApi, GroupsApi, SchoolsApi, UsersApi) {
   'use strict';
 
   /**
@@ -66,7 +66,7 @@
    */
   var exports = {
     /**
-     * The WiserClient constructor.
+     * The ApiClient constructor.
      * @property {module:ApiClient}
      */
     ApiClient: ApiClient,
@@ -80,6 +80,11 @@
      * @property {module:model/ChangeSet}
      */
     ChangeSet: ChangeSet,
+    /**
+     * The EntityTag model constructor.
+     * @property {module:model/EntityTag}
+     */
+    EntityTag: EntityTag,
     /**
      * The GroupResource model constructor.
      * @property {module:model/GroupResource}
@@ -96,10 +101,35 @@
      */
     KeyringResource: KeyringResource,
     /**
+     * The Link model constructor.
+     * @property {module:model/Link}
+     */
+    Link: Link,
+    /**
+     * The Locale model constructor.
+     * @property {module:model/Locale}
+     */
+    Locale: Locale,
+    /**
+     * The MediaType model constructor.
+     * @property {module:model/MediaType}
+     */
+    MediaType: MediaType,
+    /**
+     * The NewCookie model constructor.
+     * @property {module:model/NewCookie}
+     */
+    NewCookie: NewCookie,
+    /**
      * The NotAuthorizedOrganisationResponse model constructor.
      * @property {module:model/NotAuthorizedOrganisationResponse}
      */
     NotAuthorizedOrganisationResponse: NotAuthorizedOrganisationResponse,
+    /**
+     * The Response model constructor.
+     * @property {module:model/Response}
+     */
+    Response: Response,
     /**
      * The RestResourceLink model constructor.
      * @property {module:model/RestResourceLink}
@@ -116,6 +146,16 @@
      */
     SchoolResource: SchoolResource,
     /**
+     * The StatusType model constructor.
+     * @property {module:model/StatusType}
+     */
+    StatusType: StatusType,
+    /**
+     * The UriBuilder model constructor.
+     * @property {module:model/UriBuilder}
+     */
+    UriBuilder: UriBuilder,
+    /**
      * The UserResource model constructor.
      * @property {module:model/UserResource}
      */
@@ -125,6 +165,11 @@
      * @property {module:api/ChangesApi}
      */
     ChangesApi: ChangesApi,
+    /**
+     * The DocumentsApi service constructor.
+     * @property {module:api/DocumentsApi}
+     */
+    DocumentsApi: DocumentsApi,
     /**
      * The GroupsApi service constructor.
      * @property {module:api/GroupsApi}

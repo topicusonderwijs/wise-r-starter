@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 <a name="getUsers"></a>
 # **getUsers**
-> UserResource getUsers(opts)
+> [UserResource] getUsers(opts)
 
 Get Users
 
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserResource**](UserResource.md)
+[**[UserResource]**](UserResource.md)
 
 ### Authorization
 

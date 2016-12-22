@@ -25,7 +25,7 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['WiserClient', 'model/KeyResource', 'model/KeyringResource', 'model/UserResource'], factory);
+    define(['ApiClient', 'model/KeyResource', 'model/KeyringResource', 'model/UserResource'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
     module.exports = factory(require('../ApiClient'), require('../model/KeyResource'), require('../model/KeyringResource'), require('../model/UserResource'));
@@ -187,7 +187,7 @@
      * @param {Array.<String>} opts.groups Filter on groups (optional, list of id&#39;s)
      * @param {Integer} opts.offset Paging: number of records to skip (optional) (default to 0)
      * @param {Integer} opts.limit Paging: number of records to return (optional, maximal value: 100) (default to 100)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/UserResource}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/UserResource>}
      */
     this.getUsers = function(opts) {
       opts = opts || {};
@@ -211,7 +211,7 @@
       var authNames = ['oauth_client_credentials'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = UserResource;
+      var returnType = [UserResource];
 
       return this.apiClient.callApi(
         '/v1/users', 'GET',

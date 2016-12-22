@@ -25,7 +25,7 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['WiserClient', 'model/GroupResource', 'model/NotAuthorizedOrganisationResponse', 'model/KeyResource', 'model/KeyringResource'], factory);
+    define(['ApiClient', 'model/GroupResource', 'model/NotAuthorizedOrganisationResponse', 'model/KeyResource', 'model/KeyringResource'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
     module.exports = factory(require('../ApiClient'), require('../model/GroupResource'), require('../model/NotAuthorizedOrganisationResponse'), require('../model/KeyResource'), require('../model/KeyringResource'));
@@ -103,7 +103,7 @@
      * @param {String} opts.schoolyear Filter on schoolyear (optional, filters default on current school year. Example value: 2015-2016)
      * @param {Integer} opts.offset Paging: number of records to skip (optional) (default to 0)
      * @param {Integer} opts.limit Paging: number of records to return (optional, maximal value: 100) (default to 100)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GroupResource}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/GroupResource>}
      */
     this.getGroups = function(opts) {
       opts = opts || {};
@@ -126,7 +126,7 @@
       var authNames = ['oauth_client_credentials'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = GroupResource;
+      var returnType = [GroupResource];
 
       return this.apiClient.callApi(
         '/v1/groups', 'GET',

@@ -34,7 +34,7 @@
     if (!root.WiserClient) {
       root.WiserClient = {};
     }
-    root.WiserClient.SchoolResource = factory(root.WiserClient.ApiClient);
+    root.WiserClient.EntityTag = factory(root.WiserClient.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -43,73 +43,53 @@
 
 
   /**
-   * The SchoolResource model module.
-   * @module model/SchoolResource
+   * The EntityTag model module.
+   * @module model/EntityTag
    * @version 1.0.0
    */
 
   /**
-   * Constructs a new <code>SchoolResource</code>.
-   * @alias module:model/SchoolResource
+   * Constructs a new <code>EntityTag</code>.
+   * @alias module:model/EntityTag
    * @class
-   * @param id {String} The ID of this resource
-   * @param organisationId {String} The ID of the Organisation
    */
-  var exports = function(id, organisationId) {
+  var exports = function() {
     var _this = this;
 
 
-    _this['id'] = id;
 
-    _this['organisationId'] = organisationId;
   };
 
   /**
-   * Constructs a <code>SchoolResource</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>EntityTag</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/SchoolResource} obj Optional instance to populate.
-   * @return {module:model/SchoolResource} The populated <code>SchoolResource</code> instance.
+   * @param {module:model/EntityTag} obj Optional instance to populate.
+   * @return {module:model/EntityTag} The populated <code>EntityTag</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('organisatieKey')) {
-        obj['organisatieKey'] = ApiClient.convertToType(data['organisatieKey'], 'String');
+      if (data.hasOwnProperty('value')) {
+        obj['value'] = ApiClient.convertToType(data['value'], 'String');
       }
-      if (data.hasOwnProperty('id')) {
-        obj['id'] = ApiClient.convertToType(data['id'], 'String');
-      }
-      if (data.hasOwnProperty('name')) {
-        obj['name'] = ApiClient.convertToType(data['name'], 'String');
-      }
-      if (data.hasOwnProperty('organisationId')) {
-        obj['organisationId'] = ApiClient.convertToType(data['organisationId'], 'String');
+      if (data.hasOwnProperty('weak')) {
+        obj['weak'] = ApiClient.convertToType(data['weak'], 'Boolean');
       }
     }
     return obj;
   }
 
   /**
-   * @member {String} organisatieKey
+   * @member {String} value
    */
-  exports.prototype['organisatieKey'] = undefined;
+  exports.prototype['value'] = undefined;
   /**
-   * The ID of this resource
-   * @member {String} id
+   * @member {Boolean} weak
+   * @default false
    */
-  exports.prototype['id'] = undefined;
-  /**
-   * Name of the School
-   * @member {String} name
-   */
-  exports.prototype['name'] = undefined;
-  /**
-   * The ID of the Organisation
-   * @member {String} organisationId
-   */
-  exports.prototype['organisationId'] = undefined;
+  exports.prototype['weak'] = false;
 
 
 

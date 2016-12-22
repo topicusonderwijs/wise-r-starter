@@ -25,7 +25,7 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['WiserClient', 'model/NotAuthorizedOrganisationResponse', 'model/SchoolLocationResource', 'model/SchoolResource'], factory);
+    define(['ApiClient', 'model/NotAuthorizedOrganisationResponse', 'model/SchoolLocationResource', 'model/SchoolResource'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
     module.exports = factory(require('../ApiClient'), require('../model/NotAuthorizedOrganisationResponse'), require('../model/SchoolLocationResource'), require('../model/SchoolResource'));
@@ -144,7 +144,7 @@
      * @param {String} opts.schoolId Filter on parent school (optional)
      * @param {Integer} opts.offset Paging: number of records to skip (optional) (default to 0)
      * @param {Integer} opts.limit Paging: number of records to return (optional, maximal value: 100) (default to 100)
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SchoolLocationResource}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/SchoolLocationResource>}
      */
     this.organisations = function(opts) {
       opts = opts || {};
@@ -170,7 +170,7 @@
       var authNames = ['oauth_client_credentials'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = SchoolLocationResource;
+      var returnType = [SchoolLocationResource];
 
       return this.apiClient.callApi(
         '/v1/schools', 'GET',

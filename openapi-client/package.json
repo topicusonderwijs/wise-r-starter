@@ -1,6 +1,6 @@
 {
   "name": "wise-r-openapi-client",
-  "version": "1.0.0-20161129",
+  "version": "1.0.0-20161222",
   "description": "Wise-r OpenAPI Client",
   "license": "Apache-2.0",
   "main": "src/index.js",

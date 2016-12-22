@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 
 <a name="organisations"></a>
 # **organisations**
-> SchoolLocationResource organisations(opts)
+> [SchoolLocationResource] organisations(opts)
 
 Get Schools
 
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SchoolLocationResource**](SchoolLocationResource.md)
+[**[SchoolLocationResource]**](SchoolLocationResource.md)
 
 ### Authorization
 
