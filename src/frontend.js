@@ -16,6 +16,8 @@ function router() {
         extractIdTokenFromOAuthResponse().then(renderObject).catch(renderErrorView);
     } else if (startsWith(window.location.pathname,'/showdata')) {
         fetchUserData().then(renderObject).catch(renderErrorView);
+    } else if (startsWith(window.location.pathname,'/admin')) {
+        fetchSecretData().then(renderObject).catch(renderErrorView);
     } else {
         renderFlowChoiceView();
     }
@@ -39,7 +41,6 @@ function renderFlowChoiceView() {
 
     document.getElementById('flowChoiceView').style.visibility = 'visible';
     document.getElementById('implicit').href = uri;
-    document.getElementById('authcode').href = config.backend + '/authcode';
 }
 
 function fetchUserData() {
@@ -49,7 +50,17 @@ function fetchUserData() {
         });
 }
 
+function fetchSecretData() {
+    return fetch(config.backend + '/secretdata', {credentials: 'same-origin'})
+        .then(function (resp) {
+            return resp.json();
+        });
+}
+
 function renderObject(obj) {
+    console.log('Received data:');
+    console.log(obj);
+
     document.getElementById('dataView').style.visibility = 'visible';
     var table = document.getElementById('results').appendChild(document.createElement("table"));
     for (key in obj) {

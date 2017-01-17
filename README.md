@@ -27,3 +27,16 @@ The code serves as an example for Educational Applications and is deliberately w
 Javascript.
 
 If you would like to try it out, contact us at <wise-r@topicus.nl> for developer credentials.
+
+## Development tip
+
+Use `npm link` to develop on the dependency packages without releasing them:
+```
+wise-r-starter$ cd openapi-client
+wise-r-starter/openapi-client$ npm link
+wise-r-starter/openapi-client$ cd ../sync-client
+wise-r-starter/sync-client$ npm link
+wise-r-starter/sync-client$ cd ..
+wise-r-starter$ npm link wise-r-openapi-client
+wise-r-starter$ npm link wise-r-sync-client
+```
