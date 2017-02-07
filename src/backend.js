@@ -11,9 +11,9 @@ var syncClientConstructor = require('wise-r-sync-client');
 var syncClient = new syncClientConstructor(apiClientInstance);
 
 var config = require('../backend.config');
-console.log('Wise-r identity provider = '+config.idp);
-console.log('Wise-r API base = '+config.apiBaseUrl);
-console.log('OAuth client id = '+config.oauthClientId);
+console.log('Wise-r identity provider = ' + config.idp);
+console.log('Wise-r API base = ' + config.apiBaseUrl);
+console.log('OAuth client id = ' + config.oauthClientId);
 
 var app = express();
 app.use(cookieParser());
@@ -38,7 +38,7 @@ app.get('/authcode', createNonceAndStartAuthCodeFlow);
 // In a real application, you only need to implement one flow (Authorization Code is recommended for higher security).
 app.get('/callback', function (req, res) {
     if (isAuthCodeCallback(req))
-        exchangeTokenAndRedirectToFrontend(req,res);
+        exchangeTokenAndRedirectToFrontend(req, res);
     else
         serveFrontend(req, res);
 });
@@ -53,7 +53,7 @@ app.get('/secretdata', getChanges);
 // If the URL in backend.config.js (field 'backend') includes a port number, use this.
 var port = (/:(\d+)/.exec(config.backend) || [80]).pop();
 app.listen(port);
-console.log('Wise-r-starter server listening at port '+port+'...');
+console.log('Wise-r-starter server listening at port ' + port + '...');
 
 var authService = new ClientOAuth2({
     clientId: config.oauthClientId,
@@ -65,13 +65,13 @@ var authService = new ClientOAuth2({
 });
 
 // base path for Wise-r OpenAPI client is [host]/api
-WiserClient.ApiClient.instance.basePath =  config.apiBaseUrl.slice(0,config.apiBaseUrl.indexOf('/api/v')+4);
+WiserClient.ApiClient.instance.basePath = config.apiBaseUrl.slice(0, config.apiBaseUrl.indexOf('/api/v') + 4);
 
 // collection of authenticated sessions
 // (maps session id to id_token claims)
 var sessions = {};
 
-function createNonceAndStartAuthCodeFlow(req,res) {
+function createNonceAndStartAuthCodeFlow(req, res) {
     var oauthState = generateUUID();
     // [idp]/auth?
     //   client_id=...
@@ -81,20 +81,20 @@ function createNonceAndStartAuthCodeFlow(req,res) {
     //   &state=[uuid]
     //   &provider=...
     //   &nonce=[uuid]
-    var uri = authService.code.getUri({state:oauthState})+'&provider=' + config.provider + '&nonce=' + oauthState;
-    res.cookie('oauthState',oauthState);
+    var uri = authService.code.getUri({ state: oauthState }) + '&provider=' + config.provider + '&nonce=' + oauthState;
+    res.cookie('oauthState', oauthState);
     res.redirect(uri);
 }
 
 function exchangeTokenAndRedirectToFrontend(req, res) {
     var cookieState = req.cookies.oauthState;
-    res.cookie('oauthState',null);
+    res.cookie('oauthState', null);
     console.log(req.originalUrl);
-    authService.code.getToken(req.originalUrl, {state:cookieState})
+    authService.code.getToken(req.originalUrl, { state: cookieState })
         .then(function (token) {
             console.log(token);
             var id_token = token.data.id_token;
-            var jwt_options = {algorithms: ['RS256'], audience: config.oauthClientId, issuer: config.idp};
+            var jwt_options = { algorithms: ['RS256'], audience: config.oauthClientId, issuer: config.idp };
             var claims = jsonwebtoken.verify(id_token, config.sso_pub_key, jwt_options);
             if (cookieState != claims.nonce) {
                 console.log('incorrect nonce');
@@ -104,7 +104,7 @@ function exchangeTokenAndRedirectToFrontend(req, res) {
 
             var sessionId = generateUUID();
             sessions[sessionId] = claims;
-            res.cookie('sessionId',sessionId);
+            res.cookie('sessionId', sessionId);
             res.redirect(config.backend + '/showdata');
         }).catch(function (error) {
             res.send(error);
@@ -120,8 +120,8 @@ function getClientAccessToken() {
         });
 }
 
-function getUserData(req,res) {
-    var claims = checkSessionAuthenticated(req,res);
+function getUserData(req, res) {
+    var claims = checkSessionAuthenticated(req, res);
     getClientAccessToken()
         .then(function (clientAccessToken) {
             apiClientInstance.authentications['oauth_client_credentials'].accessToken = clientAccessToken;
@@ -132,7 +132,7 @@ function getUserData(req,res) {
         });
 }
 
-function getChanges(req,res) {
+function getChanges(req, res) {
     var changes = {};
     var schools;
     getClientAccessToken()
@@ -141,29 +141,29 @@ function getChanges(req,res) {
             return schoolsApi.organisations();
         }).then(function (data) {
             schools = data;
-            console.log('Start processing changes for '+schools.length+' organisations.');
-            for (var i=0; i<schools.length; i++)
+            console.log('Start processing changes for ' + schools.length + ' organisations.');
+            for (var i = 0; i < schools.length; i++)
                 changes[schools[i].id] = [];
             return syncClient.changesRetrieval(schools, function (batch) {
-                console.log('Processing '+batch.length+' changes...');
-                for (var j=0; j<batch.length; j++) {
+                console.log('Processing ' + batch.length + ' changes...');
+                for (var j = 0; j < batch.length; j++) {
                     var change = batch[j];
                     changes[change.organisationId].push(change);
                 }
             });
         }).then(function (lastId) {
-            console.log('All changes received. Last change id = '+lastId);
+            console.log('All changes received. Last change id = ' + lastId);
             var results = {};
-            for (var i=0; i<schools.length; i++)
+            for (var i = 0; i < schools.length; i++)
                 results[schools[i].name] = changes[schools[i].id];
             res.json(results);
         }).catch(function (error) {
-            console.log('error: '+error);
+            console.log('error: ' + error);
             res.send(error);
         });
 }
 
-function checkSessionAuthenticated(req,res) {
+function checkSessionAuthenticated(req, res) {
     var claims = sessions[req.cookies.sessionId];
     if (!claims) {
         res.end();
@@ -175,18 +175,18 @@ function checkSessionAuthenticated(req,res) {
 // http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript#2117523
 function generateUUID() {
     var d = new Date().getTime();
-    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        const r = (d + Math.random()*16)%16 | 0;
-        d = Math.floor(d/16);
-        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        const r = (d + Math.random() * 16) % 16 | 0;
+        d = Math.floor(d / 16);
+        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
     return uuid;
 }
 
 function isAuthCodeCallback(req) {
-    return req.query.state != undefined;
+    return req.query.state !== undefined;
 }
 
 function serveFrontend(req, res) {
-    res.sendFile(path.join(__dirname,'..','build','index.html'));
+    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
 }
