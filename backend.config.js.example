@@ -6,6 +6,6 @@ module.exports = {
     provider: 'somtoday',             // can also be 'parnassys'
     idp: 'https://idp-acceptatie.wise-r.nl',
     sso_pub_key: fs.readFileSync('acceptatie.wise-r.nl.pem'),
-    apiBaseUrl: 'https://api-acceptatie.wise-r.nl/api/v1',
+    apiBaseUrl: 'https://api-acceptatie.wise-r.nl/api',
     backend: 'http://localhost:8888'
 };

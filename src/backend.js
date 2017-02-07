@@ -65,7 +65,7 @@ var authService = new ClientOAuth2({
 });
 
 // base path for Wise-r OpenAPI client is [host]/api
-WiserClient.ApiClient.instance.basePath = config.apiBaseUrl.slice(0, config.apiBaseUrl.indexOf('/api/v') + 4);
+WiserClient.ApiClient.instance.basePath = config.apiBaseUrl;
 
 // collection of authenticated sessions
 // (maps session id to id_token claims)
