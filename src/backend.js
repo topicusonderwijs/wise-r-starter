@@ -96,7 +96,7 @@ function exchangeTokenAndRedirectToFrontend(req, res) {
             var id_token = token.data.id_token;
             var jwt_options = { algorithms: ['RS256'], audience: config.oauthClientId, issuer: config.idp };
             var claims = jsonwebtoken.verify(id_token, config.sso_pub_key, jwt_options);
-            if (cookieState != claims.nonce) {
+            if (cookieState !== claims.nonce) {
                 console.log('incorrect nonce');
                 res.end();
                 return;
