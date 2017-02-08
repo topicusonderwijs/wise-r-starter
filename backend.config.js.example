@@ -5,7 +5,7 @@ module.exports = {
     oauthClientSecret: 'secret',      // fill in your own client secret
     provider: 'somtoday',             // can also be 'parnassys'
     idp: 'https://idp-acceptatie.wise-r.nl',
-    sso_pub_key: fs.readFileSync('acceptatie.wise-r.nl.pem'),
+    sso_pub_key: fs.readFileSync('acceptatie.wise-r.nl.pem'),       // sync function used for better readability
     apiBaseUrl: 'https://api-acceptatie.wise-r.nl/api',
     backend: 'http://localhost:8888'
 };
