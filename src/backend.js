@@ -126,9 +126,14 @@ function getUserData(req, res) {
         .then(function (clientAccessToken) {
             apiClientInstance.authentications['oauth_client_credentials'].accessToken = clientAccessToken;
             // fetches [host]/api/v1/users/[subject-id] with access token in Autorization header
+            console.log('claims', claims, typeof claims.sub);
             return usersApi.getUser(claims.sub);
-        }).then(function (obj) {
+        })
+        .then(function (obj) {
             res.json(obj);
+        })
+        .catch(function (err) {
+            console.error('Error caught in getUserData->getClientAccessToken', err);
         });
 }
 
@@ -169,6 +174,8 @@ function checkSessionAuthenticated(req, res) {
         res.end();
         //throw new Error('invalid/no sessionId');
         //console.log('invalid/no sessionId');
+    } else {
+        return claims;
     }
 }
 
