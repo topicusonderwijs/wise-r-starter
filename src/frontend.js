@@ -1,3 +1,6 @@
+/*jslint browser:true, es6:true, bitwise: true*/
+/*global window, fetch*/
+
 var ClientOAuth2 = require('client-oauth2');
 var config = require('../frontend.config');
 var jsrsasign = require('jsrsasign');
@@ -10,22 +13,62 @@ var authService = new ClientOAuth2({
     scopes: ['openid']
 });
 
-function router() {
-    // check if we're at the callback endpoint
-    if (startsWith(window.location.pathname,'/callback')) {
-        extractIdTokenFromOAuthResponse().then(renderObject).catch(renderErrorView);
-    } else if (startsWith(window.location.pathname,'/showdata')) {
-        fetchUserData().then(renderObject).catch(renderErrorView);
-    } else if (startsWith(window.location.pathname,'/admin')) {
-        fetchSecretData().then(renderObject).catch(renderErrorView);
-    } else {
-        renderFlowChoiceView();
+if (!String.prototype.startsWith || !fetch) {
+    throw new Error('This browser does not support String.prototype.startsWith and/or fetch. Please upgrade the browser');
+}
+
+// http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript#2117523
+function generateUUID() {
+    'use strict';
+    const time = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
+
+    uuid = uuid.replace(/[xy]/g, function (character) {
+        const r = (time + Math.random() * 16) % 16 | 0;
+        var ret;
+        if (character === 'x') {
+            ret = r;
+        } else {
+            ret = (r & 0x3 | 0x8);
+        }
+        return ret.toString(16);
+    });
+
+    return uuid;
+}
+
+function stringifyObject(obj) {
+    'use strict';
+    if (typeof obj === 'object') {
+        return JSON.stringify(obj);
+    }
+    return obj;
+}
+
+function extractIdTokenFromOAuthResponse() {
+    'use strict';
+    var storedState = sessionStorage.getItem('oauth_state');
+    sessionStorage.setItem('oauth_state', null);
+    if (storedState) {
+        return authService.token.getToken(window.location.href, {state: storedState})
+            .then(function (token) {
+                var id_token = token.data.id_token;
+                var accept = {alg: ['RS256'], aud: config.oauthClientId, iss: config.idp};
+                var valid = jsrsasign.jws.JWS.verifyJWT(id_token, config.sso_pub_key, accept);
+                var claims = jsrsasign.jws.JWS.parse(id_token).payloadObj;
+                if (!valid) {
+                    throw new Error('invalid token');
+                }
+                if (storedState !== claims.nonce) {
+                    throw new Error('incorrect nonce');
+                }
+                return claims;
+            });
     }
 }
 
-window.onload = router;
-
 function renderFlowChoiceView() {
+    'use strict';
     var oauthState = generateUUID();
     // [idp]/auth?
     //   client_id=...
@@ -34,16 +77,17 @@ function renderFlowChoiceView() {
     //   &response_type=id_token
     //   &state=[uuid]
     //   &provider=parnassys
-    sessionStorage.setItem('oauth_state',oauthState);
-    var tokenUri = authService.token.getUri({state:oauthState}) + '&provider=' + config.provider + '&nonce='+oauthState;
+    sessionStorage.setItem('oauth_state', oauthState);
+    var tokenUri = authService.token.getUri({state: oauthState}) + '&provider=' + config.provider + '&nonce=' + oauthState;
     // hack the response_type parameter because client-oauth2 has no OIDC support (yet?)
-    var uri = tokenUri.replace("response_type=token","response_type=id_token");
+    var uri = tokenUri.replace("response_type=token", "response_type=id_token");
 
     document.getElementById('flowChoiceView').style.visibility = 'visible';
     document.getElementById('implicit').href = uri;
 }
 
 function fetchUserData() {
+    'use strict';
     return fetch(config.backend + '/userdata', {credentials: 'same-origin'})
         .then(function (resp) {
             return resp.json();
@@ -51,6 +95,7 @@ function fetchUserData() {
 }
 
 function fetchSecretData() {
+    'use strict';
     return fetch(config.backend + '/secretdata', {credentials: 'same-origin'})
         .then(function (resp) {
             return resp.json();
@@ -58,72 +103,53 @@ function fetchSecretData() {
 }
 
 function renderObject(obj) {
+    'use strict';
     console.log('Received data:');
     console.log(obj);
 
     document.getElementById('dataView').style.visibility = 'visible';
     var table = document.getElementById('results').appendChild(document.createElement("table"));
-    for (key in obj) {
-        var tr = table.appendChild(document.createElement("tr"));
-        var td_key = tr.appendChild(document.createElement("td"));
+    Object.keys(obj).forEach(function (key) {
+        var tr, td_key, val, td_val;
+        tr = table.appendChild(document.createElement("tr"));
+        td_key = tr.appendChild(document.createElement("td"));
         td_key.innerHTML = key;
-        var val = obj[key];
-        var td_val = tr.appendChild(document.createElement("td"));
+        val = obj[key];
+        td_val = tr.appendChild(document.createElement("td"));
         if (Array.isArray(val)) {
-            td_val.innerHTML = stringifyObject(val[0] || []);
-            for (var i=1; i<val.length; i++) {
-                tr = table.appendChild(document.createElement("tr"));
-                td_key = tr.appendChild(document.createElement("td"));
-                td_val = tr.appendChild(document.createElement("td"));
-                td_val.innerHTML = stringifyObject(val[i]);
-            }
+            val.forEach(function (item, index) {
+                if (index !== 0) {
+                    tr = table.appendChild(document.createElement("tr"));
+                    td_key = tr.appendChild(document.createElement("td"));
+                    td_val = tr.appendChild(document.createElement("td"));
+                }
+                td_val.innerHTML = stringifyObject(item || []);
+            });
         } else {
             td_val.innerHTML = stringifyObject(val);
         }
-    }
-}
-
-function stringifyObject(obj) {
-    return typeof(obj)=="object" ? JSON.stringify(obj) : obj;
+    });
 }
 
 function renderErrorView(err) {
+    'use strict';
     document.getElementById('dataView').style.visibility = 'visible';
-    document.getElementById('results').innerHTML= err.toString();
-}
-
-function extractIdTokenFromOAuthResponse() {
-    var storedState = sessionStorage.getItem('oauth_state');
-    sessionStorage.setItem('oauth_state',null);
-    if (storedState)
-        return authService.token.getToken(window.location.href, {state: storedState})
-            .then(function (token) {
-                var id_token = token.data.id_token;
-                var accept = {alg: ['RS256'], aud: config.oauthClientId, iss: config.idp};
-                var valid = jsrsasign.jws.JWS.verifyJWT(id_token, config.sso_pub_key, accept);
-                if (!valid)
-                    throw new Error('invalid token');
-                var claims = jsrsasign.jws.JWS.parse(id_token).payloadObj;
-                if (storedState != claims.nonce) {
-                    throw new Error('incorrect nonce');
-                }
-                return claims;
-            });
+    document.getElementById('results').innerHTML = err.toString();
 }
 
 
-// String.startsWith is ES6, this is plain JS
-function startsWith(candidate,prefix) {
-    return (candidate.lastIndexOf(prefix,0)==0);
+function router() {
+    'use strict';
+    // check if we're at the callback endpoint
+    if (window.location.pathname.startsWith('/callback')) {
+        extractIdTokenFromOAuthResponse().then(renderObject).catch(renderErrorView);
+    } else if (window.location.pathname.startsWith('/showdata')) {
+        fetchUserData().then(renderObject).catch(renderErrorView);
+    } else if (window.location.pathname.startsWith('/admin')) {
+        fetchSecretData().then(renderObject).catch(renderErrorView);
+    } else {
+        renderFlowChoiceView();
+    }
 }
 
-// http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript#2117523
-function generateUUID() {
-    var d = new Date().getTime();
-    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        const r = (d + Math.random()*16)%16 | 0;
-        d = Math.floor(d/16);
-        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
-    });
-    return uuid;
-}
+window.onload = router;
