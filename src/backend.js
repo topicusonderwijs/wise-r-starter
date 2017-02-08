@@ -1,4 +1,5 @@
 /*jslint node:true, es6:true, bitwise: true*/
+// Load the modules
 var express = require('express'),
     cookieParser = require('cookie-parser'),
     jsonwebtoken = require('jsonwebtoken'),
@@ -9,22 +10,17 @@ var express = require('express'),
     config = require('../backend.config'),
     url = require('url');
 
-// Use the required.
+// Initialize
 var usersApi = new WiserClient.UsersApi(),
     schoolsApi = new WiserClient.SchoolsApi(),
     apiClientInstance = WiserClient.ApiClient.instance,
     syncClient = new SyncClientConstructor(apiClientInstance),
+    port = url.parse(config.backend).port || 80,    // If the URL in backend.config.js (field 'backend') includes a port number, use this.
     app = express();
 
 console.log('Wise-r identity provider = ' + config.idp);
 console.log('Wise-r API base = ' + config.apiBaseUrl);
 console.log('OAuth client id = ' + config.oauthClientId);
-
-// If the URL in backend.config.js (field 'backend') includes a port number, use this.
-var port = url.parse(config.backend).port || 80;
-
-app.listen(port);
-console.log('Wise-r-starter server listening at port' + port + '...');
 
 var authService = new ClientOAuth2({
     clientId: config.oauthClientId,
@@ -101,13 +97,14 @@ function exchangeTokenAndRedirectToFrontend(req, res) {
             var id_token = token.data.id_token;
             var jwt_options = {algorithms: ['RS256'], audience: config.oauthClientId, issuer: config.idp};
             var claims = jsonwebtoken.verify(id_token, config.sso_pub_key, jwt_options);
+            var sessionId = generateUUID();
+
             if (cookieState !== claims.nonce) {
                 console.log('incorrect nonce');
                 res.end();
                 return;
             }
 
-            var sessionId = generateUUID();
             sessions[sessionId] = claims;
             res.cookie('sessionId', sessionId);
             res.redirect(config.backend + '/showdata');
@@ -188,6 +185,13 @@ function serveFrontend(ignore, res) {
     res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
 }
 
+
+
+// *** API Definition ***
+
+app.listen(port, function () {
+    console.log('Wise-r-starter server listening at port ' + port + ' ...');
+});
 app.use(cookieParser());
 
 // Serve frontend application
