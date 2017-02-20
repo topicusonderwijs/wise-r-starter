@@ -190,6 +190,7 @@ function serveFrontend(ignore, res) {
 // *** API Definition ***
 
 app.listen(port, function () {
+    'use strict';
     console.log('Wise-r-starter server listening at port ' + port + ' ...');
 });
 app.use(cookieParser());
