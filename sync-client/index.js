@@ -3,9 +3,14 @@ var WiserClient = require('wise-r-openapi-client');
 var exports = module.exports = function (clientInstance) {
     'use strict';
     var changesApi = new WiserClient.ChangesApi(clientInstance),
-        cancelled = false;
+        cancelled = false,
+        getChangedResource,
+        getChangePromise,
+        processChanges,
+        retrieveChanges,
+        syncSchoolSequence;
 
-    function getChangedResource (link) {
+    getChangedResource = function getChangedResource (link) {
         var typeMap = {},
             urlAfterApi;
         typeMap.user = WiserClient.UserResource;
@@ -13,27 +18,27 @@ var exports = module.exports = function (clientInstance) {
         typeMap.schoollocation = WiserClient.SchoolLocationResource;
         urlAfterApi = link.url.slice(4); // strip off /api, is already included in baseUrl
         return clientInstance.callApi(urlAfterApi, 'GET', {}, {}, {}, {}, null, ['oauth_client_credentials'], [], ['application/json'], typeMap[link.resourceType]);
-    }
+    };
 
     /**
      * Creates a promise that resolves an {@link exports.ChangeObject} when the resource is retrieved.
      *
      * @memberof exports-sdk
      * @private
-     * @param change {Object} - Object that containt information about the change mutation.
-     * @param change.id {String} - Change's id.
-     * @param change.organisationId {String} - Change's oranisationId.
-     * @param change.changeType {String} - CREATE, UPDATE or DELETE.
-     * @param link    {Object} - Link to retrieve the resource from
-     * @param link.url    {String} - URL to retrieve the resource from
-     * @param link.resourceType    {String} - Type to retrieve the resource from
-     * @returns {Promise<exports.ChangeObject>}
+     * @param {Object} change - Object that containt information about the change mutation.
+     * @param {String} change.id - Change's id.
+     * @param {String} change.organisationId - Change's oranisationId.
+     * @param {String} change.changeType - CREATE, UPDATE or DELETE.
+     * @param {Object} link    - Link to retrieve the resource from
+     * @param {String} link.url    - URL to retrieve the resource from
+     * @param {String} link.resourceType   - Type to retrieve the resource from
+     * @return {Promise<exports.ChangeObject>} - A promise to the ChangeObject
      */
-    function getChangePromise (change, link) {
+    getChangePromise = function getChangePromise (change, link) {
         return new Promise(function (resolve, reject) {
             getChangedResource(link).then(function (resource) {
                 resolve(new exports.ChangeObject(change.id, change.organisationId, resource, link.resourceType + 's', change.changeType))
-            }, error => {
+            }, (error) => {
                 if ((error.status === 404 || error.status === 500) && change.changeType === "CREATE") {
                     // Resource is not available anymore
                     resolve(null);
@@ -42,7 +47,7 @@ var exports = module.exports = function (clientInstance) {
                 }
             });
         });
-    }
+    };
 
     /**
      * Processes a batch of changes, creating a list of {@link Promise<exports.ChangeObject>} items that can be resolved in
@@ -50,13 +55,13 @@ var exports = module.exports = function (clientInstance) {
      *
      * @memberof exports-sdk
      * @private
-     * @param changes [Object] - Changes to be processed
-     * @returns {Array<Promise<exports.ChangeObject>>}
+     * @param {Object} changes  - Changes to be processed
+     * @returns {Array<Promise<exports.ChangeObject>>} - An array of promises of the changes
      */
-    function processChanges (changes) {
+    processChanges = function processChanges (changes) {
         var promises = [];
 
-        changes.forEach(change => {
+        changes.forEach((change) => {
             var object;
             if (change.changedResourceType === 'groupmembership') {
                 object = {};
@@ -68,14 +73,14 @@ var exports = module.exports = function (clientInstance) {
                 promises.push(Promise.resolve(new exports.ChangeObject(change.id, change.organisationId, object, 'groupmemberships', change.changeType)));
 
             } else {
-                change.links.forEach(link => {
+                change.links.forEach((link) => {
                     promises.push(getChangePromise(change, link));
                 });
             }
         });
 
         return promises;
-    }
+    };
 
 
     /**
@@ -88,8 +93,9 @@ var exports = module.exports = function (clientInstance) {
      * @param {number} nextId - The nextId determines where to start retrieving changes.
      * @param {changesCallback} changesCallback - Periodically called when (sorted) changes are retrieved.
      * @param {function} doneCallback - Called when the sequence is done
+     * @return {undefined}
      */
-    function retrieveChanges (school, nextId, changesCallback, doneCallback) {
+    retrieveChanges = function retrieveChanges (school, nextId, changesCallback, doneCallback) {
         if (cancelled) {
             cancelled = false;
             return false;
@@ -101,7 +107,7 @@ var exports = module.exports = function (clientInstance) {
             return Promise.all(processChanges(response.changes))
                 .then(function (changes) {
                     if (changes) {
-                        changes = changes.filter(change => {
+                        changes = changes.filter((change) => {
                             return change !== null;
                         });
 
@@ -120,7 +126,7 @@ var exports = module.exports = function (clientInstance) {
         }, function (error) {
             console.error('Error while processing changes', error);
         });
-    }
+    };
 
     /**
      * Executes the async retrieveAndProcessChanges synchronously for each school. This works by waiting on the callback
@@ -136,13 +142,16 @@ var exports = module.exports = function (clientInstance) {
      * @param {function} doneCallback - Called when the sequence is done
      * @param {number} [index = 0] - The current index of the retrieval process
      * @param {number} [highestNextId = 0] - The highest nextId
+     * @return {undefined}
      */
-    function syncSchoolSequence (schools, changesCallback, doneCallback, index, highestNextId) {
+    syncSchoolSequence = function syncSchoolSequence (schools, changesCallback, doneCallback, index, highestNextId) {
         var school;
         index = index || 0;
         highestNextId = highestNextId || 0;
 
-        if (index < schools.length) {
+        if (index >= schools.length) {
+            doneCallback(highestNextId);
+        } else {
             school = schools[index];
             index += 1;
             retrieveChanges(school, school.nextId || 0, changesCallback, function onDoneRetrieving (lastNextId) {
@@ -151,10 +160,8 @@ var exports = module.exports = function (clientInstance) {
                 }
                 syncSchoolSequence(schools, changesCallback, doneCallback, index, highestNextId);
             });
-        } else {
-            doneCallback(highestNextId);
         }
-    }
+    };
 
     /**
      * @function changeRetrieval
@@ -196,6 +203,7 @@ var exports = module.exports = function (clientInstance) {
      * @memberof exports-sdk
      * @name cancel
      * @function cancel
+     * @return {undefined}
      */
     this.cancel = function () {
         cancelled = true;
@@ -214,6 +222,7 @@ var exports = module.exports = function (clientInstance) {
  * @param {string} tablename - Change type/table.
  * @param {string} changetype - Kind of change (CREATE/UPDATE/DELETE).
  * @constructor Creates a apiService.ChangeObject
+ * @return {undefined}
  */
 exports.ChangeObject = function (id, organisationId, object, tablename, changetype) {
     this.id = id;
