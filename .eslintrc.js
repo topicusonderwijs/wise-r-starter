@@ -187,7 +187,7 @@ module.exports = {
             }
         ],
         "object-shorthand": "off",
-        "one-var": "error",
+        "one-var": ["warn", "always"],
         "one-var-declaration-per-line": "error",
         "operator-assignment": [
             "error",
