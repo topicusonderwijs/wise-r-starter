@@ -81,21 +81,21 @@ function createNonceAndStartAuthCodeFlow(ignore, res) {
     //   &state=[uuid]
     //   &provider=...
     //   &nonce=[uuid]
-    var uri = authService.code.getUri({state: oauthState}) + '&provider=' + config.provider + '&nonce=' + oauthState;
+    var uri = authService.code.getUri({ state: oauthState }) + '&provider=' + config.provider + '&nonce=' + oauthState;
     res.cookie('oauthState', oauthState);
     res.redirect(uri);
 }
 
-function exchangeTokenAndRedirectToFrontend(req, res) {
+function exchangeTokenAndRedirectToFrontend (req, res) {
     'use strict';
     var cookieState = req.cookies.oauthState;
     res.cookie('oauthState', null);
     console.log(req.originalUrl);
-    authService.code.getToken(req.originalUrl, {state: cookieState})
+    authService.code.getToken(req.originalUrl, { state: cookieState })
         .then(function (token) {
             console.log(token);
             var id_token = token.data.id_token;
-            var jwt_options = {algorithms: ['RS256'], audience: config.oauthClientId, issuer: config.idp};
+            var jwt_options = { algorithms: ['RS256'], audience: config.oauthClientId, issuer: config.idp };
             var claims = jsonwebtoken.verify(id_token, config.sso_pub_key, jwt_options);
             var sessionId = generateUUID();
 
@@ -143,34 +143,37 @@ function getUserData(req, res) {
 
 function getChanges(ignore, res) {
     'use strict';
-    var changes = {};
-    var schools;
+    var changes = {},
+        schoollocations;
     getClientAccessToken()
         .then(function (clientAccessToken) {
             apiClientInstance.authentications.oauth_client_credentials.accessToken = clientAccessToken;
-            return schoolsApi.organisations();
-        }).then(function (data) {
-            schools = data;
-            console.log('Start processing changes for ' + schools.length + ' organisations.');
-            schools.forEach(function (school) {
-                changes[school.id] = [];
+            return schoolsApi.getSchoolLocations();
+        })
+        .then(function (data) {
+            schoollocations = data;
+            console.log('Start processing changes for', schoollocations.length, 'locations.');
+            schoollocations.forEach(function (schoolLocation) {
+                changes[schoolLocation.id] = [];
             });
 
-            return syncClient.changesRetrieval(schools, function (batch) {
+            return syncClient.changesRetrieval(schoollocations, function (batch) {
                 console.log('Processing ' + batch.length + ' changes...');
                 batch.forEach(function (change) {
-                    changes[change.organisationId].push(change);
+                    changes[change.schoolLocationId].push(change);
                 });
             });
-        }).then(function (lastId) {
-            console.log('All changes received. Last change id = ' + lastId);
+        })
+        .then(function (lastId) {
             var results = {};
-            schools.forEach(function (school) {
+            console.log('All changes received. Last change id = ' + lastId);
+            schoollocations.forEach(function (school) {
                 results[school.name] = changes[school.id];
             });
             res.json(results);
-        }).catch(function (error) {
-            console.log('error: ' + error);
+        })
+        .catch(function (error) {
+            console.error('Error caught in getChanges', error);
             res.send(error);
         });
 }

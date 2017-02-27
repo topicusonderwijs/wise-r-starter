@@ -27,7 +27,7 @@ var exports = module.exports = function (clientInstance) {
      * @private
      * @param {Object} change - Object that containt information about the change mutation.
      * @param {String} change.id - Change's id.
-     * @param {String} change.organisationId - Change's oranisationId.
+     * @param {String} change.schoolLocationId - Change's schoolLocationId.
      * @param {String} change.changeType - CREATE, UPDATE or DELETE.
      * @param {Object} link    - Link to retrieve the resource from
      * @param {String} link.url    - URL to retrieve the resource from
@@ -37,7 +37,7 @@ var exports = module.exports = function (clientInstance) {
     getChangePromise = function getChangePromise (change, link) {
         return new Promise(function (resolve, reject) {
             getChangedResource(link).then(function (resource) {
-                resolve(new exports.ChangeObject(change.id, change.organisationId, resource, link.resourceType + 's', change.changeType))
+                resolve(new exports.ChangeObject(change.id, change.linkedSchoolLocation.id, resource, link.resourceType + 's', change.changeType))
             }, (error) => {
                 if ((error.status === 404 || error.status === 500) && change.changeType === "CREATE") {
                     // Resource is not available anymore
@@ -70,7 +70,7 @@ var exports = module.exports = function (clientInstance) {
                     object[link.resourceType + 'id'] = link.url.split('/').pop();
                 });
 
-                promises.push(Promise.resolve(new exports.ChangeObject(change.id, change.organisationId, object, 'groupmemberships', change.changeType)));
+                promises.push(Promise.resolve(new exports.ChangeObject(change.id, change.linkedSchoolLocation.id, object, 'groupmemberships', change.changeType)));
 
             } else {
                 change.links.forEach((link) => {
@@ -122,9 +122,13 @@ var exports = module.exports = function (clientInstance) {
                             doneCallback(lastId);
                         });
                     }
+                })
+                .catch(function (err) {
+                    console.error('Error caught while processing changes', err);
                 });
-        }, function (error) {
-            console.error('Error while processing changes', error);
+        })
+        .catch(function (error) {
+            console.error('Error caught while getting changes', error);
         });
     };
 
@@ -217,16 +221,16 @@ var exports = module.exports = function (clientInstance) {
  * @type {Object}
  *
  * @param {string} id - The change's id.
- * @param {string} organisationId - Organisation id the change belongs to.
+ * @param {string} schoolLocationId - Schoollocation id the change belongs to.
  * @param {Object} object - Object containing the changes resource.
  * @param {string} tablename - Change type/table.
  * @param {string} changetype - Kind of change (CREATE/UPDATE/DELETE).
  * @constructor Creates a apiService.ChangeObject
  * @return {undefined}
  */
-exports.ChangeObject = function (id, organisationId, object, tablename, changetype) {
+exports.ChangeObject = function (id, schoolLocationId, object, tablename, changetype) {
     this.id = id;
-    this.organisationId = organisationId;
+    this.schoolLocationId = schoolLocationId;
     this.object = object;
     this.tablename = tablename;
     this.changetype = changetype;
