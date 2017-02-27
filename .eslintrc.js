@@ -100,6 +100,7 @@ module.exports = {
         "no-caller": "error",
         "no-catch-shadow": "error",
         "no-confusing-arrow": "error",
+        "no-console": ["error", { allow: ["warn", "error"] }],
         "no-continue": "error",
         "no-div-regex": "error",
         "no-duplicate-imports": "error",
@@ -178,7 +179,7 @@ module.exports = {
         "no-with": "error",
         "object-curly-spacing": [
             "error",
-            "always"
+            "never"
         ],
         "object-property-newline": [
             "error",
