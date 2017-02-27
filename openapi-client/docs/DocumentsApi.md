@@ -4,12 +4,12 @@ All URIs are relative to *https://localhost/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**putProcessorAgreement**](DocumentsApi.md#putProcessorAgreement) | **PUT** /v1/documents/processoragreement | Upload a processor agreement
+[**putProcessorAgreement**](DocumentsApi.md#putProcessorAgreement) | **PUT** /v2/documents/processoragreement | Upload a processor agreement
 
 
 <a name="putProcessorAgreement"></a>
 # **putProcessorAgreement**
-> Response putProcessorAgreement(upload, organisation)
+> Response putProcessorAgreement(upload, schoollocation)
 
 Upload a processor agreement
 
@@ -23,9 +23,9 @@ var apiInstance = new WiserClient.DocumentsApi();
 
 var upload = "/path/to/file.txt"; // File | PDF bestand
 
-var organisation = "organisation_example"; // String | id of the organisation
+var schoollocation = "schoollocation_example"; // String | id of the school location
 
-apiInstance.putProcessorAgreement(upload, organisation).then(function(data) {
+apiInstance.putProcessorAgreement(upload, schoollocation).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
 }, function(error) {
   console.error(error);
@@ -38,7 +38,7 @@ apiInstance.putProcessorAgreement(upload, organisation).then(function(data) {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **upload** | **File**| PDF bestand | 
- **organisation** | **String**| id of the organisation | 
+ **schoollocation** | **String**| id of the school location | 
 
 ### Return type
 

@@ -1,4 +1,4 @@
-# WiserClient.KeyringResource
+# WiserClient.KeyringResourceV2
 
 ## Properties
 Name | Type | Description | Notes

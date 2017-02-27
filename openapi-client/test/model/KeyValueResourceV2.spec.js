@@ -39,7 +39,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new WiserClient.UriBuilder();
+    instance = new WiserClient.KeyValueResourceV2();
   });
 
   var getProperty = function(object, getter, property) {
@@ -58,11 +58,17 @@
       object[property] = value;
   }
 
-  describe('UriBuilder', function() {
-    it('should create an instance of UriBuilder', function() {
-      // uncomment below and update the code to test UriBuilder
-      //var instane = new WiserClient.UriBuilder();
-      //expect(instance).to.be.a(WiserClient.UriBuilder);
+  describe('KeyValueResourceV2', function() {
+    it('should create an instance of KeyValueResourceV2', function() {
+      // uncomment below and update the code to test KeyValueResourceV2
+      //var instane = new WiserClient.KeyValueResourceV2();
+      //expect(instance).to.be.a(WiserClient.KeyValueResourceV2);
+    });
+
+    it('should have the property keyValue (base name: "keyValue")', function() {
+      // uncomment below and update the code to test the property keyValue
+      //var instane = new WiserClient.KeyValueResourceV2();
+      //expect(instance).to.be();
     });
 
   });

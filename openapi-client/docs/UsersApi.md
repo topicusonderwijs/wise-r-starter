@@ -4,37 +4,32 @@ All URIs are relative to *https://localhost/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getKey**](UsersApi.md#getKey) | **GET** /v1/users/{id}/keys/{clientid} | Get key from keyring
-[**getKeys**](UsersApi.md#getKeys) | **GET** /v1/users/{id}/keys | Get keys from keyring
-[**getUser**](UsersApi.md#getUser) | **GET** /v1/users/{id} | Get User
-[**getUsers**](UsersApi.md#getUsers) | **GET** /v1/users | Get Users
-[**putKey**](UsersApi.md#putKey) | **PUT** /v1/users/{id}/keys/{clientid} | Save a key in keyring
+[**deleteUserKey**](UsersApi.md#deleteUserKey) | **DELETE** /v2/users/{id}/keys/client | Delete a key from keyring
+[**getUser**](UsersApi.md#getUser) | **GET** /v2/users/{id} | Get User
+[**getUserKey**](UsersApi.md#getUserKey) | **GET** /v2/users/{id}/keys/client | Get key from keyring
+[**getUserKeys**](UsersApi.md#getUserKeys) | **GET** /v2/users/{id}/keys | Get keys from keyring
+[**getUserUwlrKey**](UsersApi.md#getUserUwlrKey) | **GET** /v2/users/{id}/keys/uwlr | Get &#39;UWLR&#39; key from keyring
+[**getUsers**](UsersApi.md#getUsers) | **GET** /v2/users | Get Users
+[**putUserKey**](UsersApi.md#putUserKey) | **PUT** /v2/users/{id}/keys/client | Save a key in keyring
 
 
-<a name="getKey"></a>
-# **getKey**
-> KeyResource getKey(id, clientid)
+<a name="deleteUserKey"></a>
+# **deleteUserKey**
+> Response deleteUserKey(id)
 
-Get key from keyring
+Delete a key from keyring
 
-Get the key from this User and the given REST client ID.
+Delete a client specific key from the keyring for the given User and the authenticated client
 
 ### Example
 ```javascript
 var WiserClient = require('wise-r-openapi-client');
-var defaultClient = WiserClient.ApiClient.default;
-
-// Configure OAuth2 access token for authorization: oauth_client_credentials
-var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
-oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.UsersApi();
 
-var id = "id_example"; // String | 
+var id = "id_example"; // String | Encrypted userid
 
-var clientid = "clientid_example"; // String | 
-
-apiInstance.getKey(id, clientid).then(function(data) {
+apiInstance.deleteUserKey(id).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
 }, function(error) {
   console.error(error);
@@ -46,90 +41,36 @@ apiInstance.getKey(id, clientid).then(function(data) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**|  | 
- **clientid** | **String**|  | 
+ **id** | **String**| Encrypted userid | 
 
 ### Return type
 
-[**KeyResource**](KeyResource.md)
+[**Response**](Response.md)
 
 ### Authorization
 
-[oauth_client_credentials](../README.md#oauth_client_credentials)
+No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="getKeys"></a>
-# **getKeys**
-> KeyringResource getKeys(id)
-
-Get keys from keyring
-
-Get the keys from this User.
-
-### Example
-```javascript
-var WiserClient = require('wise-r-openapi-client');
-var defaultClient = WiserClient.ApiClient.default;
-
-// Configure OAuth2 access token for authorization: oauth_client_credentials
-var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
-oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
-
-var apiInstance = new WiserClient.UsersApi();
-
-var id = "id_example"; // String | 
-
-apiInstance.getKeys(id).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
-
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  | 
-
-### Return type
-
-[**KeyringResource**](KeyringResource.md)
-
-### Authorization
-
-[oauth_client_credentials](../README.md#oauth_client_credentials)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 <a name="getUser"></a>
 # **getUser**
-> UserResource getUser(id)
+> UserResourceV2 getUser(id)
 
 Get User
 
-Returns the User with the given id. When receiving a userid through the SSU service, the linked usergroups can be fetched here, after which the groupmembers can be fetched using the Group API. Students details from students with implied authorization (students in groups with groupspermission obtained through SSU service) can also be obtained here.
+Returns the User with the given (encrypted) id. When receiving a userid through the SSU service, the linked usergroups can be fetched here, after which the groupmembers can be fetched using the Group API. Student details from a student with implied authorization (students in groups with groups permission obtained through SSU service) can also be obtained here.
 
 ### Example
 ```javascript
 var WiserClient = require('wise-r-openapi-client');
-var defaultClient = WiserClient.ApiClient.default;
-
-// Configure OAuth2 access token for authorization: oauth_client_credentials
-var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
-oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.UsersApi();
 
-var id = "id_example"; // String | 
+var id = "id_example"; // String | Encrypted userid
 
 apiInstance.getUser(id).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
@@ -143,15 +84,144 @@ apiInstance.getUser(id).then(function(data) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**|  | 
+ **id** | **String**| Encrypted userid | 
 
 ### Return type
 
-[**UserResource**](UserResource.md)
+[**UserResourceV2**](UserResourceV2.md)
 
 ### Authorization
 
-[oauth_client_credentials](../README.md#oauth_client_credentials)
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getUserKey"></a>
+# **getUserKey**
+> KeyringResourceV2 getUserKey(id)
+
+Get key from keyring
+
+Get the client specific key of the given User and the authenticated client.
+
+### Example
+```javascript
+var WiserClient = require('wise-r-openapi-client');
+
+var apiInstance = new WiserClient.UsersApi();
+
+var id = "id_example"; // String | Encrypted userid
+
+apiInstance.getUserKey(id).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Encrypted userid | 
+
+### Return type
+
+[**KeyringResourceV2**](KeyringResourceV2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getUserKeys"></a>
+# **getUserKeys**
+> [KeyringResourceV2] getUserKeys(id)
+
+Get keys from keyring
+
+Get all keys, owned by the authenticated client, of the given User. Usually those keys are the client specific key and the &#39;UWLR&#39; key (provided that the authenticated client has access to the latter).
+
+### Example
+```javascript
+var WiserClient = require('wise-r-openapi-client');
+
+var apiInstance = new WiserClient.UsersApi();
+
+var id = "id_example"; // String | Encrypted userid
+
+apiInstance.getUserKeys(id).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Encrypted userid | 
+
+### Return type
+
+[**[KeyringResourceV2]**](KeyringResourceV2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getUserUwlrKey"></a>
+# **getUserUwlrKey**
+> KeyringResourceV2 getUserUwlrKey(id)
+
+Get &#39;UWLR&#39; key from keyring
+
+Get the &#39;UWLR&#39; key of the given User. This key is not client specific (and hence cannot be deleted).
+
+### Example
+```javascript
+var WiserClient = require('wise-r-openapi-client');
+
+var apiInstance = new WiserClient.UsersApi();
+
+var id = "id_example"; // String | Encrypted userid
+
+apiInstance.getUserUwlrKey(id).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Encrypted userid | 
+
+### Return type
+
+[**KeyringResourceV2**](KeyringResourceV2.md)
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 
@@ -160,20 +230,15 @@ Name | Type | Description  | Notes
 
 <a name="getUsers"></a>
 # **getUsers**
-> [UserResource] getUsers(opts)
+> [UserResourceV2] getUsers(opts)
 
 Get Users
 
-Returns all Users, filtered on schoollocation, group, or usertype.
+Returns all Users, filtered on schoollocation, group, or usertype. Calls with both &#39;schoollocation&#39; and &#39;groups&#39; empty are discouraged.
 
 ### Example
 ```javascript
 var WiserClient = require('wise-r-openapi-client');
-var defaultClient = WiserClient.ApiClient.default;
-
-// Configure OAuth2 access token for authorization: oauth_client_credentials
-var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
-oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.UsersApi();
 
@@ -204,43 +269,36 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[UserResource]**](UserResource.md)
+[**[UserResourceV2]**](UserResourceV2.md)
 
 ### Authorization
 
-[oauth_client_credentials](../README.md#oauth_client_credentials)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="putKey"></a>
-# **putKey**
-> KeyResource putKey(body, id, clientid)
+<a name="putUserKey"></a>
+# **putUserKey**
+> KeyringResourceV2 putUserKey(body, id)
 
 Save a key in keyring
 
-Save a key in keyring for the given client id
+Save a client specific key in the keyring for the given User and the authenticated client
 
 ### Example
 ```javascript
 var WiserClient = require('wise-r-openapi-client');
-var defaultClient = WiserClient.ApiClient.default;
-
-// Configure OAuth2 access token for authorization: oauth_client_credentials
-var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
-oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.UsersApi();
 
-var body = new WiserClient.KeyResource(); // KeyResource | 
+var body = new WiserClient.KeyValueResourceV2(); // KeyValueResourceV2 | 
 
-var id = "id_example"; // String | 
+var id = "id_example"; // String | Encrypted userid
 
-var clientid = "clientid_example"; // String | 
-
-apiInstance.putKey(body, id, clientid).then(function(data) {
+apiInstance.putUserKey(body, id).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
 }, function(error) {
   console.error(error);
@@ -252,17 +310,16 @@ apiInstance.putKey(body, id, clientid).then(function(data) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**KeyResource**](KeyResource.md)|  | 
- **id** | **String**|  | 
- **clientid** | **String**|  | 
+ **body** | [**KeyValueResourceV2**](KeyValueResourceV2.md)|  | 
+ **id** | **String**| Encrypted userid | 
 
 ### Return type
 
-[**KeyResource**](KeyResource.md)
+[**KeyringResourceV2**](KeyringResourceV2.md)
 
 ### Authorization
 
-[oauth_client_credentials](../README.md#oauth_client_credentials)
+No authorization required
 
 ### HTTP request headers
 

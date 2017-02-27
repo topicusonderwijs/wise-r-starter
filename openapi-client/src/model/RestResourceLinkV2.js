@@ -34,7 +34,7 @@
     if (!root.WiserClient) {
       root.WiserClient = {};
     }
-    root.WiserClient.StatusType = factory(root.WiserClient.ApiClient);
+    root.WiserClient.RestResourceLinkV2 = factory(root.WiserClient.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -43,14 +43,14 @@
 
 
   /**
-   * The StatusType model module.
-   * @module model/StatusType
+   * The RestResourceLinkV2 model module.
+   * @module model/RestResourceLinkV2
    * @version 2.0
    */
 
   /**
-   * Constructs a new <code>StatusType</code>.
-   * @alias module:model/StatusType
+   * Constructs a new <code>RestResourceLinkV2</code>.
+   * @alias module:model/RestResourceLinkV2
    * @class
    */
   var exports = function() {
@@ -62,79 +62,67 @@
   };
 
   /**
-   * Constructs a <code>StatusType</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>RestResourceLinkV2</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/StatusType} obj Optional instance to populate.
-   * @return {module:model/StatusType} The populated <code>StatusType</code> instance.
+   * @param {module:model/RestResourceLinkV2} obj Optional instance to populate.
+   * @return {module:model/RestResourceLinkV2} The populated <code>RestResourceLinkV2</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('statusCode')) {
-        obj['statusCode'] = ApiClient.convertToType(data['statusCode'], 'Integer');
+      if (data.hasOwnProperty('url')) {
+        obj['url'] = ApiClient.convertToType(data['url'], 'String');
       }
-      if (data.hasOwnProperty('reasonPhrase')) {
-        obj['reasonPhrase'] = ApiClient.convertToType(data['reasonPhrase'], 'String');
+      if (data.hasOwnProperty('id')) {
+        obj['id'] = ApiClient.convertToType(data['id'], 'String');
       }
-      if (data.hasOwnProperty('family')) {
-        obj['family'] = ApiClient.convertToType(data['family'], 'String');
+      if (data.hasOwnProperty('resourceType')) {
+        obj['resourceType'] = ApiClient.convertToType(data['resourceType'], 'String');
       }
     }
     return obj;
   }
 
   /**
-   * @member {Integer} statusCode
+   * The URL of the resource, including API version
+   * @member {String} url
    */
-  exports.prototype['statusCode'] = undefined;
+  exports.prototype['url'] = undefined;
   /**
-   * @member {String} reasonPhrase
+   * The unique identifier for this resource
+   * @member {String} id
    */
-  exports.prototype['reasonPhrase'] = undefined;
+  exports.prototype['id'] = undefined;
   /**
-   * @member {module:model/StatusType.FamilyEnum} family
+   * The type of the resource
+   * @member {module:model/RestResourceLinkV2.ResourceTypeEnum} resourceType
    */
-  exports.prototype['family'] = undefined;
+  exports.prototype['resourceType'] = undefined;
 
 
   /**
-   * Allowed values for the <code>family</code> property.
+   * Allowed values for the <code>resourceType</code> property.
    * @enum {String}
    * @readonly
    */
-  exports.FamilyEnum = {
+  exports.ResourceTypeEnum = {
     /**
-     * value: "INFORMATIONAL"
+     * value: "user"
      * @const
      */
-    "INFORMATIONAL": "INFORMATIONAL",
+    "user": "user",
     /**
-     * value: "SUCCESSFUL"
+     * value: "group"
      * @const
      */
-    "SUCCESSFUL": "SUCCESSFUL",
+    "group": "group",
     /**
-     * value: "REDIRECTION"
+     * value: "schoollocation"
      * @const
      */
-    "REDIRECTION": "REDIRECTION",
-    /**
-     * value: "CLIENT_ERROR"
-     * @const
-     */
-    "CLIENT_ERROR": "CLIENT_ERROR",
-    /**
-     * value: "SERVER_ERROR"
-     * @const
-     */
-    "SERVER_ERROR": "SERVER_ERROR",
-    /**
-     * value: "OTHER"
-     * @const
-     */
-    "OTHER": "OTHER"  };
+    "schoollocation": "schoollocation"  };
 
 
   return exports;

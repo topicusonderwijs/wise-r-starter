@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **comment** | **String** |  | [optional] 
 **maxAge** | **Integer** |  | [optional] 
 **expiry** | **Date** |  | [optional] 
-**secure** | **Boolean** |  | [optional] [default to false]
-**httpOnly** | **Boolean** |  | [optional] [default to false]
+**secure** | **Boolean** |  | [optional] 
+**httpOnly** | **Boolean** |  | [optional] 
 
 

@@ -1,4 +1,4 @@
-# WiserClient.RestResourceLink
+# WiserClient.RestResourceLinkV2
 
 ## Properties
 Name | Type | Description | Notes

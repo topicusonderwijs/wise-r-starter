@@ -4,20 +4,22 @@ All URIs are relative to *https://localhost/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getGroup**](GroupsApi.md#getGroup) | **GET** /v1/groups/{id} | Get Group
-[**getGroups**](GroupsApi.md#getGroups) | **GET** /v1/groups | Get Groups
-[**getKey**](GroupsApi.md#getKey) | **GET** /v1/groups/{id}/keys/{clientid} | Get key from keyring
-[**getKeys**](GroupsApi.md#getKeys) | **GET** /v1/groups/{id}/keys | Get keys from keyring
-[**putKey**](GroupsApi.md#putKey) | **PUT** /v1/groups/{id}/keys/{clientid} | Save a key in keyring
+[**deleteGroupKey**](GroupsApi.md#deleteGroupKey) | **DELETE** /v2/groups/{id}/keys | Delete a key from keyring
+[**getGroup**](GroupsApi.md#getGroup) | **GET** /v2/groups/{id} | Get Group
+[**getGroupKey**](GroupsApi.md#getGroupKey) | **GET** /v2/groups/{id}/keys/client | Get key from keyring
+[**getGroupKeys**](GroupsApi.md#getGroupKeys) | **GET** /v2/groups/{id}/keys | Get keys from keyring
+[**getGroupUwlrKey**](GroupsApi.md#getGroupUwlrKey) | **GET** /v2/groups/{id}/keys/uwlr | Get &#39;UWLR&#39; key from keyring
+[**getGroups**](GroupsApi.md#getGroups) | **GET** /v2/groups | Get Groups
+[**putGroupKey**](GroupsApi.md#putGroupKey) | **PUT** /v2/groups/{id}/keys | Save a key in keyring
 
 
-<a name="getGroup"></a>
-# **getGroup**
-> GroupResource getGroup(id)
+<a name="deleteGroupKey"></a>
+# **deleteGroupKey**
+> KeyringResourceV2 deleteGroupKey(body, id)
 
-Get Group
+Delete a key from keyring
 
-Returns the Group with the given id. Schoollocation permission or a Group permission is needed.
+Delete a client specific key from the keyring for the given Group and the authenticated client
 
 ### Example
 ```javascript
@@ -30,7 +32,58 @@ oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.GroupsApi();
 
-var id = "id_example"; // String | 
+var body = new WiserClient.KeyringResourceV2(); // KeyringResourceV2 | 
+
+var id = "id_example"; // String | Encrypted groupid
+
+apiInstance.deleteGroupKey(body, id).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**KeyringResourceV2**](KeyringResourceV2.md)|  | 
+ **id** | **String**| Encrypted groupid | 
+
+### Return type
+
+[**KeyringResourceV2**](KeyringResourceV2.md)
+
+### Authorization
+
+[oauth_client_credentials](../README.md#oauth_client_credentials)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getGroup"></a>
+# **getGroup**
+> GroupResourceV2 getGroup(id)
+
+Get Group
+
+Returns the Group with the given id. Permission on Schoollocation or Group level is needed.
+
+### Example
+```javascript
+var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
+
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
+
+var apiInstance = new WiserClient.GroupsApi();
+
+var id = "id_example"; // String | Encrypted groupid
 
 apiInstance.getGroup(id).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
@@ -44,11 +97,155 @@ apiInstance.getGroup(id).then(function(data) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**|  | 
+ **id** | **String**| Encrypted groupid | 
 
 ### Return type
 
-[**GroupResource**](GroupResource.md)
+[**GroupResourceV2**](GroupResourceV2.md)
+
+### Authorization
+
+[oauth_client_credentials](../README.md#oauth_client_credentials)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getGroupKey"></a>
+# **getGroupKey**
+> KeyringResourceV2 getGroupKey(id)
+
+Get key from keyring
+
+Get the key from the given Group and the authenticated client
+
+### Example
+```javascript
+var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
+
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
+
+var apiInstance = new WiserClient.GroupsApi();
+
+var id = "id_example"; // String | Encrypted groupid
+
+apiInstance.getGroupKey(id).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Encrypted groupid | 
+
+### Return type
+
+[**KeyringResourceV2**](KeyringResourceV2.md)
+
+### Authorization
+
+[oauth_client_credentials](../README.md#oauth_client_credentials)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getGroupKeys"></a>
+# **getGroupKeys**
+> [KeyringResourceV2] getGroupKeys(id)
+
+Get keys from keyring
+
+Get all keys, owned by the authenticated client, of the given Group. Usually those keys are the client specific key and the &#39;UWLR&#39; key (provided that the authenticated client has access to the latter).
+
+### Example
+```javascript
+var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
+
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
+
+var apiInstance = new WiserClient.GroupsApi();
+
+var id = "id_example"; // String | Encrypted groupid
+
+apiInstance.getGroupKeys(id).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Encrypted groupid | 
+
+### Return type
+
+[**[KeyringResourceV2]**](KeyringResourceV2.md)
+
+### Authorization
+
+[oauth_client_credentials](../README.md#oauth_client_credentials)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getGroupUwlrKey"></a>
+# **getGroupUwlrKey**
+> KeyringResourceV2 getGroupUwlrKey(id)
+
+Get &#39;UWLR&#39; key from keyring
+
+Get the &#39;UWLR&#39; key of the given Group. This key is not client specific (and hence cannot be deleted).
+
+### Example
+```javascript
+var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
+
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
+
+var apiInstance = new WiserClient.GroupsApi();
+
+var id = "id_example"; // String | Encrypted groupid
+
+apiInstance.getGroupUwlrKey(id).then(function(data) {
+  console.log('API called successfully. Returned data: ' + data);
+}, function(error) {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Encrypted groupid | 
+
+### Return type
+
+[**KeyringResourceV2**](KeyringResourceV2.md)
 
 ### Authorization
 
@@ -61,7 +258,7 @@ Name | Type | Description  | Notes
 
 <a name="getGroups"></a>
 # **getGroups**
-> [GroupResource] getGroups(opts)
+> [GroupResourceV2] getGroups(opts)
 
 Get Groups
 
@@ -103,7 +300,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[GroupResource]**](GroupResource.md)
+[**[GroupResourceV2]**](GroupResourceV2.md)
 
 ### Authorization
 
@@ -114,112 +311,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getKey"></a>
-# **getKey**
-> KeyResource getKey(id, clientid)
-
-Get key from keyring
-
-Get the key from this Group and the given REST client ID.
-
-### Example
-```javascript
-var WiserClient = require('wise-r-openapi-client');
-var defaultClient = WiserClient.ApiClient.default;
-
-// Configure OAuth2 access token for authorization: oauth_client_credentials
-var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
-oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
-
-var apiInstance = new WiserClient.GroupsApi();
-
-var id = "id_example"; // String | 
-
-var clientid = "clientid_example"; // String | 
-
-apiInstance.getKey(id, clientid).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
-
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  | 
- **clientid** | **String**|  | 
-
-### Return type
-
-[**KeyResource**](KeyResource.md)
-
-### Authorization
-
-[oauth_client_credentials](../README.md#oauth_client_credentials)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="getKeys"></a>
-# **getKeys**
-> KeyringResource getKeys(id)
-
-Get keys from keyring
-
-Get the keys from this Group.
-
-### Example
-```javascript
-var WiserClient = require('wise-r-openapi-client');
-var defaultClient = WiserClient.ApiClient.default;
-
-// Configure OAuth2 access token for authorization: oauth_client_credentials
-var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
-oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
-
-var apiInstance = new WiserClient.GroupsApi();
-
-var id = "id_example"; // String | 
-
-apiInstance.getKeys(id).then(function(data) {
-  console.log('API called successfully. Returned data: ' + data);
-}, function(error) {
-  console.error(error);
-});
-
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  | 
-
-### Return type
-
-[**KeyringResource**](KeyringResource.md)
-
-### Authorization
-
-[oauth_client_credentials](../README.md#oauth_client_credentials)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="putKey"></a>
-# **putKey**
-> KeyResource putKey(body, id, clientid)
+<a name="putGroupKey"></a>
+# **putGroupKey**
+> KeyringResourceV2 putGroupKey(body, id)
 
 Save a key in keyring
 
-Save a key in keyring
+Save a key in keyring for the given Group and the authenticated client
 
 ### Example
 ```javascript
@@ -232,13 +330,11 @@ oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.GroupsApi();
 
-var body = new WiserClient.KeyResource(); // KeyResource | 
+var body = new WiserClient.KeyringResourceV2(); // KeyringResourceV2 | 
 
-var id = "id_example"; // String | 
+var id = "id_example"; // String | Encrypted groupid
 
-var clientid = "clientid_example"; // String | 
-
-apiInstance.putKey(body, id, clientid).then(function(data) {
+apiInstance.putGroupKey(body, id).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
 }, function(error) {
   console.error(error);
@@ -250,13 +346,12 @@ apiInstance.putKey(body, id, clientid).then(function(data) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**KeyResource**](KeyResource.md)|  | 
- **id** | **String**|  | 
- **clientid** | **String**|  | 
+ **body** | [**KeyringResourceV2**](KeyringResourceV2.md)|  | 
+ **id** | **String**| Encrypted groupid | 
 
 ### Return type
 
-[**KeyResource**](KeyResource.md)
+[**KeyringResourceV2**](KeyringResourceV2.md)
 
 ### Authorization
 

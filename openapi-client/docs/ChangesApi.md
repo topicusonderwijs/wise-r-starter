@@ -4,12 +4,12 @@ All URIs are relative to *https://localhost/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getChanges**](ChangesApi.md#getChanges) | **GET** /v1/changes | Get Changes in Users and Groups.
+[**getChanges**](ChangesApi.md#getChanges) | **GET** /v2/changes | Get Changes in Users and Groups.
 
 
 <a name="getChanges"></a>
 # **getChanges**
-> ChangeSet getChanges(schoollocations, opts)
+> ChangeSetV2 getChanges(schoollocations, opts)
 
 Get Changes in Users and Groups.
 
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ChangeSet**](ChangeSet.md)
+[**ChangeSetV2**](ChangeSetV2.md)
 
 ### Authorization
 

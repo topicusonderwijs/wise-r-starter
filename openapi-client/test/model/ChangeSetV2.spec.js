@@ -39,7 +39,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new WiserClient.UriBuilder();
+    instance = new WiserClient.ChangeSetV2();
   });
 
   var getProperty = function(object, getter, property) {
@@ -58,11 +58,23 @@
       object[property] = value;
   }
 
-  describe('UriBuilder', function() {
-    it('should create an instance of UriBuilder', function() {
-      // uncomment below and update the code to test UriBuilder
-      //var instane = new WiserClient.UriBuilder();
-      //expect(instance).to.be.a(WiserClient.UriBuilder);
+  describe('ChangeSetV2', function() {
+    it('should create an instance of ChangeSetV2', function() {
+      // uncomment below and update the code to test ChangeSetV2
+      //var instane = new WiserClient.ChangeSetV2();
+      //expect(instance).to.be.a(WiserClient.ChangeSetV2);
+    });
+
+    it('should have the property changes (base name: "changes")', function() {
+      // uncomment below and update the code to test the property changes
+      //var instane = new WiserClient.ChangeSetV2();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property nextId (base name: "nextId")', function() {
+      // uncomment below and update the code to test the property nextId
+      //var instane = new WiserClient.ChangeSetV2();
+      //expect(instance).to.be();
     });
 
   });
