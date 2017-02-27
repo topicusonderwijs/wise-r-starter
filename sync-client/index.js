@@ -37,7 +37,7 @@ var exports = module.exports = function (clientInstance) {
     getChangePromise = function getChangePromise (change, link) {
         return new Promise(function (resolve, reject) {
             getChangedResource(link).then(function (resource) {
-                resolve(new exports.ChangeObject(change.id, change.linkedSchoolLocation.id, resource, link.resourceType + 's', change.changeType))
+                resolve(new exports.ChangeObject(change.id, change.linkedSchoolLocation.id, resource, link.resourceType + 's', change.changeType));
             }, (error) => {
                 if ((error.status === 404 || error.status === 500) && change.changeType === "CREATE") {
                     // Resource is not available anymore
@@ -198,7 +198,6 @@ var exports = module.exports = function (clientInstance) {
      * @callback changesCallback
      * @param {passepartout.ChangeObject[]} changes - List with Changes.
      */
-
 
 
     /**
