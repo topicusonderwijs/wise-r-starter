@@ -1,9 +1,10 @@
 /*jslint browser:true, es6:true, bitwise: true*/
+/*eslint no-bitwise: "warn"*/
 /*global window, fetch*/
 
-var ClientOAuth2 = require('client-oauth2');
-var config = require('../frontend.config');
-var jsrsasign = require('jsrsasign');
+var ClientOAuth2 = require('client-oauth2'),
+    config = require('../frontend.config'),
+    jsrsasign = require('jsrsasign');
 
 var authService = new ClientOAuth2({
     clientId: config.oauthClientId,
