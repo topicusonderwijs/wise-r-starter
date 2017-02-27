@@ -46,7 +46,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-							<inputSpec>https://api-acceptatie.wise-r.nl/api/swagger.json</inputSpec>
+							<inputSpec>https://api-internetest.wise-r.nl/api/swagger.json</inputSpec>
 							<output>${project.basedir}</output>
                             <language>javascript</language>
                             <configOptions>
