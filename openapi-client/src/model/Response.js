@@ -94,11 +94,11 @@
       if (data.hasOwnProperty('headers')) {
         obj['headers'] = ApiClient.convertToType(data['headers'], {'String': [Object]});
       }
-      if (data.hasOwnProperty('entity')) {
-        obj['entity'] = ApiClient.convertToType(data['entity'], Object);
-      }
       if (data.hasOwnProperty('mediaType')) {
         obj['mediaType'] = MediaType.constructFromObject(data['mediaType']);
+      }
+      if (data.hasOwnProperty('statusInfo')) {
+        obj['statusInfo'] = StatusType.constructFromObject(data['statusInfo']);
       }
       if (data.hasOwnProperty('links')) {
         obj['links'] = ApiClient.convertToType(data['links'], [Link]);
@@ -115,8 +115,8 @@
       if (data.hasOwnProperty('stringHeaders')) {
         obj['stringHeaders'] = ApiClient.convertToType(data['stringHeaders'], {'String': ['String']});
       }
-      if (data.hasOwnProperty('statusInfo')) {
-        obj['statusInfo'] = StatusType.constructFromObject(data['statusInfo']);
+      if (data.hasOwnProperty('entity')) {
+        obj['entity'] = ApiClient.convertToType(data['entity'], Object);
       }
       if (data.hasOwnProperty('cookies')) {
         obj['cookies'] = ApiClient.convertToType(data['cookies'], {'String': NewCookie});
@@ -150,13 +150,13 @@
    */
   exports.prototype['headers'] = undefined;
   /**
-   * @member {Object} entity
-   */
-  exports.prototype['entity'] = undefined;
-  /**
    * @member {module:model/MediaType} mediaType
    */
   exports.prototype['mediaType'] = undefined;
+  /**
+   * @member {module:model/StatusType} statusInfo
+   */
+  exports.prototype['statusInfo'] = undefined;
   /**
    * @member {Array.<module:model/Link>} links
    */
@@ -178,9 +178,9 @@
    */
   exports.prototype['stringHeaders'] = undefined;
   /**
-   * @member {module:model/StatusType} statusInfo
+   * @member {Object} entity
    */
-  exports.prototype['statusInfo'] = undefined;
+  exports.prototype['entity'] = undefined;
   /**
    * @member {Object.<String, module:model/NewCookie>} cookies
    */

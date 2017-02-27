@@ -24,6 +24,11 @@ Delete a client specific key from the keyring for the given User and the authent
 ### Example
 ```javascript
 var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
+
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.UsersApi();
 
@@ -49,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 
@@ -67,6 +72,11 @@ Returns the User with the given (encrypted) id. When receiving a userid through 
 ### Example
 ```javascript
 var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
+
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.UsersApi();
 
@@ -92,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 
@@ -110,6 +120,11 @@ Get the client specific key of the given User and the authenticated client.
 ### Example
 ```javascript
 var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
+
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.UsersApi();
 
@@ -135,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 
@@ -153,6 +168,11 @@ Get all keys, owned by the authenticated client, of the given User. Usually thos
 ### Example
 ```javascript
 var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
+
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.UsersApi();
 
@@ -178,7 +198,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 
@@ -196,6 +216,11 @@ Get the &#39;UWLR&#39; key of the given User. This key is not client specific (a
 ### Example
 ```javascript
 var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
+
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.UsersApi();
 
@@ -221,7 +246,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 
@@ -239,6 +264,11 @@ Returns all Users, filtered on schoollocation, group, or usertype. Calls with bo
 ### Example
 ```javascript
 var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
+
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.UsersApi();
 
@@ -273,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 
@@ -291,6 +321,11 @@ Save a client specific key in the keyring for the given User and the authenticat
 ### Example
 ```javascript
 var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
+
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.UsersApi();
 
@@ -319,7 +354,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 

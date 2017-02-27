@@ -72,11 +72,11 @@
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('statusCode')) {
-        obj['statusCode'] = ApiClient.convertToType(data['statusCode'], 'Integer');
-      }
       if (data.hasOwnProperty('reasonPhrase')) {
         obj['reasonPhrase'] = ApiClient.convertToType(data['reasonPhrase'], 'String');
+      }
+      if (data.hasOwnProperty('statusCode')) {
+        obj['statusCode'] = ApiClient.convertToType(data['statusCode'], 'Integer');
       }
       if (data.hasOwnProperty('family')) {
         obj['family'] = ApiClient.convertToType(data['family'], 'String');
@@ -86,13 +86,13 @@
   }
 
   /**
-   * @member {Integer} statusCode
-   */
-  exports.prototype['statusCode'] = undefined;
-  /**
    * @member {String} reasonPhrase
    */
   exports.prototype['reasonPhrase'] = undefined;
+  /**
+   * @member {Integer} statusCode
+   */
+  exports.prototype['statusCode'] = undefined;
   /**
    * @member {module:model/StatusType.FamilyEnum} family
    */

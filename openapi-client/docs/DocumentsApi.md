@@ -18,6 +18,11 @@ Upload a processor agreement to Wise-r
 ### Example
 ```javascript
 var WiserClient = require('wise-r-openapi-client');
+var defaultClient = WiserClient.ApiClient.default;
+
+// Configure OAuth2 access token for authorization: oauth_client_credentials
+var oauth_client_credentials = defaultClient.authentications['oauth_client_credentials'];
+oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.DocumentsApi();
 
@@ -46,7 +51,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oauth_client_credentials](../README.md#oauth_client_credentials)
 
 ### HTTP request headers
 

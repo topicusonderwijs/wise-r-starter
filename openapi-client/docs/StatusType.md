@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**statusCode** | **Integer** |  | [optional] 
 **reasonPhrase** | **String** |  | [optional] 
+**statusCode** | **Integer** |  | [optional] 
 **family** | **String** |  | [optional] 
 
 

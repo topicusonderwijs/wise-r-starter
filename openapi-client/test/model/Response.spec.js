@@ -83,14 +83,14 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property entity (base name: "entity")', function() {
-      // uncomment below and update the code to test the property entity
+    it('should have the property mediaType (base name: "mediaType")', function() {
+      // uncomment below and update the code to test the property mediaType
       //var instane = new WiserClient.Response();
       //expect(instance).to.be();
     });
 
-    it('should have the property mediaType (base name: "mediaType")', function() {
-      // uncomment below and update the code to test the property mediaType
+    it('should have the property statusInfo (base name: "statusInfo")', function() {
+      // uncomment below and update the code to test the property statusInfo
       //var instane = new WiserClient.Response();
       //expect(instance).to.be();
     });
@@ -125,8 +125,8 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property statusInfo (base name: "statusInfo")', function() {
-      // uncomment below and update the code to test the property statusInfo
+    it('should have the property entity (base name: "entity")', function() {
+      // uncomment below and update the code to test the property entity
       //var instane = new WiserClient.Response();
       //expect(instance).to.be();
     });

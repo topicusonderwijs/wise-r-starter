@@ -89,7 +89,7 @@
         'upload': upload
       };
 
-      var authNames = [];
+      var authNames = ['oauth_client_credentials'];
       var contentTypes = ['multipart/form-data'];
       var accepts = ['application/json'];
       var returnType = Response;

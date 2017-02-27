@@ -65,14 +65,14 @@
       //expect(instance).to.be.a(WiserClient.StatusType);
     });
 
-    it('should have the property statusCode (base name: "statusCode")', function() {
-      // uncomment below and update the code to test the property statusCode
+    it('should have the property reasonPhrase (base name: "reasonPhrase")', function() {
+      // uncomment below and update the code to test the property reasonPhrase
       //var instane = new WiserClient.StatusType();
       //expect(instance).to.be();
     });
 
-    it('should have the property reasonPhrase (base name: "reasonPhrase")', function() {
-      // uncomment below and update the code to test the property reasonPhrase
+    it('should have the property statusCode (base name: "statusCode")', function() {
+      // uncomment below and update the code to test the property statusCode
       //var instane = new WiserClient.StatusType();
       //expect(instance).to.be();
     });

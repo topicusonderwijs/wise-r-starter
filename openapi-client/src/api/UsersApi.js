@@ -82,7 +82,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['oauth_client_credentials'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
       var returnType = Response;
@@ -120,7 +120,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['oauth_client_credentials'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = UserResourceV2;
@@ -158,7 +158,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['oauth_client_credentials'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = KeyringResourceV2;
@@ -196,7 +196,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['oauth_client_credentials'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = [KeyringResourceV2];
@@ -234,7 +234,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['oauth_client_credentials'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = KeyringResourceV2;
@@ -277,7 +277,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['oauth_client_credentials'];
       var contentTypes = [];
       var accepts = ['application/json'];
       var returnType = [UserResourceV2];
@@ -321,7 +321,7 @@
       var formParams = {
       };
 
-      var authNames = [];
+      var authNames = ['oauth_client_credentials'];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
       var returnType = KeyringResourceV2;
