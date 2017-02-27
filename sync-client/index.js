@@ -101,7 +101,7 @@ var exports = module.exports = function (clientInstance) {
             return false;
         }
 
-        changesApi.getChanges([school.id], { nextId: nextId }).then(function (response) {
+        changesApi.getChanges([school.id], {nextId: nextId}).then(function (response) {
             nextId = response.nextId;
 
             return Promise.all(processChanges(response.changes))
@@ -130,6 +130,8 @@ var exports = module.exports = function (clientInstance) {
         .catch(function (error) {
             console.error('Error caught while getting changes', error);
         });
+
+        return true;
     };
 
     /**
@@ -224,7 +226,6 @@ var exports = module.exports = function (clientInstance) {
  * @param {Object} object - Object containing the changes resource.
  * @param {string} tablename - Change type/table.
  * @param {string} changetype - Kind of change (CREATE/UPDATE/DELETE).
- * @constructor Creates a apiService.ChangeObject
  * @return {undefined}
  */
 exports.ChangeObject = function (id, schoolLocationId, object, tablename, changetype) {
