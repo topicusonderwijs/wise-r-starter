@@ -55,6 +55,7 @@ Use `npm link` to develop on the dependency packages without releasing them:
 wise-r-starter$ cd openapi-client
 wise-r-starter/openapi-client$ npm link
 wise-r-starter/openapi-client$ cd ../sync-client
+wise-r-starter/sync-client$ npm link wise-r-openapi-client
 wise-r-starter/sync-client$ npm link
 wise-r-starter/sync-client$ cd ..
 wise-r-starter$ npm link wise-r-openapi-client
