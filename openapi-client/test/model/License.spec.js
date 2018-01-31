@@ -39,7 +39,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new WiserClient.SchoolLocationResourceV2();
+    instance = new WiserClient.License();
   });
 
   var getProperty = function(object, getter, property) {
@@ -58,46 +58,70 @@
       object[property] = value;
   }
 
-  describe('SchoolLocationResourceV2', function() {
-    it('should create an instance of SchoolLocationResourceV2', function() {
-      // uncomment below and update the code to test SchoolLocationResourceV2
-      //var instane = new WiserClient.SchoolLocationResourceV2();
-      //expect(instance).to.be.a(WiserClient.SchoolLocationResourceV2);
+  describe('License', function() {
+    it('should create an instance of License', function() {
+      // uncomment below and update the code to test License
+      //var instane = new WiserClient.License();
+      //expect(instance).to.be.a(WiserClient.License);
     });
 
     it('should have the property schoolId (base name: "schoolId")', function() {
       // uncomment below and update the code to test the property schoolId
-      //var instane = new WiserClient.SchoolLocationResourceV2();
+      //var instane = new WiserClient.License();
       //expect(instance).to.be();
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instane = new WiserClient.SchoolLocationResourceV2();
+      //var instane = new WiserClient.License();
       //expect(instance).to.be();
     });
 
-    it('should have the property name (base name: "name")', function() {
-      // uncomment below and update the code to test the property name
-      //var instane = new WiserClient.SchoolLocationResourceV2();
+    it('should have the property startDate (base name: "startDate")', function() {
+      // uncomment below and update the code to test the property startDate
+      //var instane = new WiserClient.License();
       //expect(instance).to.be();
     });
 
-    it('should have the property brincode (base name: "brincode")', function() {
-      // uncomment below and update the code to test the property brincode
-      //var instane = new WiserClient.SchoolLocationResourceV2();
+    it('should have the property endDate (base name: "endDate")', function() {
+      // uncomment below and update the code to test the property endDate
+      //var instane = new WiserClient.License();
       //expect(instance).to.be();
     });
 
-    it('should have the property dependancecode (base name: "dependancecode")', function() {
-      // uncomment below and update the code to test the property dependancecode
-      //var instane = new WiserClient.SchoolLocationResourceV2();
+    it('should have the property application (base name: "application")', function() {
+      // uncomment below and update the code to test the property application
+      //var instane = new WiserClient.License();
       //expect(instance).to.be();
     });
 
-    it('should have the property schoolkey (base name: "schoolkey")', function() {
-      // uncomment below and update the code to test the property schoolkey
-      //var instane = new WiserClient.SchoolLocationResourceV2();
+    it('should have the property teacherId (base name: "teacherId")', function() {
+      // uncomment below and update the code to test the property teacherId
+      //var instane = new WiserClient.License();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property schoolLocationId (base name: "schoolLocationId")', function() {
+      // uncomment below and update the code to test the property schoolLocationId
+      //var instane = new WiserClient.License();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property group (base name: "group")', function() {
+      // uncomment below and update the code to test the property group
+      //var instane = new WiserClient.License();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property licenseType (base name: "licenseType")', function() {
+      // uncomment below and update the code to test the property licenseType
+      //var instane = new WiserClient.License();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property licenseStatus (base name: "licenseStatus")', function() {
+      // uncomment below and update the code to test the property licenseStatus
+      //var instane = new WiserClient.License();
       //expect(instance).to.be();
     });
 

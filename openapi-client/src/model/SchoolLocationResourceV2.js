@@ -57,9 +57,8 @@
   var exports = function(id) {
     var _this = this;
 
+
     _this['id'] = id;
-
-
 
 
 
@@ -77,14 +76,14 @@
     if (data) {
       obj = obj || new exports();
 
+      if (data.hasOwnProperty('schoolId')) {
+        obj['schoolId'] = ApiClient.convertToType(data['schoolId'], 'String');
+      }
       if (data.hasOwnProperty('id')) {
         obj['id'] = ApiClient.convertToType(data['id'], 'String');
       }
       if (data.hasOwnProperty('name')) {
         obj['name'] = ApiClient.convertToType(data['name'], 'String');
-      }
-      if (data.hasOwnProperty('schoolId')) {
-        obj['schoolId'] = ApiClient.convertToType(data['schoolId'], 'String');
       }
       if (data.hasOwnProperty('brincode')) {
         obj['brincode'] = ApiClient.convertToType(data['brincode'], 'String');
@@ -95,13 +94,15 @@
       if (data.hasOwnProperty('schoolkey')) {
         obj['schoolkey'] = ApiClient.convertToType(data['schoolkey'], 'String');
       }
-      if (data.hasOwnProperty('urlToKey')) {
-        obj['urlToKey'] = ApiClient.convertToType(data['urlToKey'], 'String');
-      }
     }
     return obj;
   }
 
+  /**
+   * Id of the parent of this school location
+   * @member {String} schoolId
+   */
+  exports.prototype['schoolId'] = undefined;
   /**
    * The ID of this resource
    * @member {String} id
@@ -112,11 +113,6 @@
    * @member {String} name
    */
   exports.prototype['name'] = undefined;
-  /**
-   * Parent school of this location.
-   * @member {String} schoolId
-   */
-  exports.prototype['schoolId'] = undefined;
   /**
    * BRIN code
    * @member {String} brincode
@@ -132,10 +128,6 @@
    * @member {String} schoolkey
    */
   exports.prototype['schoolkey'] = undefined;
-  /**
-   * @member {String} urlToKey
-   */
-  exports.prototype['urlToKey'] = undefined;
 
 
 

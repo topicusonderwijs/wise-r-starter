@@ -91,7 +91,7 @@
    */
   exports.prototype['url'] = undefined;
   /**
-   * The unique identifier for this resource
+   * The identifier for this resource
    * @member {String} id
    */
   exports.prototype['id'] = undefined;

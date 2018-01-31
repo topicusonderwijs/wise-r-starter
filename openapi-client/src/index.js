@@ -25,12 +25,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/AanbiederIdRestResourceLink', 'model/ChangeResourceV2', 'model/ChangeSetV2', 'model/EntityTag', 'model/GroupResourceV2', 'model/KeyValueResourceV2', 'model/KeyringResourceV2', 'model/Link', 'model/Locale', 'model/MediaType', 'model/NewCookie', 'model/NotAuthorizedOrganisationResponse', 'model/Response', 'model/RestResourceLinkV2', 'model/SchoolLocationResourceV2', 'model/SchoolResource', 'model/StatusType', 'model/UriBuilder', 'model/UserResourceV2', 'api/ChangesApi', 'api/DocumentsApi', 'api/GroupsApi', 'api/SchoolsApi', 'api/UsersApi'], factory);
+    define(['ApiClient', 'model/AanbiederIdRestResourceLink', 'model/ChangeResourceV2', 'model/ChangeSetV2', 'model/EntityTag', 'model/GroupResourceV2', 'model/KeyValueResourceV2', 'model/KeyringResourceV2', 'model/License', 'model/Link', 'model/Locale', 'model/MediaType', 'model/NewCookie', 'model/NotAuthorizedOrganisationResponse', 'model/Response', 'model/RestResourceLinkV2', 'model/SchoolLocationResourceV2', 'model/SchoolResource', 'model/StatusType', 'model/UriBuilder', 'model/UserResourceV2', 'api/ChangesApi', 'api/DocumentsApi', 'api/GroupsApi', 'api/LicensesApi', 'api/SchoolsApi', 'api/UsersApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/AanbiederIdRestResourceLink'), require('./model/ChangeResourceV2'), require('./model/ChangeSetV2'), require('./model/EntityTag'), require('./model/GroupResourceV2'), require('./model/KeyValueResourceV2'), require('./model/KeyringResourceV2'), require('./model/Link'), require('./model/Locale'), require('./model/MediaType'), require('./model/NewCookie'), require('./model/NotAuthorizedOrganisationResponse'), require('./model/Response'), require('./model/RestResourceLinkV2'), require('./model/SchoolLocationResourceV2'), require('./model/SchoolResource'), require('./model/StatusType'), require('./model/UriBuilder'), require('./model/UserResourceV2'), require('./api/ChangesApi'), require('./api/DocumentsApi'), require('./api/GroupsApi'), require('./api/SchoolsApi'), require('./api/UsersApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/AanbiederIdRestResourceLink'), require('./model/ChangeResourceV2'), require('./model/ChangeSetV2'), require('./model/EntityTag'), require('./model/GroupResourceV2'), require('./model/KeyValueResourceV2'), require('./model/KeyringResourceV2'), require('./model/License'), require('./model/Link'), require('./model/Locale'), require('./model/MediaType'), require('./model/NewCookie'), require('./model/NotAuthorizedOrganisationResponse'), require('./model/Response'), require('./model/RestResourceLinkV2'), require('./model/SchoolLocationResourceV2'), require('./model/SchoolResource'), require('./model/StatusType'), require('./model/UriBuilder'), require('./model/UserResourceV2'), require('./api/ChangesApi'), require('./api/DocumentsApi'), require('./api/GroupsApi'), require('./api/LicensesApi'), require('./api/SchoolsApi'), require('./api/UsersApi'));
   }
-}(function(ApiClient, AanbiederIdRestResourceLink, ChangeResourceV2, ChangeSetV2, EntityTag, GroupResourceV2, KeyValueResourceV2, KeyringResourceV2, Link, Locale, MediaType, NewCookie, NotAuthorizedOrganisationResponse, Response, RestResourceLinkV2, SchoolLocationResourceV2, SchoolResource, StatusType, UriBuilder, UserResourceV2, ChangesApi, DocumentsApi, GroupsApi, SchoolsApi, UsersApi) {
+}(function(ApiClient, AanbiederIdRestResourceLink, ChangeResourceV2, ChangeSetV2, EntityTag, GroupResourceV2, KeyValueResourceV2, KeyringResourceV2, License, Link, Locale, MediaType, NewCookie, NotAuthorizedOrganisationResponse, Response, RestResourceLinkV2, SchoolLocationResourceV2, SchoolResource, StatusType, UriBuilder, UserResourceV2, ChangesApi, DocumentsApi, GroupsApi, LicensesApi, SchoolsApi, UsersApi) {
   'use strict';
 
   /**
@@ -106,6 +106,11 @@
      */
     KeyringResourceV2: KeyringResourceV2,
     /**
+     * The License model constructor.
+     * @property {module:model/License}
+     */
+    License: License,
+    /**
      * The Link model constructor.
      * @property {module:model/Link}
      */
@@ -180,6 +185,11 @@
      * @property {module:api/GroupsApi}
      */
     GroupsApi: GroupsApi,
+    /**
+     * The LicensesApi service constructor.
+     * @property {module:api/LicensesApi}
+     */
+    LicensesApi: LicensesApi,
     /**
      * The SchoolsApi service constructor.
      * @property {module:api/SchoolsApi}

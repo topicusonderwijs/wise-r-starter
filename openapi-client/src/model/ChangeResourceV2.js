@@ -53,16 +53,17 @@
    * Bij wijzigingen kunnen verschillende aantallen links worden meegegeven. Als een Group of User gewijzigd is dan zal er één link worden meegestuurd naar die User of Group. Als het changedResourceType een groupmembership is, dan worden in de links zowel de betreffende User als Group meegestuurd.
    * @alias module:model/ChangeResourceV2
    * @class
-   * @param id {Integer} The ID of this resource
+   * @param schoolId {String} Parent school of the school location.
    * @param timestamp {Date} The timestamp of the change
    * @param changeType {module:model/ChangeResourceV2.ChangeTypeEnum} The type of change
    * @param changedResourceType {module:model/ChangeResourceV2.ChangedResourceTypeEnum} The type of the changed resource
    * @param links {Array.<module:model/AanbiederIdRestResourceLink>} The links to the changed resources (one or more)
    */
-  var exports = function(id, timestamp, changeType, changedResourceType, links) {
+  var exports = function(schoolId, timestamp, changeType, changedResourceType, links) {
     var _this = this;
 
-    _this['id'] = id;
+    _this['schoolId'] = schoolId;
+
     _this['timestamp'] = timestamp;
     _this['changeType'] = changeType;
     _this['changedResourceType'] = changedResourceType;
@@ -81,8 +82,11 @@
     if (data) {
       obj = obj || new exports();
 
+      if (data.hasOwnProperty('schoolId')) {
+        obj['schoolId'] = ApiClient.convertToType(data['schoolId'], 'String');
+      }
       if (data.hasOwnProperty('id')) {
-        obj['id'] = ApiClient.convertToType(data['id'], 'Integer');
+        obj['id'] = ApiClient.convertToType(data['id'], 'String');
       }
       if (data.hasOwnProperty('timestamp')) {
         obj['timestamp'] = ApiClient.convertToType(data['timestamp'], 'Date');
@@ -104,8 +108,13 @@
   }
 
   /**
-   * The ID of this resource
-   * @member {Integer} id
+   * Parent school of the school location.
+   * @member {String} schoolId
+   */
+  exports.prototype['schoolId'] = undefined;
+  /**
+   * The identifier of the resource
+   * @member {String} id
    */
   exports.prototype['id'] = undefined;
   /**
@@ -163,6 +172,11 @@
    * @readonly
    */
   exports.ChangedResourceTypeEnum = {
+    /**
+     * value: "schoollocation"
+     * @const
+     */
+    "schoollocation": "schoollocation",
     /**
      * value: "user"
      * @const

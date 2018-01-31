@@ -39,7 +39,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new WiserClient.SchoolLocationResourceV2();
+    instance = new WiserClient.LicensesApi();
   });
 
   var getProperty = function(object, getter, property) {
@@ -58,49 +58,47 @@
       object[property] = value;
   }
 
-  describe('SchoolLocationResourceV2', function() {
-    it('should create an instance of SchoolLocationResourceV2', function() {
-      // uncomment below and update the code to test SchoolLocationResourceV2
-      //var instane = new WiserClient.SchoolLocationResourceV2();
-      //expect(instance).to.be.a(WiserClient.SchoolLocationResourceV2);
+  describe('LicensesApi', function() {
+    describe('createLicense', function() {
+      it('should call createLicense successfully', function(done) {
+        //uncomment below and update the code to test createLicense
+        //instance.createLicense(pet, function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
     });
-
-    it('should have the property schoolId (base name: "schoolId")', function() {
-      // uncomment below and update the code to test the property schoolId
-      //var instane = new WiserClient.SchoolLocationResourceV2();
-      //expect(instance).to.be();
+    describe('getLicense', function() {
+      it('should call getLicense successfully', function(done) {
+        //uncomment below and update the code to test getLicense
+        //instance.getLicense(pet, function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
     });
-
-    it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
-      //var instane = new WiserClient.SchoolLocationResourceV2();
-      //expect(instance).to.be();
+    describe('getLicenses', function() {
+      it('should call getLicenses successfully', function(done) {
+        //uncomment below and update the code to test getLicenses
+        //instance.getLicenses(pet, function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
     });
-
-    it('should have the property name (base name: "name")', function() {
-      // uncomment below and update the code to test the property name
-      //var instane = new WiserClient.SchoolLocationResourceV2();
-      //expect(instance).to.be();
+    describe('updateLicense', function() {
+      it('should call updateLicense successfully', function(done) {
+        //uncomment below and update the code to test updateLicense
+        //instance.updateLicense(pet, function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
     });
-
-    it('should have the property brincode (base name: "brincode")', function() {
-      // uncomment below and update the code to test the property brincode
-      //var instane = new WiserClient.SchoolLocationResourceV2();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property dependancecode (base name: "dependancecode")', function() {
-      // uncomment below and update the code to test the property dependancecode
-      //var instane = new WiserClient.SchoolLocationResourceV2();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property schoolkey (base name: "schoolkey")', function() {
-      // uncomment below and update the code to test the property schoolkey
-      //var instane = new WiserClient.SchoolLocationResourceV2();
-      //expect(instance).to.be();
-    });
-
   });
 
 }));

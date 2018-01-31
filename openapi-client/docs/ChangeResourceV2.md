@@ -3,7 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Integer** | The ID of this resource | 
+**schoolId** | **String** | Parent school of the school location. | 
+**id** | **String** | The identifier of the resource | [optional] 
 **timestamp** | **Date** | The timestamp of the change | 
 **changeType** | **String** | The type of change | 
 **changedResourceType** | **String** | The type of the changed resource | 
@@ -27,6 +28,8 @@ Name | Type | Description | Notes
 <a name="ChangedResourceTypeEnum"></a>
 ## Enum: ChangedResourceTypeEnum
 
+
+* `schoollocation` (value: `"schoollocation"`)
 
 * `user` (value: `"user"`)
 

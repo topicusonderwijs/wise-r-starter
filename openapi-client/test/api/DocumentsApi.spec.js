@@ -59,10 +59,10 @@
   }
 
   describe('DocumentsApi', function() {
-    describe('putProcessorAgreement', function() {
-      it('should call putProcessorAgreement successfully', function(done) {
-        //uncomment below and update the code to test putProcessorAgreement
-        //instance.putProcessorAgreement(pet, function(error) {
+    describe('putProcessingAgreement', function() {
+      it('should call putProcessingAgreement successfully', function(done) {
+        //uncomment below and update the code to test putProcessingAgreement
+        //instance.putProcessingAgreement(pet, function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

@@ -25,18 +25,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/KeyringResourceV2', 'model/GroupResourceV2', 'model/NotAuthorizedOrganisationResponse'], factory);
+    define(['ApiClient', 'model/KeyringResourceV2', 'model/GroupResourceV2', 'model/NotAuthorizedOrganisationResponse', 'model/KeyValueResourceV2'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/KeyringResourceV2'), require('../model/GroupResourceV2'), require('../model/NotAuthorizedOrganisationResponse'));
+    module.exports = factory(require('../ApiClient'), require('../model/KeyringResourceV2'), require('../model/GroupResourceV2'), require('../model/NotAuthorizedOrganisationResponse'), require('../model/KeyValueResourceV2'));
   } else {
     // Browser globals (root is window)
     if (!root.WiserClient) {
       root.WiserClient = {};
     }
-    root.WiserClient.GroupsApi = factory(root.WiserClient.ApiClient, root.WiserClient.KeyringResourceV2, root.WiserClient.GroupResourceV2, root.WiserClient.NotAuthorizedOrganisationResponse);
+    root.WiserClient.GroupsApi = factory(root.WiserClient.ApiClient, root.WiserClient.KeyringResourceV2, root.WiserClient.GroupResourceV2, root.WiserClient.NotAuthorizedOrganisationResponse, root.WiserClient.KeyValueResourceV2);
   }
-}(this, function(ApiClient, KeyringResourceV2, GroupResourceV2, NotAuthorizedOrganisationResponse) {
+}(this, function(ApiClient, KeyringResourceV2, GroupResourceV2, NotAuthorizedOrganisationResponse, KeyValueResourceV2) {
   'use strict';
 
   /**
@@ -60,17 +60,11 @@
     /**
      * Delete a key from keyring
      * Delete a client specific key from the keyring for the given Group and the authenticated client
-     * @param {module:model/KeyringResourceV2} body 
      * @param {String} id Encrypted groupid
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/KeyringResourceV2}
      */
-    this.deleteGroupKey = function(body, id) {
-      var postBody = body;
-
-      // verify the required parameter 'body' is set
-      if (body == undefined || body == null) {
-        throw "Missing the required parameter 'body' when calling deleteGroupKey";
-      }
+    this.deleteGroupKey = function(id) {
+      var postBody = null;
 
       // verify the required parameter 'id' is set
       if (id == undefined || id == null) {
@@ -258,9 +252,10 @@
      * Returns all Groups, filtered on schoollocation.
      * @param {Object} opts Optional parameters
      * @param {Array.<String>} opts.schoollocations Filter on schoollocations (optional, list of id&#39;s)
-     * @param {String} opts.schoolyear Filter on schoolyear (optional, filters default on current school year. Example value: 2015-2016)
+     * @param {String} opts.schoolyear Filter on schoolyear (optional, filters default on &lt;b&gt;current school year&lt;/b&gt;. Example value: 2015-2016)
+     * @param {String} opts.user Filter on groups for one specific user. This filter overrules any schoollocation filter.
      * @param {Integer} opts.offset Paging: number of records to skip (optional) (default to 0)
-     * @param {Integer} opts.limit Paging: number of records to return (optional, maximal value: 100) (default to 100)
+     * @param {Integer} opts.limit Paging: number of records to return (optional, maximal value: 1000) (default to 100)
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/GroupResourceV2>}
      */
     this.getGroups = function(opts) {
@@ -273,6 +268,7 @@
       var queryParams = {
         'schoollocations': this.apiClient.buildCollectionParam(opts['schoollocations'], 'multi'),
         'schoolyear': opts['schoolyear'],
+        'user': opts['user'],
         'offset': opts['offset'],
         'limit': opts['limit']
       };
@@ -297,7 +293,7 @@
     /**
      * Save a key in keyring
      * Save a key in keyring for the given Group and the authenticated client
-     * @param {module:model/KeyringResourceV2} body 
+     * @param {module:model/KeyValueResourceV2} body 
      * @param {String} id Encrypted groupid
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/KeyringResourceV2}
      */

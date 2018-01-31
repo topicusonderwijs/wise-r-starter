@@ -71,14 +71,14 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property statusCode (base name: "statusCode")', function() {
-      // uncomment below and update the code to test the property statusCode
+    it('should have the property family (base name: "family")', function() {
+      // uncomment below and update the code to test the property family
       //var instane = new WiserClient.StatusType();
       //expect(instance).to.be();
     });
 
-    it('should have the property family (base name: "family")', function() {
-      // uncomment below and update the code to test the property family
+    it('should have the property statusCode (base name: "statusCode")', function() {
+      // uncomment below and update the code to test the property statusCode
       //var instane = new WiserClient.StatusType();
       //expect(instance).to.be();
     });

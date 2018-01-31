@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 <a name="getUser"></a>
 # **getUser**
-> UserResourceV2 getUser(id)
+> UserResourceV2 getUser(id, opts)
 
 Get User
 
@@ -82,7 +82,10 @@ var apiInstance = new WiserClient.UsersApi();
 
 var id = "id_example"; // String | Encrypted userid
 
-apiInstance.getUser(id).then(function(data) {
+var opts = { 
+  'archived': true // Boolean | Also return archived users, default false
+};
+apiInstance.getUser(id, opts).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
 }, function(error) {
   console.error(error);
@@ -95,6 +98,7 @@ apiInstance.getUser(id).then(function(data) {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Encrypted userid | 
+ **archived** | **Boolean**| Also return archived users, default false | [optional] 
 
 ### Return type
 
@@ -275,9 +279,15 @@ var apiInstance = new WiserClient.UsersApi();
 var opts = { 
   'usertype': "usertype_example", // String | Filter the type of User (optional)
   'schoollocations': ["schoollocations_example"], // [String] | Filter on schoollocations (optional, list of id's)
+  'school': "school_example", // String | Filter on schoolid. Overruled by schoollocations, groups if multiple filters found.
   'groups': ["groups_example"], // [String] | Filter on groups (optional, list of id's)
   'offset': 0, // Integer | Paging: number of records to skip (optional)
-  'limit': 100 // Integer | Paging: number of records to return (optional, maximal value: 100)
+  'limit': 100, // Integer | Paging: number of records to return (optional, maximal value: 1000)
+  'firstName': "firstName_example", // String | Filter on given name of the users
+  'surname': "surname_example", // String | Filter on the family name of the user
+  'email': "email_example", // String | Filter on the E-mail address of the user
+  'grade': "grade_example", // String | Filter on the grade (if student)
+  'archived': true // Boolean | Also returns archived users, default false
 };
 apiInstance.getUsers(opts).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
@@ -293,9 +303,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **usertype** | **String**| Filter the type of User (optional) | [optional] 
  **schoollocations** | [**[String]**](String.md)| Filter on schoollocations (optional, list of id&#39;s) | [optional] 
+ **school** | **String**| Filter on schoolid. Overruled by schoollocations, groups if multiple filters found. | [optional] 
  **groups** | [**[String]**](String.md)| Filter on groups (optional, list of id&#39;s) | [optional] 
  **offset** | **Integer**| Paging: number of records to skip (optional) | [optional] [default to 0]
- **limit** | **Integer**| Paging: number of records to return (optional, maximal value: 100) | [optional] [default to 100]
+ **limit** | **Integer**| Paging: number of records to return (optional, maximal value: 1000) | [optional] [default to 100]
+ **firstName** | **String**| Filter on given name of the users | [optional] 
+ **surname** | **String**| Filter on the family name of the user | [optional] 
+ **email** | **String**| Filter on the E-mail address of the user | [optional] 
+ **grade** | **String**| Filter on the grade (if student) | [optional] 
+ **archived** | **Boolean**| Also returns archived users, default false | [optional] 
 
 ### Return type
 

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 <a name="deleteGroupKey"></a>
 # **deleteGroupKey**
-> KeyringResourceV2 deleteGroupKey(body, id)
+> KeyringResourceV2 deleteGroupKey(id)
 
 Delete a key from keyring
 
@@ -32,11 +32,9 @@ oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.GroupsApi();
 
-var body = new WiserClient.KeyringResourceV2(); // KeyringResourceV2 | 
-
 var id = "id_example"; // String | Encrypted groupid
 
-apiInstance.deleteGroupKey(body, id).then(function(data) {
+apiInstance.deleteGroupKey(id).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
 }, function(error) {
   console.error(error);
@@ -48,7 +46,6 @@ apiInstance.deleteGroupKey(body, id).then(function(data) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**KeyringResourceV2**](KeyringResourceV2.md)|  | 
  **id** | **String**| Encrypted groupid | 
 
 ### Return type
@@ -277,9 +274,10 @@ var apiInstance = new WiserClient.GroupsApi();
 
 var opts = { 
   'schoollocations': ["schoollocations_example"], // [String] | Filter on schoollocations (optional, list of id's)
-  'schoolyear': "schoolyear_example", // String | Filter on schoolyear (optional, filters default on current school year. Example value: 2015-2016)
+  'schoolyear': "schoolyear_example", // String | Filter on schoolyear (optional, filters default on <b>current school year</b>. Example value: 2015-2016)
+  'user': "user_example", // String | Filter on groups for one specific user. This filter overrules any schoollocation filter.
   'offset': 0, // Integer | Paging: number of records to skip (optional)
-  'limit': 100 // Integer | Paging: number of records to return (optional, maximal value: 100)
+  'limit': 100 // Integer | Paging: number of records to return (optional, maximal value: 1000)
 };
 apiInstance.getGroups(opts).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
@@ -294,9 +292,10 @@ apiInstance.getGroups(opts).then(function(data) {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **schoollocations** | [**[String]**](String.md)| Filter on schoollocations (optional, list of id&#39;s) | [optional] 
- **schoolyear** | **String**| Filter on schoolyear (optional, filters default on current school year. Example value: 2015-2016) | [optional] 
+ **schoolyear** | **String**| Filter on schoolyear (optional, filters default on &lt;b&gt;current school year&lt;/b&gt;. Example value: 2015-2016) | [optional] 
+ **user** | **String**| Filter on groups for one specific user. This filter overrules any schoollocation filter. | [optional] 
  **offset** | **Integer**| Paging: number of records to skip (optional) | [optional] [default to 0]
- **limit** | **Integer**| Paging: number of records to return (optional, maximal value: 100) | [optional] [default to 100]
+ **limit** | **Integer**| Paging: number of records to return (optional, maximal value: 1000) | [optional] [default to 100]
 
 ### Return type
 
@@ -330,7 +329,7 @@ oauth_client_credentials.accessToken = 'YOUR ACCESS TOKEN';
 
 var apiInstance = new WiserClient.GroupsApi();
 
-var body = new WiserClient.KeyringResourceV2(); // KeyringResourceV2 | 
+var body = new WiserClient.KeyValueResourceV2(); // KeyValueResourceV2 | 
 
 var id = "id_example"; // String | Encrypted groupid
 
@@ -346,7 +345,7 @@ apiInstance.putGroupKey(body, id).then(function(data) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**KeyringResourceV2**](KeyringResourceV2.md)|  | 
+ **body** | [**KeyValueResourceV2**](KeyValueResourceV2.md)|  | 
  **id** | **String**| Encrypted groupid | 
 
 ### Return type

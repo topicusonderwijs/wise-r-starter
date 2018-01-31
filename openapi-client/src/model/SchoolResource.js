@@ -53,15 +53,12 @@
    * @alias module:model/SchoolResource
    * @class
    * @param id {String} The ID of this resource
-   * @param organisationId {String} The ID of the Organisation
    */
-  var exports = function(id, organisationId) {
+  var exports = function(id) {
     var _this = this;
-
 
     _this['id'] = id;
 
-    _this['organisationId'] = organisationId;
   };
 
   /**
@@ -75,26 +72,16 @@
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('organisatieKey')) {
-        obj['organisatieKey'] = ApiClient.convertToType(data['organisatieKey'], 'String');
-      }
       if (data.hasOwnProperty('id')) {
         obj['id'] = ApiClient.convertToType(data['id'], 'String');
       }
       if (data.hasOwnProperty('name')) {
         obj['name'] = ApiClient.convertToType(data['name'], 'String');
       }
-      if (data.hasOwnProperty('organisationId')) {
-        obj['organisationId'] = ApiClient.convertToType(data['organisationId'], 'String');
-      }
     }
     return obj;
   }
 
-  /**
-   * @member {String} organisatieKey
-   */
-  exports.prototype['organisatieKey'] = undefined;
   /**
    * The ID of this resource
    * @member {String} id
@@ -105,11 +92,6 @@
    * @member {String} name
    */
   exports.prototype['name'] = undefined;
-  /**
-   * The ID of the Organisation
-   * @member {String} organisationId
-   */
-  exports.prototype['organisationId'] = undefined;
 
 
 

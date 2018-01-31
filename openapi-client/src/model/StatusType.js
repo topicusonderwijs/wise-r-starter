@@ -75,11 +75,11 @@
       if (data.hasOwnProperty('reasonPhrase')) {
         obj['reasonPhrase'] = ApiClient.convertToType(data['reasonPhrase'], 'String');
       }
-      if (data.hasOwnProperty('statusCode')) {
-        obj['statusCode'] = ApiClient.convertToType(data['statusCode'], 'Integer');
-      }
       if (data.hasOwnProperty('family')) {
         obj['family'] = ApiClient.convertToType(data['family'], 'String');
+      }
+      if (data.hasOwnProperty('statusCode')) {
+        obj['statusCode'] = ApiClient.convertToType(data['statusCode'], 'Integer');
       }
     }
     return obj;
@@ -90,13 +90,13 @@
    */
   exports.prototype['reasonPhrase'] = undefined;
   /**
-   * @member {Integer} statusCode
-   */
-  exports.prototype['statusCode'] = undefined;
-  /**
    * @member {module:model/StatusType.FamilyEnum} family
    */
   exports.prototype['family'] = undefined;
+  /**
+   * @member {Integer} statusCode
+   */
+  exports.prototype['statusCode'] = undefined;
 
 
   /**

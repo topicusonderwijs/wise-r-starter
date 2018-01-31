@@ -65,6 +65,12 @@
       //expect(instance).to.be.a(WiserClient.GroupResourceV2);
     });
 
+    it('should have the property schoolId (base name: "schoolId")', function() {
+      // uncomment below and update the code to test the property schoolId
+      //var instane = new WiserClient.GroupResourceV2();
+      //expect(instance).to.be();
+    });
+
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
       //var instane = new WiserClient.GroupResourceV2();
@@ -83,26 +89,20 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property schoolId (base name: "schoolId")', function() {
-      // uncomment below and update the code to test the property schoolId
-      //var instane = new WiserClient.GroupResourceV2();
-      //expect(instance).to.be();
-    });
-
     it('should have the property type (base name: "type")', function() {
       // uncomment below and update the code to test the property type
       //var instane = new WiserClient.GroupResourceV2();
       //expect(instance).to.be();
     });
 
-    it('should have the property linkedResources (base name: "linkedResources")', function() {
-      // uncomment below and update the code to test the property linkedResources
+    it('should have the property linkedSchoolLocations (base name: "linkedSchoolLocations")', function() {
+      // uncomment below and update the code to test the property linkedSchoolLocations
       //var instane = new WiserClient.GroupResourceV2();
       //expect(instance).to.be();
     });
 
-    it('should have the property linkedSchoolLocations (base name: "linkedSchoolLocations")', function() {
-      // uncomment below and update the code to test the property linkedSchoolLocations
+    it('should have the property linkedResources (base name: "linkedResources")', function() {
+      // uncomment below and update the code to test the property linkedResources
       //var instane = new WiserClient.GroupResourceV2();
       //expect(instance).to.be();
     });

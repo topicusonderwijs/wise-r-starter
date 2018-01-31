@@ -52,11 +52,13 @@
    * Constructs a new <code>UserResourceV2</code>.
    * @alias module:model/UserResourceV2
    * @class
+   * @param schoolId {String} Parent school of the school location.
    * @param id {String} The ID of this resource
    */
-  var exports = function(id) {
+  var exports = function(schoolId, id) {
     var _this = this;
 
+    _this['schoolId'] = schoolId;
     _this['id'] = id;
 
 
@@ -84,6 +86,9 @@
     if (data) {
       obj = obj || new exports();
 
+      if (data.hasOwnProperty('schoolId')) {
+        obj['schoolId'] = ApiClient.convertToType(data['schoolId'], 'String');
+      }
       if (data.hasOwnProperty('id')) {
         obj['id'] = ApiClient.convertToType(data['id'], 'String');
       }
@@ -117,11 +122,11 @@
       if (data.hasOwnProperty('sector')) {
         obj['sector'] = ApiClient.convertToType(data['sector'], 'String');
       }
-      if (data.hasOwnProperty('linkedSchoolLocations')) {
-        obj['linkedSchoolLocations'] = ApiClient.convertToType(data['linkedSchoolLocations'], [RestResourceLinkV2]);
-      }
       if (data.hasOwnProperty('linkedGroups')) {
         obj['linkedGroups'] = ApiClient.convertToType(data['linkedGroups'], [RestResourceLinkV2]);
+      }
+      if (data.hasOwnProperty('linkedSchoolLocations')) {
+        obj['linkedSchoolLocations'] = ApiClient.convertToType(data['linkedSchoolLocations'], [RestResourceLinkV2]);
       }
       if (data.hasOwnProperty('urlToKey')) {
         obj['urlToKey'] = ApiClient.convertToType(data['urlToKey'], 'String');
@@ -130,6 +135,11 @@
     return obj;
   }
 
+  /**
+   * Parent school of the school location.
+   * @member {String} schoolId
+   */
+  exports.prototype['schoolId'] = undefined;
   /**
    * The ID of this resource
    * @member {String} id
@@ -186,15 +196,15 @@
    */
   exports.prototype['sector'] = undefined;
   /**
-   * List of linked schoolLocationId's of the current user. 
-   * @member {Array.<module:model/RestResourceLinkV2>} linkedSchoolLocations
-   */
-  exports.prototype['linkedSchoolLocations'] = undefined;
-  /**
    * List of id's of groups that this user belongs to.
    * @member {Array.<module:model/RestResourceLinkV2>} linkedGroups
    */
   exports.prototype['linkedGroups'] = undefined;
+  /**
+   * List of id's of the school locations of this user. 
+   * @member {Array.<module:model/RestResourceLinkV2>} linkedSchoolLocations
+   */
+  exports.prototype['linkedSchoolLocations'] = undefined;
   /**
    * @member {String} urlToKey
    */
@@ -208,15 +218,15 @@
    */
   exports.UserTypeEnum = {
     /**
-     * value: "student"
-     * @const
-     */
-    "student": "student",
-    /**
      * value: "teacher"
      * @const
      */
-    "teacher": "teacher"  };
+    "teacher": "teacher",
+    /**
+     * value: "student"
+     * @const
+     */
+    "student": "student"  };
 
   /**
    * Allowed values for the <code>gender</code> property.

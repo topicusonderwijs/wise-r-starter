@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **reasonPhrase** | **String** |  | [optional] 
-**statusCode** | **Integer** |  | [optional] 
 **family** | **String** |  | [optional] 
+**statusCode** | **Integer** |  | [optional] 
 
 
 <a name="FamilyEnum"></a>

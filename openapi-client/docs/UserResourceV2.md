@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**schoolId** | **String** | Parent school of the school location. | 
 **id** | **String** | The ID of this resource | 
 **initials** | **String** | Initials | [optional] 
 **firstName** | **String** | First name | [optional] 
@@ -14,8 +15,8 @@ Name | Type | Description | Notes
 **grade** | **String** | Grade (only applicable for students) | [optional] 
 **gender** | **String** | Gender | [optional] 
 **sector** | **String** | Education sector for this user (Dutch abbreviation) | [optional] 
-**linkedSchoolLocations** | [**[RestResourceLinkV2]**](RestResourceLinkV2.md) | List of linked schoolLocationId&#39;s of the current user.  | [optional] 
 **linkedGroups** | [**[RestResourceLinkV2]**](RestResourceLinkV2.md) | List of id&#39;s of groups that this user belongs to. | [optional] 
+**linkedSchoolLocations** | [**[RestResourceLinkV2]**](RestResourceLinkV2.md) | List of id&#39;s of the school locations of this user.  | [optional] 
 **urlToKey** | **String** |  | [optional] 
 
 
@@ -23,9 +24,9 @@ Name | Type | Description | Notes
 ## Enum: UserTypeEnum
 
 
-* `student` (value: `"student"`)
-
 * `teacher` (value: `"teacher"`)
+
+* `student` (value: `"student"`)
 
 
 

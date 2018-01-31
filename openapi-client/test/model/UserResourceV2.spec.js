@@ -65,6 +65,12 @@
       //expect(instance).to.be.a(WiserClient.UserResourceV2);
     });
 
+    it('should have the property schoolId (base name: "schoolId")', function() {
+      // uncomment below and update the code to test the property schoolId
+      //var instane = new WiserClient.UserResourceV2();
+      //expect(instance).to.be();
+    });
+
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
       //var instane = new WiserClient.UserResourceV2();
@@ -131,14 +137,14 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property linkedSchoolLocations (base name: "linkedSchoolLocations")', function() {
-      // uncomment below and update the code to test the property linkedSchoolLocations
+    it('should have the property linkedGroups (base name: "linkedGroups")', function() {
+      // uncomment below and update the code to test the property linkedGroups
       //var instane = new WiserClient.UserResourceV2();
       //expect(instance).to.be();
     });
 
-    it('should have the property linkedGroups (base name: "linkedGroups")', function() {
-      // uncomment below and update the code to test the property linkedGroups
+    it('should have the property linkedSchoolLocations (base name: "linkedSchoolLocations")', function() {
+      // uncomment below and update the code to test the property linkedSchoolLocations
       //var instane = new WiserClient.UserResourceV2();
       //expect(instance).to.be();
     });

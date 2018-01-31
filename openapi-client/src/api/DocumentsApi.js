@@ -58,23 +58,23 @@
 
 
     /**
-     * Upload a processor agreement
-     * Upload a processor agreement to Wise-r
+     * Upload a processing agreement
+     * Upload a processing agreement to Wise-r
      * @param {File} upload PDF bestand
      * @param {String} schoollocation id of the school location
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Response}
      */
-    this.putProcessorAgreement = function(upload, schoollocation) {
+    this.putProcessingAgreement = function(upload, schoollocation) {
       var postBody = null;
 
       // verify the required parameter 'upload' is set
       if (upload == undefined || upload == null) {
-        throw "Missing the required parameter 'upload' when calling putProcessorAgreement";
+        throw "Missing the required parameter 'upload' when calling putProcessingAgreement";
       }
 
       // verify the required parameter 'schoollocation' is set
       if (schoollocation == undefined || schoollocation == null) {
-        throw "Missing the required parameter 'schoollocation' when calling putProcessorAgreement";
+        throw "Missing the required parameter 'schoollocation' when calling putProcessingAgreement";
       }
 
 
@@ -95,7 +95,7 @@
       var returnType = Response;
 
       return this.apiClient.callApi(
-        '/v2/documents/processoragreement', 'PUT',
+        '/v2/documents/processingagreement', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType
       );

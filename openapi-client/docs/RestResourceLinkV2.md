@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **url** | **String** | The URL of the resource, including API version | [optional] 
-**id** | **String** | The unique identifier for this resource | [optional] 
+**id** | **String** | The identifier for this resource | [optional] 
 **resourceType** | **String** | The type of the resource | [optional] 
 
 

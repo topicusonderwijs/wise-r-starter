@@ -52,13 +52,14 @@
    * Constructs a new <code>GroupResourceV2</code>.
    * @alias module:model/GroupResourceV2
    * @class
+   * @param schoolId {String} Parent school of the school location.
    * @param id {String} The ID of this resource
    */
-  var exports = function(id) {
+  var exports = function(schoolId, id) {
     var _this = this;
 
+    _this['schoolId'] = schoolId;
     _this['id'] = id;
-
 
 
 
@@ -78,6 +79,9 @@
     if (data) {
       obj = obj || new exports();
 
+      if (data.hasOwnProperty('schoolId')) {
+        obj['schoolId'] = ApiClient.convertToType(data['schoolId'], 'String');
+      }
       if (data.hasOwnProperty('id')) {
         obj['id'] = ApiClient.convertToType(data['id'], 'String');
       }
@@ -87,17 +91,14 @@
       if (data.hasOwnProperty('schoolyear')) {
         obj['schoolyear'] = ApiClient.convertToType(data['schoolyear'], 'String');
       }
-      if (data.hasOwnProperty('schoolId')) {
-        obj['schoolId'] = ApiClient.convertToType(data['schoolId'], 'String');
-      }
       if (data.hasOwnProperty('type')) {
         obj['type'] = ApiClient.convertToType(data['type'], 'String');
       }
-      if (data.hasOwnProperty('linkedResources')) {
-        obj['linkedResources'] = ApiClient.convertToType(data['linkedResources'], [RestResourceLinkV2]);
-      }
       if (data.hasOwnProperty('linkedSchoolLocations')) {
         obj['linkedSchoolLocations'] = ApiClient.convertToType(data['linkedSchoolLocations'], [RestResourceLinkV2]);
+      }
+      if (data.hasOwnProperty('linkedResources')) {
+        obj['linkedResources'] = ApiClient.convertToType(data['linkedResources'], [RestResourceLinkV2]);
       }
       if (data.hasOwnProperty('urlToKey')) {
         obj['urlToKey'] = ApiClient.convertToType(data['urlToKey'], 'String');
@@ -107,39 +108,40 @@
   }
 
   /**
+   * Parent school of the school location.
+   * @member {String} schoolId
+   */
+  exports.prototype['schoolId'] = undefined;
+  /**
    * The ID of this resource
    * @member {String} id
    */
   exports.prototype['id'] = undefined;
   /**
+   * Name of the group
    * @member {String} name
    */
   exports.prototype['name'] = undefined;
   /**
-   * schoolyear, for example 2016-2017
+   * schoolyear
    * @member {String} schoolyear
    */
   exports.prototype['schoolyear'] = undefined;
-  /**
-   * Parent school of this location.
-   * @member {String} schoolId
-   */
-  exports.prototype['schoolId'] = undefined;
   /**
    * grouptype
    * @member {module:model/GroupResourceV2.TypeEnum} type
    */
   exports.prototype['type'] = undefined;
   /**
-   * List of id's of Resources (Groups or Users) that belong to this Group
-   * @member {Array.<module:model/RestResourceLinkV2>} linkedResources
-   */
-  exports.prototype['linkedResources'] = undefined;
-  /**
    * List of linked schoolLocationId's of the current group. 
    * @member {Array.<module:model/RestResourceLinkV2>} linkedSchoolLocations
    */
   exports.prototype['linkedSchoolLocations'] = undefined;
+  /**
+   * List of id's of Resources (Groups or Users) that belong to this Group
+   * @member {Array.<module:model/RestResourceLinkV2>} linkedResources
+   */
+  exports.prototype['linkedResources'] = undefined;
   /**
    * @member {String} urlToKey
    */

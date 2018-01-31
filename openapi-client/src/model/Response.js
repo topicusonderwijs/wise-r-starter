@@ -85,18 +85,6 @@
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('lastModified')) {
-        obj['lastModified'] = ApiClient.convertToType(data['lastModified'], 'Date');
-      }
-      if (data.hasOwnProperty('date')) {
-        obj['date'] = ApiClient.convertToType(data['date'], 'Date');
-      }
-      if (data.hasOwnProperty('headers')) {
-        obj['headers'] = ApiClient.convertToType(data['headers'], {'String': [Object]});
-      }
-      if (data.hasOwnProperty('mediaType')) {
-        obj['mediaType'] = MediaType.constructFromObject(data['mediaType']);
-      }
       if (data.hasOwnProperty('statusInfo')) {
         obj['statusInfo'] = StatusType.constructFromObject(data['statusInfo']);
       }
@@ -115,8 +103,20 @@
       if (data.hasOwnProperty('stringHeaders')) {
         obj['stringHeaders'] = ApiClient.convertToType(data['stringHeaders'], {'String': ['String']});
       }
+      if (data.hasOwnProperty('mediaType')) {
+        obj['mediaType'] = MediaType.constructFromObject(data['mediaType']);
+      }
       if (data.hasOwnProperty('entity')) {
         obj['entity'] = ApiClient.convertToType(data['entity'], Object);
+      }
+      if (data.hasOwnProperty('lastModified')) {
+        obj['lastModified'] = ApiClient.convertToType(data['lastModified'], 'Date');
+      }
+      if (data.hasOwnProperty('date')) {
+        obj['date'] = ApiClient.convertToType(data['date'], 'Date');
+      }
+      if (data.hasOwnProperty('headers')) {
+        obj['headers'] = ApiClient.convertToType(data['headers'], {'String': [Object]});
       }
       if (data.hasOwnProperty('cookies')) {
         obj['cookies'] = ApiClient.convertToType(data['cookies'], {'String': NewCookie});
@@ -137,22 +137,6 @@
     return obj;
   }
 
-  /**
-   * @member {Date} lastModified
-   */
-  exports.prototype['lastModified'] = undefined;
-  /**
-   * @member {Date} date
-   */
-  exports.prototype['date'] = undefined;
-  /**
-   * @member {Object.<String, Array.<Object>>} headers
-   */
-  exports.prototype['headers'] = undefined;
-  /**
-   * @member {module:model/MediaType} mediaType
-   */
-  exports.prototype['mediaType'] = undefined;
   /**
    * @member {module:model/StatusType} statusInfo
    */
@@ -178,9 +162,25 @@
    */
   exports.prototype['stringHeaders'] = undefined;
   /**
+   * @member {module:model/MediaType} mediaType
+   */
+  exports.prototype['mediaType'] = undefined;
+  /**
    * @member {Object} entity
    */
   exports.prototype['entity'] = undefined;
+  /**
+   * @member {Date} lastModified
+   */
+  exports.prototype['lastModified'] = undefined;
+  /**
+   * @member {Date} date
+   */
+  exports.prototype['date'] = undefined;
+  /**
+   * @member {Object.<String, Array.<Object>>} headers
+   */
+  exports.prototype['headers'] = undefined;
   /**
    * @member {Object.<String, module:model/NewCookie>} cookies
    */

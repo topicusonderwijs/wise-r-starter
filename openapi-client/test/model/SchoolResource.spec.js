@@ -65,12 +65,6 @@
       //expect(instance).to.be.a(WiserClient.SchoolResource);
     });
 
-    it('should have the property organisatieKey (base name: "organisatieKey")', function() {
-      // uncomment below and update the code to test the property organisatieKey
-      //var instane = new WiserClient.SchoolResource();
-      //expect(instance).to.be();
-    });
-
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
       //var instane = new WiserClient.SchoolResource();
@@ -79,12 +73,6 @@
 
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
-      //var instane = new WiserClient.SchoolResource();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property organisationId (base name: "organisationId")', function() {
-      // uncomment below and update the code to test the property organisationId
       //var instane = new WiserClient.SchoolResource();
       //expect(instance).to.be();
     });

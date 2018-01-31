@@ -99,9 +99,12 @@
      * Get User
      * Returns the User with the given (encrypted) id. When receiving a userid through the SSU service, the linked usergroups can be fetched here, after which the groupmembers can be fetched using the Group API. Student details from a student with implied authorization (students in groups with groups permission obtained through SSU service) can also be obtained here.
      * @param {String} id Encrypted userid
+     * @param {Object} opts Optional parameters
+     * @param {Boolean} opts.archived Also return archived users, default false
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/UserResourceV2}
      */
-    this.getUser = function(id) {
+    this.getUser = function(id, opts) {
+      opts = opts || {};
       var postBody = null;
 
       // verify the required parameter 'id' is set
@@ -114,6 +117,7 @@
         'id': id
       };
       var queryParams = {
+        'archived': opts['archived']
       };
       var headerParams = {
       };
@@ -253,9 +257,15 @@
      * @param {Object} opts Optional parameters
      * @param {module:model/String} opts.usertype Filter the type of User (optional)
      * @param {Array.<String>} opts.schoollocations Filter on schoollocations (optional, list of id&#39;s)
+     * @param {String} opts.school Filter on schoolid. Overruled by schoollocations, groups if multiple filters found.
      * @param {Array.<String>} opts.groups Filter on groups (optional, list of id&#39;s)
      * @param {Integer} opts.offset Paging: number of records to skip (optional) (default to 0)
-     * @param {Integer} opts.limit Paging: number of records to return (optional, maximal value: 100) (default to 100)
+     * @param {Integer} opts.limit Paging: number of records to return (optional, maximal value: 1000) (default to 100)
+     * @param {String} opts.firstName Filter on given name of the users
+     * @param {String} opts.surname Filter on the family name of the user
+     * @param {String} opts.email Filter on the E-mail address of the user
+     * @param {String} opts.grade Filter on the grade (if student)
+     * @param {Boolean} opts.archived Also returns archived users, default false
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/UserResourceV2>}
      */
     this.getUsers = function(opts) {
@@ -268,9 +278,15 @@
       var queryParams = {
         'usertype': opts['usertype'],
         'schoollocations': this.apiClient.buildCollectionParam(opts['schoollocations'], 'multi'),
+        'school': opts['school'],
         'groups': this.apiClient.buildCollectionParam(opts['groups'], 'multi'),
         'offset': opts['offset'],
-        'limit': opts['limit']
+        'limit': opts['limit'],
+        'firstName': opts['firstName'],
+        'surname': opts['surname'],
+        'email': opts['email'],
+        'grade': opts['grade'],
+        'archived': opts['archived']
       };
       var headerParams = {
       };
