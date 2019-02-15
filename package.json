@@ -16,8 +16,8 @@
     "express": "^4.12.3",
     "jsonwebtoken": "^8.4.0",
     "jsrsasign": "^8.0.12",
-    "wise-r-openapi-client": "2.0.1",
-    "wise-r-sync-client": "2.0.0-20170228"
+    "wise-r-openapi-client": "2.0.2",
+    "wise-r-sync-client": "2.0.2"
   },
   "devDependencies": {
     "eslint": "^5.13.0",

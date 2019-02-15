@@ -1,12 +1,11 @@
 {
   "name": "wise-r-sync-client",
-  "version": "2.0.0-20170228",
+  "version": "2.0.2",
   "description": "Wise-r changes sync client",
   "license": "Apache-2.0",
   "main": "index.js",
   "dependencies": {
-    "wise-r-openapi-client": "2.0.0-20170228"
+    "wise-r-openapi-client": "2.0.2"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
