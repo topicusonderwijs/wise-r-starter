@@ -10,4 +10,4 @@ fs.createReadStream('backend.config.js.example')
     .pipe(fs.createWriteStream('backend.config.js', {flags: 'wx'}).on("error", function () { }));
 
 // build frontend at build/app.js
-webpack(config, function () { });
+webpack(config).run(function () { console.log('done') });

@@ -5,5 +5,8 @@ module.exports = {
     output: {
         path: path.join(__dirname,'build'),
         filename: "app.js"
+    },
+    module: {
+        rules: [{test: /\.pem$/, loader: "raw-loader"}]
     }
 };
