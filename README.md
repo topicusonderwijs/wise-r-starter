@@ -1,3 +1,5 @@
+# This repository is not maintained and uses libraries that contain security issues
+
 # Wise-r starter kit
 
 A small example application that connects to the Wise-r platform as an OAuth2 client.
