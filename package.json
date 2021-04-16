@@ -15,7 +15,7 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.12.3",
     "jsonwebtoken": "^8.4.0",
-    "jsrsasign": "^8.0.12",
+    "jsrsasign": "^10.2.0",
     "wise-r-openapi-client": "2.0.2",
     "wise-r-sync-client": "2.0.2"
   },
